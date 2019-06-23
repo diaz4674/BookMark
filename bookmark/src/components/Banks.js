@@ -11,6 +11,11 @@ import { connect } from "react-redux";
 import { deleteBank } from "../actions";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import Grid from "@material-ui/core/Grid";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -28,6 +33,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     fontSize: 32,
     "&:hover": {
+      cursor: "pointer",
       animation: "shake 0.1s"
     }
   }
@@ -38,8 +44,15 @@ const Banks = props => {
   const [state, setState] = React.useState({});
   const [newBanks, setnewBanks] = useState([]);
   const [reRender, setreRender] = useState(false);
-  // const [removeBank, setRemoveBank] = useState("");
+  const [open, setOpen] = React.useState(false);
 
+  function handleClickOpen() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
   const handleChange = name => e => {
     setState({ ...state, [name]: e.target.checked });
     if (e.target.checked === true) {
@@ -68,11 +81,6 @@ const Banks = props => {
   const destroyHandler = destroyBank => {
     props.deleteBank(destroyBank);
     props.reRenderHandler();
-  };
-
-  const submitHandler = e => {
-    e.preventDefault();
-    console.log(newBanks);
   };
 
   // useEffect(() => {
@@ -109,7 +117,34 @@ const Banks = props => {
         })}
       </div>
       <FormHelperText>Be careful</FormHelperText>
-      <Button onClick={submitHandler}>Log out stuff</Button>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Take me to my Dashbaord!
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Did you finish selecting your sites?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Select no if you would like to have more time to review selections,
+            or browse other categories to add more sites to your bookmarks.
+            Otherwise, select yes to be taken to your dashboard.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Not yet
+          </Button>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            Yes, all set!
+          </Button>
+        </DialogActions>
+      </Dialog>
     </FormControl>
   );
 };
