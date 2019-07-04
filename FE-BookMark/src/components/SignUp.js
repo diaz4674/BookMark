@@ -88,22 +88,21 @@ const SignUp = props => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
-  const loginHandler = e => async() => {
+  const loginHandler = async (e) => {
     e.preventDefault()
-
     await props.postRegister({
       username: values.username,
       email: values.email,
       password: values.password
     });
 
-    
-    // props.history.push("/categories");
+    props.history.push("/categories");
   };
 
   return (
     <div className={classes.root}>
       <div className={classes.SignUpContainer}>
+      <form onSubmit = {loginHandler}> 
         <Card className={classes.card}>
           <CardContent>
             <Typography
@@ -167,11 +166,12 @@ const SignUp = props => {
             />
           </CardContent>
           <CardActions>
-            <Button size="small" onClick={e => loginHandler()}>
+            <Button size="small" type ='submit'>
               Next
             </Button>
           </CardActions>
         </Card>
+      </form>
       </div>
     </div>
   );
