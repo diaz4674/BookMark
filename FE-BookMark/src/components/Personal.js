@@ -16,6 +16,9 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 const useStyles = makeStyles(theme => ({
+  formContainer: {
+    width: "100%"
+  },
   container: {
     display: "flex",
     flexWrap: "wrap",

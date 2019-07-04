@@ -21,10 +21,7 @@ function App() {
           <Route path="/financialSelect" component={FinancialCard} />
           <Route path="/shoppingSelect" component={ShoppingCard} />
           <Route path="/personalSelect" component={PersonalCard} />
- 
-          <Route
-            path="/categories"
-            render={props => <Categories {...props} />}
+          <Route path="/categories" render={props => <Categories {...props} />}
           />
         </Switch>
       </Router>

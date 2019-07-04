@@ -14,21 +14,7 @@ import {Link} from 'react-router-dom'
 import "../styles.css";
 
 const useStyles = makeStyles(theme => ({
-  categoryContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "#9471e9",
-    height: "100%",
-    width: "100%"
-  },
-  heightClass: {
-    paddingTop: "100px",
-    width: "80%",
-    ["@media (max-width:780px)"]: {
-      height: "100%"
-    }
-  },
+
   cardContainer: {
     margin: "0 auto",
     width: "100%",
@@ -121,12 +107,11 @@ const Categories = props => {
   const [page, setPage] = useState("");
 
   return (
-    <div className={classes.categoryContainer}>
-      <div className={classes.heightClass}>
-        <Card className={classes.cardContainer}>
+    <div>
+      <div >
+
           <CardContent className={classes.bankCard}>
           <div className={classes.Container}>
-        <h2>Select Category to Bookmark your favorite Sites</h2>
         <div className={classes.cardsContainer}>
           <Card className={classes.moneyCard}>
             <CardContent className={classes.container}>
@@ -138,19 +123,7 @@ const Categories = props => {
               <Typography variant="h5" component="h2" className={classes.text}>
                 Financial
               </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                adjective
-              </Typography>
             </CardContent>
-            <CardActions>
-              <Button
-                className={classes.button}
-                size="small"
-                onClick={props.loadFinancial}
-              >
-                <Link to="./financialSelect"> Select </Link> 
-              </Button>
-            </CardActions>
           </Card>
           <Card className={classes.shoppingCard}>
             <CardContent className={classes.container}>
@@ -162,19 +135,7 @@ const Categories = props => {
               <Typography variant="h5" component="h2" className={classes.text}>
                 Shopping
               </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                adjective
-              </Typography>
             </CardContent>
-            <CardActions>
-              <Button
-                className={classes.button}
-                onClick={props.loadShopping}
-                size="small"
-              >
-                 <Link to="./shoppingSelect"> Select </Link> 
-              </Button>
-            </CardActions>
           </Card>
           <Card className={classes.personalCard}>
             <CardContent className={classes.container}>
@@ -186,25 +147,12 @@ const Categories = props => {
               <Typography variant="h5" component="h2" className={classes.text}>
                 Personal
               </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                adjective
-              </Typography>
             </CardContent>
-            <CardActions>
-              <Button
-                className={classes.button}
-                onClick={props.loadPersonal}
-                size="small"
-              >
-                Select
-              </Button>
-            </CardActions>
           </Card>
         </div>
       </div>
 
           </CardContent>
-        </Card>
       </div>
     </div>
   );

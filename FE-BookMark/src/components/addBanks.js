@@ -9,7 +9,8 @@ import { connect } from "react-redux";
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    margin: "0 auto"
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -18,6 +19,9 @@ const useStyles = makeStyles(theme => ({
   },
   dense: {
     marginTop: 16
+  },
+  buttonContainer: {
+    margin: "0 auto"
   }
 }));
 
@@ -74,7 +78,8 @@ const AddBanks = props => {
         value={site}
         onChange={e => handleAddSite(e)}
       />
-      <Button type="submit">Add Banks</Button>
+      <Button type="submit" className = {classes.buttonContainer}>Add Banks</Button>
+
     </form>
   );
 };

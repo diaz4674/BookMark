@@ -16,6 +16,9 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 const useStyles = makeStyles(theme => ({
+  formContainer: {
+    width: "100%"
+  },
   container: {
     display: "flex",
     flexWrap: "wrap",
@@ -23,7 +26,12 @@ const useStyles = makeStyles(theme => ({
     width: "100%"
   },
   item: {
+    display: "flex",
+    justifyContent: "center",
     margin: "20px 25px"
+  },
+  buttonContainer: {
+    margin: "0 auto"
   }
 }));
 
@@ -41,6 +49,12 @@ const Shopping = props => {
   function handleClose() {
     setOpen(false);
   }
+
+  function redirect() {
+    props.history.push('./personalSelect')
+  }
+
+
   const handleChange = name => e => {
     setState({ ...state, [name]: e.target.checked });
     
@@ -59,14 +73,7 @@ const Shopping = props => {
       }
     }
   };
-
-  // const refreshPage = () => {
-  //   // setRenderBack = !reRender;
-  //   // setreRender(setRenderBack);
-
-  //   }
-  // };
-
+  
   const destroyHandler = destroyShop => {
     props.deleteStore(destroyShop);
     props.reRenderHandler();
@@ -107,8 +114,8 @@ const Shopping = props => {
       </div>
       <FormHelperText>Be careful</FormHelperText>
       <Button onClick={submitHandler}>Log out stuff</Button>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Take me to my Dashbaord!
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} className = {classes.buttonContainer}>
+        Save Selections
       </Button>
       <Dialog
         open={open}
@@ -117,21 +124,19 @@ const Shopping = props => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Did you finish selecting your sites?"}
+          {"Did you finish selecting your shopping sites?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Select no if you would like to have more time to review selections,
-            or browse other categories to add more sites to your bookmarks.
-            Otherwise, select yes to be taken to your dashboard.
+            You will have a chance to add more once in your dashboard as well.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Not yet
+            No
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Yes, all set!
+          <Button onClick={redirect} color="primary" autoFocus>
+            Yes, take me to the next category.
           </Button>
         </DialogActions>
       </Dialog>
