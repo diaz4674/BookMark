@@ -1,3 +1,5 @@
+import axios from "axios"
+
 export const ADD_BANKS_SUCCESS = "ADD_BANKS_SUCCESS";
 
 export const addBanks = bank => dispatch => {
@@ -27,4 +29,15 @@ export const addPersonalSite = personalSite => dispatch => {
 export const DELETE_SITE_SUCCESS = "DELETE_SITE_SUCCESS";
 export const deleteSite = deleteSite => dispatch => {
   dispatch({ type: DELETE_SITE_SUCCESS, payload: deleteSite });
+};
+
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAIL = "REGISTER_FAIL"
+
+export const postRegister = body => dispatch => {
+  axios.post('http://localhost:3300/register', body)
+  .then(res => {
+    dispatch({type: REGISTER_SUCCESS, payload: res.data })
+  })
+  .catch(err => dispatch({type: REGISTER_FAIL, payload: err}))
 };

@@ -5,7 +5,9 @@ import {
   ADD_STORE_SUCCESS,
   DELETE_STORE_SUCCESS,
   DELETE_SITE_SUCCESS,
-  ADD_PERSONAL_SITE_SUCCESS
+  ADD_PERSONAL_SITE_SUCCESS,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL
 } from "../actions";
 
 const initialstate = preFilledData;
