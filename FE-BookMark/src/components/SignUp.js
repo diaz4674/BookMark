@@ -29,7 +29,8 @@ const useStyles = makeStyles(theme => ({
   SignUpContainer: {
     paddingTop: "200px",
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    margin: "0 auto"
   },
   card: {
     margin: "0 auto",

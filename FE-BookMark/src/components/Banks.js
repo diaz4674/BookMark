@@ -16,6 +16,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import {withRouter} from "react-router-dom"
+import Slide from '@material-ui/core/Slide';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -38,6 +40,10 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }));
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 
 const Banks = props => {
   const classes = useStyles();
@@ -45,14 +51,25 @@ const Banks = props => {
   const [newBanks, setnewBanks] = useState([]);
   const [reRender, setreRender] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const [next, setNext] = React.useState(false);
 
   function handleClickOpen() {
     setOpen(true);
   }
 
+  function redirect() {
+    
+    props.history.push('./shoppingSelect')
+  }
+
+  function redirectAgain() {
+    setNext(true)
+    
+  }
   function handleClose() {
     setOpen(false);
   }
+  
   const handleChange = name => e => {
     setState({ ...state, [name]: e.target.checked });
     if (e.target.checked === true) {
@@ -87,6 +104,37 @@ const Banks = props => {
   //   console.log("hi");
   // }, [destroyHandler]);
 
+  let nextDialogue
+  if(next){
+    nextDialogue = 
+
+    <Dialog
+    open={open}
+    TransitionComponent={Transition}
+    keepMounted
+    onClose={handleClose}
+    aria-labelledby="alert-dialog-slide-title"
+    aria-describedby="alert-dialog-slide-description"
+  >
+    <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
+    <DialogContent>
+      <DialogContentText id="alert-dialog-slide-description">
+        How about 
+      </DialogContentText>
+    </DialogContent>
+    <DialogActions>
+      <Button onClick={handleClose} color="primary">
+        Disagree
+      </Button>
+      <Button onClick={handleClose} color="primary">
+        Agree
+      </Button>
+    </DialogActions>
+  </Dialog>
+
+  }else {
+    console.log('hi')
+  }
   return (
     <FormControl component="fieldset" className={classes.formContainer}>
       <FormLabel component="legend">Choose institutions to add</FormLabel>
@@ -118,7 +166,7 @@ const Banks = props => {
       </div>
       <FormHelperText>Be careful</FormHelperText>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Take me to my Dashbaord!
+        Save Selections
       </Button>
       <Dialog
         open={open}
@@ -127,24 +175,23 @@ const Banks = props => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Did you finish selecting your sites?"}
+          {"Did you want to add some of your favorite shopping sites to your BookMarks?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Select no if you would like to have more time to review selections,
-            or browse other categories to add more sites to your bookmarks.
-            Otherwise, select yes to be taken to your dashboard.
+            For example Amazon, Nordstrom, Nike, etc.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Not yet
+          <Button onClick={redirectAgain} color="primary">
+            No thank you.
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Yes, all set!
+          <Button onClick={redirect} color="primary" autoFocus>
+            Yes, I need more happiness.
           </Button>
         </DialogActions>
       </Dialog>
+      {nextDialogue}
     </FormControl>
   );
 };
@@ -155,7 +202,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
+export default withRouter(
+connect(
   mapStateToProps,
   { deleteBank }
-)(Banks);
+)(Banks));

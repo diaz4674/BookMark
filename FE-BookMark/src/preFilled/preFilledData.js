@@ -25,11 +25,11 @@ module.exports = {
   shopping: [
     {
       name: "Amazon",
-      site: "https://www.amazon.com/"
+      site: "https://www.amazon.com/",
     },
     {
       name: "Best Buy",
-      site: "https://www.bestbuy.com/"
+      site: "https://www.bestbuy.com/",
     }
   ],
   personal: [
