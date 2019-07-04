@@ -11,7 +11,9 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { Link } from "react-router-dom";
+import {  withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { postRegister } from "../actions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -70,6 +72,7 @@ const SignUp = props => {
 
   const [values, setValues] = React.useState({
     email: "",
+    username: "",
     amount: "",
     password: "",
     weight: "",
@@ -85,9 +88,17 @@ const SignUp = props => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
-  const loginHandler = () => {
-    console.log(values.email, values.password);
-    props.history.push("/categories");
+  const loginHandler = e => async() => {
+    e.preventDefault()
+
+    await props.postRegister({
+      username: values.username,
+      email: values.email,
+      password: values.password
+    });
+
+    
+    // props.history.push("/categories");
   };
 
   return (
@@ -102,6 +113,19 @@ const SignUp = props => {
             >
               Sign Up
             </Typography>
+            <TextField
+              id="filled-dense"
+              label="Enter Username"
+              className={clsx(
+                classes.margin,
+                classes.textField,
+                classes.container
+              )}
+              margin="dense"
+              variant="filled"
+              value={values.username}
+              onChange={handleChange("username")}
+            />
             <TextField
               id="filled-dense"
               label="Enter Email"
@@ -153,4 +177,13 @@ const SignUp = props => {
   );
 };
 
-export default SignUp;
+const mapStateToProps = state => ({
+  postRegister: state.postRegister,
+})
+
+export default withRouter(connect(
+  mapStateToProps,
+  {
+    postRegister
+  }
+)(SignUp));

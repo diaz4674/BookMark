@@ -24,18 +24,21 @@ const useStyles = makeStyles(theme => ({
     paddingTop: "100px",
     width: "80%",
     ["@media (max-width:780px)"]: {
-      height: "100%",
-      padding: "0"
+      height: "100%"
     }
   },
   cardContainer: {
     margin: "0 auto",
     width: "100%",
+
     ["@media (max-width:780px)"]: {
       height: "95%",
       overflow: "visible",
       marginTop: "20px"
     }
+  },
+  bankCard: {
+    height: "auto"
   }
 }));
 
@@ -70,7 +73,7 @@ const Categories = props => {
     <div className={classes.categoryContainer}>
       <div className={classes.heightClass}>
         <Card className={classes.cardContainer}>
-          <CardContent>
+          <CardContent className={classes.bankCard}>
             <div>
               <div>{currentCategory}</div>
             </div>
