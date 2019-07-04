@@ -43,6 +43,7 @@ const Shopping = props => {
   }
   const handleChange = name => e => {
     setState({ ...state, [name]: e.target.checked });
+    
     if (e.target.checked === true) {
       if (newShop.indexOf(name) > -1) {
         return null;

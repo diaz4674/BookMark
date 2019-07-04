@@ -12,6 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 
 const useStyles = makeStyles(theme => ({
   test: {
@@ -80,9 +81,14 @@ const Login = props => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
-  const loginHandler = () => {
-    console.log(values.email, values.password);
-    props.history.push("/dashboard");
+  const loginHandler = async e => {
+    // e.preventDefault()
+    axios
+    .post('http://localhost:3300/login', values)
+    .then(res =>{
+      console.log(res.data.id)
+    })
+    // props.history.push("/dashboard");
   };
 
   return (

@@ -11,7 +11,7 @@ body {
   height: 100%;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 1200px) {
   html,
   .App,
   #root {
