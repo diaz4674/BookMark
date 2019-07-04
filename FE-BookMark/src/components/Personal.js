@@ -119,13 +119,11 @@ const Personal = props => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Did you finish selecting your sites?"}
+          {"Did you finish selecting your personal sites?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Select no if you would like to have more time to review selections,
-            or browse other categories to add more sites to your bookmarks.
-            Otherwise, select yes to be taken to your dashboard.
+          You will have a chance to add more once in your dashboard as well.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

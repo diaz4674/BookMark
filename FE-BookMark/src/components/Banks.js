@@ -154,10 +154,10 @@ const Banks = props => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            No
+            Not Yet
           </Button>
           <Button onClick={redirect} color="primary" autoFocus>
-            Yes, take me to the next category.
+            Yes, take me to the shopping category
           </Button>
         </DialogActions>
       </Dialog>

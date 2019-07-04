@@ -14,6 +14,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import {withRouter} from "react-router-dom"
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -41,6 +42,7 @@ const Shopping = props => {
   const [newShop, setNewShops] = useState([]);
   const [reRender, setreRender] = useState(false);
   const [open, setOpen] = React.useState(false);
+
 
   function handleClickOpen() {
     setOpen(true);
@@ -133,10 +135,10 @@ const Shopping = props => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            No
+            Not Yet
           </Button>
           <Button onClick={redirect} color="primary" autoFocus>
-            Yes, take me to the next category.
+            Yes, take me to the personal category
           </Button>
         </DialogActions>
       </Dialog>
@@ -150,7 +152,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { deleteStore }
-)(Shopping);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { deleteStore }
+  )(Shopping));
