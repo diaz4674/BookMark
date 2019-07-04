@@ -30,10 +30,10 @@ const useStyles = makeStyles(theme => ({
     paddingTop: "200px",
     display: "flex",
     flexWrap: "wrap",
-    margin: "0 auto"
+    display: "flex",
+    justifyContent: "center"
   },
   card: {
-    margin: "0 auto",
     width: "400px",
     display: "flex",
     flexDirection: "column",
@@ -97,7 +97,7 @@ const SignUp = props => {
       password: values.password
     });
 
-    props.history.push("/categories");
+    props.history.push("/welcome");
   };
 
   return (

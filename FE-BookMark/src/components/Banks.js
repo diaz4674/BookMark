@@ -20,6 +20,9 @@ import {withRouter} from "react-router-dom"
 import Slide from '@material-ui/core/Slide';
 
 const useStyles = makeStyles(theme => ({
+  formContainer: {
+    width: "100%"
+  },
   container: {
     display: "flex",
     flexWrap: "wrap",
@@ -38,6 +41,9 @@ const useStyles = makeStyles(theme => ({
       cursor: "pointer",
       animation: "shake 0.1s"
     }
+  },
+  buttonContainer: {
+    margin: "0 auto"
   }
 }));
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -58,14 +64,9 @@ const Banks = props => {
   }
 
   function redirect() {
-    
     props.history.push('./shoppingSelect')
   }
 
-  function redirectAgain() {
-    setNext(true)
-    
-  }
   function handleClose() {
     setOpen(false);
   }
@@ -104,37 +105,7 @@ const Banks = props => {
   //   console.log("hi");
   // }, [destroyHandler]);
 
-  let nextDialogue
-  if(next){
-    nextDialogue = 
 
-    <Dialog
-    open={open}
-    TransitionComponent={Transition}
-    keepMounted
-    onClose={handleClose}
-    aria-labelledby="alert-dialog-slide-title"
-    aria-describedby="alert-dialog-slide-description"
-  >
-    <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
-    <DialogContent>
-      <DialogContentText id="alert-dialog-slide-description">
-        How about 
-      </DialogContentText>
-    </DialogContent>
-    <DialogActions>
-      <Button onClick={handleClose} color="primary">
-        Disagree
-      </Button>
-      <Button onClick={handleClose} color="primary">
-        Agree
-      </Button>
-    </DialogActions>
-  </Dialog>
-
-  }else {
-    console.log('hi')
-  }
   return (
     <FormControl component="fieldset" className={classes.formContainer}>
       <FormLabel component="legend">Choose institutions to add</FormLabel>
@@ -164,8 +135,7 @@ const Banks = props => {
           );
         })}
       </div>
-      <FormHelperText>Be careful</FormHelperText>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} className = {classes.buttonContainer}>
         Save Selections
       </Button>
       <Dialog
@@ -175,23 +145,22 @@ const Banks = props => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Did you want to add some of your favorite shopping sites to your BookMarks?"}
+          {"Did you finish selecting your financial sites?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            For example Amazon, Nordstrom, Nike, etc.
+            You will have a chance to add more once in your dashboard as well.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={redirectAgain} color="primary">
-            No thank you.
+          <Button onClick={handleClose} color="primary">
+            Not Yet
           </Button>
           <Button onClick={redirect} color="primary" autoFocus>
-            Yes, I need more happiness.
+            Yes, take me to the shopping category
           </Button>
         </DialogActions>
       </Dialog>
-      {nextDialogue}
     </FormControl>
   );
 };

@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 import AddBanks from "./addBanks";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,9 +58,8 @@ const FinancialCard = props => {
       <CardContent className={classes.bankCard}>
       <div >
         <h1>Financial Bookmarks</h1>
-        <Button onClick={props.goBack}>Go Back</Button>
+        <Button > <Link to = './welcome'> Go Back  </Link></Button>
       </div>
-
       <div className={classes.root}>
         <ExpansionPanel square expanded={expanded === "panel1"}>
           <ExpansionPanelSummary
