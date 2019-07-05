@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 export const ADD_BANKS_SUCCESS = "ADD_BANKS_SUCCESS";
 
@@ -32,12 +32,15 @@ export const deleteSite = deleteSite => dispatch => {
 };
 
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const REGISTER_FAIL = "REGISTER_FAIL"
+export const REGISTER_FAIL = "REGISTER_FAIL";
 
 export const postRegister = body => dispatch => {
-  axios.post('http://localhost:3300/register', body)
-  .then(res => {
-    dispatch({type: REGISTER_SUCCESS, payload: res.data })
-  })
-  .catch(err => dispatch({type: REGISTER_FAIL, payload: err}))
+  axios
+    .post("http://localhost:3300/register", body)
+    .then(res => {
+      // After sign up, sets token to Headers
+      localStorage.setItem("token", res.data.token);
+      dispatch({ type: REGISTER_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({ type: REGISTER_FAIL, payload: err }));
 };

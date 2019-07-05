@@ -16,8 +16,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import {withRouter} from "react-router-dom"
-import Slide from '@material-ui/core/Slide';
+import { withRouter } from "react-router-dom";
+import Slide from "@material-ui/core/Slide";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -50,7 +50,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
 const Banks = props => {
   const classes = useStyles();
   const [state, setState] = React.useState({});
@@ -64,13 +63,13 @@ const Banks = props => {
   }
 
   function redirect() {
-    props.history.push('./shoppingSelect')
+    props.history.push("./shoppingSelect");
   }
 
   function handleClose() {
     setOpen(false);
   }
-  
+
   const handleChange = name => e => {
     setState({ ...state, [name]: e.target.checked });
     if (e.target.checked === true) {
@@ -105,7 +104,6 @@ const Banks = props => {
   //   console.log("hi");
   // }, [destroyHandler]);
 
-
   return (
     <FormControl component="fieldset" className={classes.formContainer}>
       <FormLabel component="legend">Choose institutions to add</FormLabel>
@@ -135,7 +133,12 @@ const Banks = props => {
           );
         })}
       </div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen} className = {classes.buttonContainer}>
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={handleClickOpen}
+        className={classes.buttonContainer}
+      >
         Save Selections
       </Button>
       <Dialog
@@ -172,7 +175,8 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(
-connect(
-  mapStateToProps,
-  { deleteBank }
-)(Banks));
+  connect(
+    mapStateToProps,
+    { deleteBank }
+  )(Banks)
+);
