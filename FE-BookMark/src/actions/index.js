@@ -50,12 +50,17 @@ export const SET_FINANCIAL_SUCCESS = "SET_FINANCIAL_SUCCESS";
 export const SET_FINANCIAL_FAIL = "SET_FINANCIAL_FAIL";
 
 export const setFinancial = body => dispatch => {
-  dispatch({ type: SET_FINANCIAL_SUCCESS, payload: body });
-};
-// const headers = { Authorization: localStorage.getItem("token") };
-// axios
-// .post("http://localhost:3300", body, { headers })
-// .then(res => {
+  const token = localStorage.getItem("token");
+  const deconstructedToken = token.split(".")[1];
+  const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
+  let id = deconstructedUserID.id;
 
-//     })
-//     .catch(err => dispatch({ type: SET_FINANCIAL_FAIL, payload: res.data }));
+  const headers = { Authorization: localStorage.getItem("token") };
+
+  axios
+    .post(` http://localhost:3300/addBanks/${id}`, body, { headers })
+    .then(res => {
+      dispatch({ type: SET_FINANCIAL_SUCCESS, payload: body });
+    })
+    .catch(err => dispatch({ type: SET_FINANCIAL_FAIL, payload: res.data }));
+};
