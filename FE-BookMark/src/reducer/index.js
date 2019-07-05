@@ -7,7 +7,9 @@ import {
   DELETE_SITE_SUCCESS,
   ADD_PERSONAL_SITE_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  SET_FINANCIAL_SUCCESS,
+  SET_FINANCIAL_FAIL
 } from "../actions";
 
 const initialstate = preFilledData;
@@ -46,6 +48,11 @@ export const reducer = (state = initialstate, action) => {
       state.personal.splice(deleteSite, 1);
       return {
         ...state
+      };
+    case SET_FINANCIAL_SUCCESS:
+      return {
+        ...state,
+        test: [...state, action.payload]
       };
     default:
       return state;

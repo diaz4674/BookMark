@@ -1,4 +1,5 @@
 module.exports = {
+  test: [],
   myBanks: [
     { name: "Wells Fargo", site: "https://www.wellsfargo.com/" },
     {
@@ -25,11 +26,11 @@ module.exports = {
   shopping: [
     {
       name: "Amazon",
-      site: "https://www.amazon.com/",
+      site: "https://www.amazon.com/"
     },
     {
       name: "Best Buy",
-      site: "https://www.bestbuy.com/",
+      site: "https://www.bestbuy.com/"
     }
   ],
   personal: [

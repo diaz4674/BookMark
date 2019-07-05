@@ -18,7 +18,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { withRouter } from "react-router-dom";
 import Slide from "@material-ui/core/Slide";
-import setFinancial from "../actions";
+import { setFinancial } from "../actions/index";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -63,9 +63,12 @@ const Banks = props => {
     setOpen(true);
   }
 
-  function redirect() {
-    props.history.push("./shoppingSelect");
-  }
+  const redirect = () => {
+    props.setFinancial(newBanks);
+    console.log(props.test);
+
+    // props.history.push("./shoppingSelect");
+  };
 
   function handleClose() {
     setOpen(false);
@@ -98,7 +101,6 @@ const Banks = props => {
 
   const destroyHandler = destroyBank => {
     props.deleteBank(destroyBank);
-    props.reRenderHandler();
   };
 
   // useEffect(() => {
@@ -171,13 +173,14 @@ const Banks = props => {
 
 const mapStateToProps = state => {
   return {
-    myBanks: state.myBanks
+    myBanks: state.myBanks,
+    test: state.test
   };
 };
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { setFinancial }
+    { setFinancial, deleteBank }
   )(Banks)
 );
