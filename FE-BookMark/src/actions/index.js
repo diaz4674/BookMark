@@ -64,3 +64,43 @@ export const setFinancial = body => dispatch => {
     })
     .catch(err => dispatch({ type: SET_FINANCIAL_FAIL, payload: res.data }));
 };
+
+//Sends Shopping card options to database
+export const SET_STORES_SUCCESS = "SET_STORES_SUCCESS";
+export const SET_STORES_FAIL = "SET_STORES_FAIL";
+
+export const setStores = body => dispatch => {
+  const token = localStorage.getItem("token");
+  const deconstructedToken = token.split(".")[1];
+  const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
+  let id = deconstructedUserID.id;
+
+  const headers = { Authorization: localStorage.getItem("token") };
+
+  axios
+    .post(` http://localhost:3300/addStoreData/${id}`, body, { headers })
+    .then(res => {
+      dispatch({ type: SET_STORES_SUCCESS, payload: body });
+    })
+    .catch(err => dispatch({ type: SET_STORES_FAIL, payload: res.data }));
+};
+
+//Sends Personal card options to database
+export const SET_PERSONAL_SUCCESS = "SET_PERSONAL_SUCCESS";
+export const SET_PERSONAL_FAIL = "SET_PERSONAL_FAIL";
+
+export const setPersonal = body => dispatch => {
+  const token = localStorage.getItem("token");
+  const deconstructedToken = token.split(".")[1];
+  const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
+  let id = deconstructedUserID.id;
+
+  const headers = { Authorization: localStorage.getItem("token") };
+
+  axios
+    .post(` http://localhost:3300/addPersonal/${id}`, body, { headers })
+    .then(res => {
+      dispatch({ type: SET_PERSONAL_SUCCESS, payload: body });
+    })
+    .catch(err => dispatch({ type: SET_PERSONAL_FAIL, payload: res.data }));
+};
