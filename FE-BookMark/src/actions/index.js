@@ -62,7 +62,7 @@ export const setFinancial = body => dispatch => {
     .then(res => {
       dispatch({ type: SET_FINANCIAL_SUCCESS, payload: body });
     })
-    .catch(err => dispatch({ type: SET_FINANCIAL_FAIL, payload: res.data }));
+    .catch(err => dispatch({ type: SET_FINANCIAL_FAIL, payload: err }));
 };
 
 //Sends Shopping card options to database
@@ -82,7 +82,7 @@ export const setStores = body => dispatch => {
     .then(res => {
       dispatch({ type: SET_STORES_SUCCESS, payload: body });
     })
-    .catch(err => dispatch({ type: SET_STORES_FAIL, payload: res.data }));
+    .catch(err => dispatch({ type: SET_STORES_FAIL, payload: err }));
 };
 
 //Sends Personal card options to database
@@ -102,5 +102,5 @@ export const setPersonal = body => dispatch => {
     .then(res => {
       dispatch({ type: SET_PERSONAL_SUCCESS, payload: body });
     })
-    .catch(err => dispatch({ type: SET_PERSONAL_FAIL, payload: res.data }));
+    .catch(err => dispatch({ type: SET_PERSONAL_FAIL, payload: err }));
 };
