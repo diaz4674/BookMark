@@ -18,6 +18,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { withRouter } from "react-router-dom";
 import Slide from "@material-ui/core/Slide";
+import setFinancial from "../actions";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -177,6 +178,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { deleteBank }
+    { setFinancial }
   )(Banks)
 );
