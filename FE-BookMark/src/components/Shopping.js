@@ -15,6 +15,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import {withRouter} from "react-router-dom"
+import {setStores} from '../actions'
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -52,7 +53,8 @@ const Shopping = props => {
     setOpen(false);
   }
 
-  function redirect() {
+  const redirect = async() => {
+    await props.setStores(newShop)
     props.history.push('./personalSelect')
   }
 
@@ -81,15 +83,6 @@ const Shopping = props => {
     props.reRenderHandler();
   };
 
-  const submitHandler = e => {
-    e.preventDefault();
-    console.log(newShop);
-  };
-
-  // useEffect(() => {
-  //   console.log("hi");
-  // }, [destroyHandler]);
-
   return (
     <FormControl component="fieldset" className={classes.formContainer}>
       <FormLabel component="legend">Choose institutions to add</FormLabel>
@@ -106,7 +99,7 @@ const Shopping = props => {
                       value={shops.value}
                     />
                   }
-                  label={shops.name}
+                  label={shops.storeName}
                 />
                 <button onClick={() => destroyHandler(shops)}>Kill</button>
               </FormGroup>
@@ -114,8 +107,6 @@ const Shopping = props => {
           );
         })}
       </div>
-      <FormHelperText>Be careful</FormHelperText>
-      <Button onClick={submitHandler}>Log out stuff</Button>
       <Button variant="outlined" color="primary" onClick={handleClickOpen} className = {classes.buttonContainer}>
         Save Selections
       </Button>
@@ -155,5 +146,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { deleteStore }
+    { deleteStore,
+      setStores }
   )(Shopping));

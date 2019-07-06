@@ -75,12 +75,12 @@ export const setStores = body => dispatch => {
   const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
   let id = deconstructedUserID.id;
 
-  const headers = { Authorization: localStorage.getItem("token") };
+  const headers = { authorization: localStorage.getItem("token") };
 
   axios
     .post(` http://localhost:3300/addStoreData/${id}`, body, { headers })
     .then(res => {
-      dispatch({ type: SET_STORES_SUCCESS, payload: body });
+      dispatch({ type: SET_STORES_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: SET_STORES_FAIL, payload: err }));
 };

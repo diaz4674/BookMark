@@ -25,7 +25,6 @@ const AddShops = props => {
   const classes = useStyles();
 
   const [site, setSite] = useState("");
-
   const [storeName, setStore] = useState("");
 
   const handleAddStore = e => {
@@ -39,9 +38,9 @@ const AddShops = props => {
     e.preventDefault();
     if (!storeName || !site) {
       console.log(storeName, site);
-      console.log("please don't leave empty");
+      alert("please don't leave fields empty");
     } else {
-      await props.addStore({ name: storeName, site: site });
+      await props.addStore({ storeName: storeName, storeSite: site });
       props.reRenderHandler();
     }
   };
