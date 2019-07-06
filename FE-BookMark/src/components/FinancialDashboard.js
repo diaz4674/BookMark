@@ -39,8 +39,6 @@ const FinancialDashboard = props => {
     
 
     useEffect( () =>{
-
-
             const token = localStorage.getItem("token");
             const deconstructedToken = token.split(".")[1];
             const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
@@ -52,9 +50,6 @@ const FinancialDashboard = props => {
             .get(`http://localhost:3300/getUserFinancial/${id}`, {headers})
             .then(res => { setState(res.data)})
             .catch(err => console.log(err))
-
-            
-
     }, [])
 
     useEffect(()=> {
@@ -67,7 +62,10 @@ const FinancialDashboard = props => {
                 <CardContent className={classes.bankCard}>
                 { !financialStatus? <h1>no</h1> : state.map(financials =>{
                     return(
-                        <h1>{financials.FinancialName}</h1>
+                        <>
+                            <h1>  <a href ={financials.FinancialSite} target = "_blank" >{financials.FinancialName}</a></h1>
+
+                        </>
                     )
                 })}
                 </CardContent>
