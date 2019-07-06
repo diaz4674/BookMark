@@ -49,11 +49,11 @@ export const reducer = (state = initialstate, action) => {
       return {
         ...state
       };
-    case SET_FINANCIAL_SUCCESS:
-      return {
-        ...state,
-        test: [...state, action.payload]
-      };
+    // case SET_FINANCIAL_SUCCESS:
+    //     state.test.push(...state, action.payload)
+    //   return {
+    //     ...state
+    //   };
     default:
       return state;
   }

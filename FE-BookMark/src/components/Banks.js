@@ -63,11 +63,11 @@ const Banks = props => {
     setOpen(true);
   }
 
-  const redirect = () => {
-    props.setFinancial(newBanks);
-    console.log(props.test);
-
-    // props.history.push("./shoppingSelect");
+  const redirect = async() => {
+//Sending selected data to actions to post to add banks endpoint
+    await props.setFinancial(newBanks);
+//redirects to the shopping card selection
+    props.history.push("./shoppingSelect");
   };
 
   function handleClose() {
@@ -123,7 +123,7 @@ const Banks = props => {
                       value={banks.value}
                     />
                   }
-                  label={banks.name}
+                  label={banks.FinancialName}
                 />
                 <Grid item xs={8}>
                   <DeleteOutlinedIcon
