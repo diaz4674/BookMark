@@ -8,8 +8,8 @@ import {
   ADD_PERSONAL_SITE_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  SET_FINANCIAL_SUCCESS,
-  SET_FINANCIAL_FAIL
+  GET_FINANCIAL_SUCCESS,
+  GET_FINANCIAL_FAIL
 } from "../actions";
 
 const initialstate = preFilledData;
@@ -49,11 +49,11 @@ export const reducer = (state = initialstate, action) => {
       return {
         ...state
       };
-    // case SET_FINANCIAL_SUCCESS:
-    //     state.test.push(...state, action.payload)
-    //   return {
-    //     ...state
-    //   };
+    case GET_FINANCIAL_SUCCESS:
+        state.test.push(action.payload)
+      return {
+        ...state,
+      };
     default:
       return state;
   }

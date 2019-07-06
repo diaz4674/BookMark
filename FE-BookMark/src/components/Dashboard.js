@@ -17,8 +17,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import Container from "./Container";
-
+import FinancialDashboard from './FinancialDashboard'
+import ShoppingDashboard from './ShoppingDashboard'
+import PersonalDashboard from './PersonalDashboard'
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -172,7 +173,9 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
-        <Container />
+        <FinancialDashboard />
+        <ShoppingDashboard />
+        <PersonalDashboard />
       </main>
     </div>
   );
