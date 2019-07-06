@@ -45,7 +45,7 @@ const AddBanks = props => {
       console.log(institutionName, site);
       console.log("please don't leave empty");
     } else {
-      await props.addBanks({ name: institutionName, site: site });
+      await props.addBanks({ FinancialName: institutionName, FinancialSite: site });
       props.reRenderHandler();
       console.log(props.myBanks);
     }

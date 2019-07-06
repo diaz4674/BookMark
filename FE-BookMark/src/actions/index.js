@@ -55,10 +55,10 @@ export const setFinancial = body => dispatch => {
   const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
   let id = deconstructedUserID.id;
 
-  const headers = { Authorization: localStorage.getItem("token") };
+  const headers = { authorization: localStorage.getItem("token") };
 
   axios
-    .post(` http://localhost:3300/addBanks/${id}`, body, { headers })
+    .post(` http://localhost:3300/addBanks/${id}`, body, {headers} )
     .then(res => {
       dispatch({ type: SET_FINANCIAL_SUCCESS, payload: body });
     })

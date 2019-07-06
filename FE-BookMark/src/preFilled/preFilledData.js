@@ -1,50 +1,52 @@
 module.exports = {
   test: [],
   myBanks: [
-    { name: "Wells Fargo", site: "https://www.wellsfargo.com/" },
-    {
-      name: "Bank of America",
-      site: "https://www.bankofamerica.com/"
+    { FinancialName: "Wells Fargo", 
+      FinancialSite: "https://www.wellsfargo.com/" 
     },
     {
-      name: "Chase",
-      site: "https://secure01a.chase.com/web/auth/dashboard"
+      FinancialName: "Bank of America",
+      FinancialSite: "https://www.bankofamerica.com/"
     },
     {
-      name: "Citi Bank",
-      site: "https://online.citi.com/US/login.do?locale=en_US"
+      FinancialName: "Chase",
+      FinancialSite: "https://secure01a.chase.com/web/auth/dashboard"
     },
     {
-      name: "Capital One",
-      site: "https://www.capitalone.com/"
+      FinancialName: "Citi Bank",
+      FinancialSite: "https://online.citi.com/US/login.do?locale=en_US"
     },
     {
-      name: "American Express",
-      site: "https://www.americanexpress.com/"
+      FinancialName: "Capital One",
+      FinancialSite: "https://www.capitalone.com/"
+    },
+    {
+      FinancialName: "American Express",
+      FinancialSite: "https://www.americanexpress.com/"
     }
   ],
   shopping: [
     {
-      name: "Amazon",
-      site: "https://www.amazon.com/"
+      storeName: "Amazon",
+      storeSite: "https://www.amazon.com/"
     },
     {
-      name: "Best Buy",
-      site: "https://www.bestbuy.com/"
+      storeName: "Best Buy",
+      storeSite: "https://www.bestbuy.com/"
     }
   ],
   personal: [
     {
-      name: "Reddit",
-      site: "https://www.reddit.com/"
+      personalName: "Reddit",
+      personalSite: "https://www.reddit.com/"
     },
     {
-      name: "LinkedIn",
-      site: "https://www.linkedin.com/uas/login"
+      personalName: "LinkedIn",
+      personalSite: "https://www.linkedin.com/uas/login"
     },
     {
-      name: "Youtube",
-      site: "https://www.youtube.com/"
+      personalName: "Youtube",
+      personalSite: "https://www.youtube.com/"
     }
   ]
 };

@@ -64,8 +64,9 @@ const Banks = props => {
   }
 
   const redirect = () => {
-    props.setFinancial(newBanks);
-    console.log(props.test);
+    console.log(newBanks)
+    // props.setFinancial(newBanks);
+    // console.log(props.test);
 
     // props.history.push("./shoppingSelect");
   };
@@ -123,7 +124,7 @@ const Banks = props => {
                       value={banks.value}
                     />
                   }
-                  label={banks.name}
+                  label={banks.FinancialName}
                 />
                 <Grid item xs={8}>
                   <DeleteOutlinedIcon
