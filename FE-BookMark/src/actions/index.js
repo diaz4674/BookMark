@@ -60,7 +60,7 @@ export const setFinancial = body => dispatch => {
   axios
     .post(` http://localhost:3300/addBanks/${id}`, body, {headers} )
     .then(res => {
-      dispatch({ type: SET_FINANCIAL_SUCCESS, payload: body });
+      dispatch({ type: SET_FINANCIAL_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: SET_FINANCIAL_FAIL, payload: err }));
 };
@@ -100,7 +100,7 @@ export const setPersonal = body => dispatch => {
   axios
     .post(` http://localhost:3300/addPersonal/${id}`, body, { headers })
     .then(res => {
-      dispatch({ type: SET_PERSONAL_SUCCESS, payload: body });
+      dispatch({ type: SET_PERSONAL_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: SET_PERSONAL_FAIL, payload: err }));
 };
