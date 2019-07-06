@@ -55,7 +55,7 @@ const Shopping = props => {
 
   const redirect = async() => {
     await props.setStores(newShop)
-    // props.history.push('./personalSelect')
+    props.history.push('./personalSelect')
   }
 
 

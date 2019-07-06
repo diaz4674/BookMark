@@ -14,6 +14,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import {setPersonal} from "../actions"
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -62,26 +64,16 @@ const Personal = props => {
     }
   };
 
-  // const refreshPage = () => {
-  //   // setRenderBack = !reRender;
-  //   // setreRender(setRenderBack);
-
-  //   }
-  // };
-
   const destroyHandler = destroySite => {
     props.deleteSite(destroySite);
     props.reRenderHandler();
   };
 
-  const submitHandler = e => {
-    e.preventDefault();
-    console.log(newSite);
-  };
+  const dashboardRedirect = async() => {
+    await props.setPersonal(newSite)
+    props.history.push('/dashboard')
 
-  // useEffect(() => {
-  //   console.log("hi");
-  // }, [destroyHandler]);
+  };
 
   return (
     <FormControl component="fieldset" className={classes.formContainer}>
@@ -99,7 +91,7 @@ const Personal = props => {
                       value={site.value}
                     />
                   }
-                  label={site.name}
+                  label={site.personalName}
                 />
                 <button onClick={() => destroyHandler(site)}>Kill</button>
               </FormGroup>
@@ -108,7 +100,6 @@ const Personal = props => {
         })}
       </div>
       <FormHelperText>Be careful</FormHelperText>
-      <Button onClick={submitHandler}>Log out stuff</Button>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Take me to my Dashbaord!
       </Button>
@@ -130,7 +121,7 @@ const Personal = props => {
           <Button onClick={handleClose} color="primary">
             Not yet
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button onClick={dashboardRedirect} color="primary" autoFocus>
             Yes, all set!
           </Button>
         </DialogActions>
@@ -145,7 +136,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { deleteSite }
-)(Personal);
+export default withRouter (
+  connect(
+    mapStateToProps,
+    { deleteSite,
+      setPersonal }
+  )(Personal)
+);
