@@ -31,6 +31,21 @@ export const deleteSite = deleteSite => dispatch => {
   dispatch({ type: DELETE_SITE_SUCCESS, payload: deleteSite });
 };
 
+//LOGIN
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+export const LOGIN_FAIL = "LOGIN_FAIL"
+
+export const postLogin = body => dispatch => {
+  axios
+    .post("http://localhost:3300/login", body)
+    .then(res => {
+      localStorage.setItem("token", res.data.token)
+      dispatch({type: LOGIN_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({ type: LOGIN_FAIL, payload: err }));
+}
+
+//REGISTER
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 
