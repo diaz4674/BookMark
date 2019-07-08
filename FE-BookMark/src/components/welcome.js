@@ -42,9 +42,6 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center"
   },
-  bankCard: {
-    height: "auto"
-  },
   media: {
     margin: "0 auto",
     height: 150,

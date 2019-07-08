@@ -9,7 +9,8 @@ import { connect } from "react-redux";
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    margin: "0 auto"
   },
   textField: {
     marginLeft: theme.spacing(1),
