@@ -14,23 +14,6 @@ import { Link } from "react-router-dom";
 import "../styles.css";
 
 const useStyles = makeStyles(theme => ({
-  cardContainer: {
-    margin: "0 auto",
-    width: "100%",
-
-    ["@media (max-width:780px)"]: {
-      height: "95%",
-      overflow: "visible",
-      marginTop: "20px"
-    }
-  },
-  bankCard: {
-    height: "auto"
-  },
-  Container: {
-    height: "100%",
-    padding: "0"
-  },
   cardsContainer: {
     display: "flex",
     justifyContent: "space-around",
@@ -69,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     margin: "10px"
   },
-  container: {
+  mediaContainer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -91,13 +74,6 @@ const useStyles = makeStyles(theme => ({
   text: {
     color: "white",
     margin: "0 auto"
-  },
-  pos: {
-    marginBottom: 12,
-    color: "white",
-    ["@media (max-width:780px)"]: {
-      margin: "0"
-    }
   }
 }));
 
@@ -108,59 +84,43 @@ const Categories = props => {
   return (
     <div>
       <div>
-        <CardContent className={classes.bankCard}>
-          <div className={classes.Container}>
-            <div className={classes.cardsContainer}>
-              <Card className={classes.moneyCard}>
-                <CardContent className={classes.container}>
-                  <CardMedia
-                    className={classes.media}
-                    image="https://cdn0.iconfinder.com/data/icons/shopping-icons-rounded/110/Money-Bag-512.png"
-                    title="Money"
-                  />
-                  <Typography
-                    variant="h5"
-                    component="h2"
-                    className={classes.text}
-                  >
-                    Financial
-                  </Typography>
-                </CardContent>
-              </Card>
-              <Card className={classes.shoppingCard}>
-                <CardContent className={classes.container}>
-                  <CardMedia
-                    className={classes.media}
-                    image="https://cdn0.iconfinder.com/data/icons/commerce-and-retail/512/shopping_bag_purchase_product_ecommerce_buy_sales_sale_delivery_order_commerce_marketing_market_store_online_packing_packaging_flat_design_icon-512.png"
-                    title="shopping"
-                  />
-                  <Typography
-                    variant="h5"
-                    component="h2"
-                    className={classes.text}
-                  >
-                    Shopping
-                  </Typography>
-                </CardContent>
-              </Card>
-              <Card className={classes.personalCard}>
-                <CardContent className={classes.container}>
-                  <CardMedia
-                    className={classes.media}
-                    image="https://image.flaticon.com/icons/png/512/528/528351.png"
-                    title="shopping"
-                  />
-                  <Typography
-                    variant="h5"
-                    component="h2"
-                    className={classes.text}
-                  >
-                    Personal
-                  </Typography>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+        <CardContent className={classes.cardsContainer}>
+          <Card className={classes.moneyCard}>
+            <CardContent className={classes.mediaContainer}>
+              <CardMedia
+                className={classes.media}
+                image="https://cdn0.iconfinder.com/data/icons/shopping-icons-rounded/110/Money-Bag-512.png"
+                title="Money"
+              />
+              <Typography variant="h5" component="h2" className={classes.text}>
+                Financial
+              </Typography>
+            </CardContent>
+          </Card>
+          <Card className={classes.shoppingCard}>
+            <CardContent className={classes.mediaContainer}>
+              <CardMedia
+                className={classes.media}
+                image="https://cdn0.iconfinder.com/data/icons/commerce-and-retail/512/shopping_bag_purchase_product_ecommerce_buy_sales_sale_delivery_order_commerce_marketing_market_store_online_packing_packaging_flat_design_icon-512.png"
+                title="shopping"
+              />
+              <Typography variant="h5" component="h2" className={classes.text}>
+                Shopping
+              </Typography>
+            </CardContent>
+          </Card>
+          <Card className={classes.personalCard}>
+            <CardContent className={classes.mediaContainer}>
+              <CardMedia
+                className={classes.media}
+                image="https://image.flaticon.com/icons/png/512/528/528351.png"
+                title="shopping"
+              />
+              <Typography variant="h5" component="h2" className={classes.text}>
+                Personal
+              </Typography>
+            </CardContent>
+          </Card>
         </CardContent>
       </div>
     </div>

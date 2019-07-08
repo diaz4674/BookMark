@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: "#9471e9",
-    height: "100%",
+    height: "auto",
     width: "100%"
   },
   cardContainer: {
@@ -32,9 +32,6 @@ const useStyles = makeStyles(theme => ({
       overflow: "visible",
       marginTop: "20px"
     }
-  },
-  bankCard: {
-    height: "auto"
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -53,43 +50,45 @@ const PersonalCard = props => {
 
   return (
     <div className={classes.categoryContainer}>
-      <Card className={classes.cardContainer}> 
-      <CardContent className={classes.bankCard}>
-      <div>
-        <h1>Personal Bookmarks</h1>
-        <Button onClick={props.goBack}>Go Back</Button>
-      </div>
+      <Card className={classes.cardContainer}>
+        <CardContent>
+          <div>
+            <h1>Personal Bookmarks</h1>
+            <Button onClick={props.goBack}>Go Back</Button>
+          </div>
 
-      <div className={classes.root}>
-        <ExpansionPanel square expanded={expanded === "panel1"}>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography className={classes.heading}>Personal Sites</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Personal reRenderHandler={reRenderHandler} />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography className={classes.heading}>
-              Don't see your fav site? Add your own here!
-            </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <AddPersonal reRenderHandler={reRenderHandler} />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      </div>
-      </CardContent>
-    </Card>
+          <div className={classes.root}>
+            <ExpansionPanel square expanded={expanded === "panel1"}>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={classes.heading}>
+                  Personal Sites
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Personal reRenderHandler={reRenderHandler} />
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography className={classes.heading}>
+                  Don't see your fav site? Add your own here!
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <AddPersonal reRenderHandler={reRenderHandler} />
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };

@@ -9,7 +9,8 @@ import { connect } from "react-redux";
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    margin: "0 auto"
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -43,7 +44,6 @@ const AddPersonal = props => {
     } else {
       await props.addPersonalSite({ name: personalSite, site: site });
       props.reRenderHandler();
-      console.log(props.myBanks);
     }
   };
 
@@ -80,9 +80,7 @@ const AddPersonal = props => {
 };
 
 const mapStateToProps = state => {
-  return {
-    myBanks: state.myBanks
-  };
+  return {};
 };
 
 export default connect(

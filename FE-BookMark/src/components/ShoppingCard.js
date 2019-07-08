@@ -10,7 +10,7 @@ import Button from "@material-ui/core/Button";
 import AddShops from "./AddShops";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     width: "80%",
 
     ["@media (max-width:780px)"]: {
-      height: "95%",
+      height: "auto",
       overflow: "visible",
       marginTop: "20px"
     }
@@ -54,43 +54,48 @@ const ShoppingCard = props => {
 
   return (
     <div className={classes.categoryContainer}>
-      <Card className={classes.cardContainer}> 
-      <CardContent className={classes.shoppingCard}>
-      <div>
-        <h1>Shopping Bookmarks</h1>
-        <Button > <Link to = '/categories'> Go Back </Link></Button>
-      </div>
+      <Card className={classes.cardContainer}>
+        <CardContent className={classes.shoppingCard}>
+          <div>
+            <h1>Shopping Bookmarks</h1>
+            <Button>
+              {" "}
+              <Link to="/categories"> Go Back </Link>
+            </Button>
+          </div>
 
-      <div className={classes.root}>
-        <ExpansionPanel square expanded={expanded === "panel1"}>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography className={classes.heading}>Shopping Sites</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Shopping reRenderHandler={reRenderHandler} />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography className={classes.heading}>
-              Don't see your fav shop? Add your own here!
-            </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <AddShops reRenderHandler={reRenderHandler} />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      </div>
-      </CardContent>
-    </Card>
+          <div className={classes.root}>
+            <ExpansionPanel square expanded={expanded === "panel1"}>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={classes.heading}>
+                  Shopping Sites
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Shopping reRenderHandler={reRenderHandler} />
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography className={classes.heading}>
+                  Don't see your fav shop? Add your own here!
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <AddShops reRenderHandler={reRenderHandler} />
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
