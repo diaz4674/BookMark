@@ -10,11 +10,10 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import "../styles.css";
 
 const useStyles = makeStyles(theme => ({
-
   cardContainer: {
     margin: "0 auto",
     width: "100%",
@@ -108,51 +107,61 @@ const Categories = props => {
 
   return (
     <div>
-      <div >
-
-          <CardContent className={classes.bankCard}>
+      <div>
+        <CardContent className={classes.bankCard}>
           <div className={classes.Container}>
-        <div className={classes.cardsContainer}>
-          <Card className={classes.moneyCard}>
-            <CardContent className={classes.container}>
-              <CardMedia
-                className={classes.media}
-                image="https://cdn0.iconfinder.com/data/icons/shopping-icons-rounded/110/Money-Bag-512.png"
-                title="Money"
-              />
-              <Typography variant="h5" component="h2" className={classes.text}>
-                Financial
-              </Typography>
-            </CardContent>
-          </Card>
-          <Card className={classes.shoppingCard}>
-            <CardContent className={classes.container}>
-              <CardMedia
-                className={classes.media}
-                image="https://cdn0.iconfinder.com/data/icons/commerce-and-retail/512/shopping_bag_purchase_product_ecommerce_buy_sales_sale_delivery_order_commerce_marketing_market_store_online_packing_packaging_flat_design_icon-512.png"
-                title="shopping"
-              />
-              <Typography variant="h5" component="h2" className={classes.text}>
-                Shopping
-              </Typography>
-            </CardContent>
-          </Card>
-          <Card className={classes.personalCard}>
-            <CardContent className={classes.container}>
-              <CardMedia
-                className={classes.media}
-                image="https://image.flaticon.com/icons/png/512/528/528351.png"
-                title="shopping"
-              />
-              <Typography variant="h5" component="h2" className={classes.text}>
-                Personal
-              </Typography>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-          </CardContent>
+            <div className={classes.cardsContainer}>
+              <Card className={classes.moneyCard}>
+                <CardContent className={classes.container}>
+                  <CardMedia
+                    className={classes.media}
+                    image="https://cdn0.iconfinder.com/data/icons/shopping-icons-rounded/110/Money-Bag-512.png"
+                    title="Money"
+                  />
+                  <Typography
+                    variant="h5"
+                    component="h2"
+                    className={classes.text}
+                  >
+                    Financial
+                  </Typography>
+                </CardContent>
+              </Card>
+              <Card className={classes.shoppingCard}>
+                <CardContent className={classes.container}>
+                  <CardMedia
+                    className={classes.media}
+                    image="https://cdn0.iconfinder.com/data/icons/commerce-and-retail/512/shopping_bag_purchase_product_ecommerce_buy_sales_sale_delivery_order_commerce_marketing_market_store_online_packing_packaging_flat_design_icon-512.png"
+                    title="shopping"
+                  />
+                  <Typography
+                    variant="h5"
+                    component="h2"
+                    className={classes.text}
+                  >
+                    Shopping
+                  </Typography>
+                </CardContent>
+              </Card>
+              <Card className={classes.personalCard}>
+                <CardContent className={classes.container}>
+                  <CardMedia
+                    className={classes.media}
+                    image="https://image.flaticon.com/icons/png/512/528/528351.png"
+                    title="shopping"
+                  />
+                  <Typography
+                    variant="h5"
+                    component="h2"
+                    className={classes.text}
+                  >
+                    Personal
+                  </Typography>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </CardContent>
       </div>
     </div>
   );

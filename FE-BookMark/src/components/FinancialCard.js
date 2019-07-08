@@ -10,18 +10,19 @@ import Button from "@material-ui/core/Button";
 import AddBanks from "./addBanks";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%"
+    width: "100%",
+    height: "100%"
   },
   categoryContainer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: "#9471e9",
-    height: "100%",
+    height: "auto",
     width: "100%"
   },
   cardContainer: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     width: "80%",
 
     ["@media (max-width:780px)"]: {
-      height: "95%",
+      height: "auto",
       overflow: "visible",
       marginTop: "20px"
     }
@@ -54,44 +55,47 @@ const FinancialCard = props => {
 
   return (
     <div className={classes.categoryContainer}>
-      <Card className={classes.cardContainer}> 
-      <CardContent className={classes.bankCard}>
-      <div >
-        <h1>Financial Bookmarks</h1>
-        <Button > <Link to = './welcome'> Go Back  </Link></Button>
-      </div>
-      <div className={classes.root}>
-        <ExpansionPanel square expanded={expanded === "panel1"}>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography className={classes.heading}>
-              Financial Institutions
-            </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Banks reRenderHandler={reRenderHandler} />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography className={classes.heading}>
-              Don't see your insitution? Add your own here!
-            </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <AddBanks reRenderHandler={reRenderHandler} />
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      </div>
-    </CardContent>
-    </Card>
+      <Card className={classes.cardContainer}>
+        <CardContent className={classes.bankCard}>
+          <div>
+            <h1>Financial Bookmarks</h1>
+            <Button>
+              {" "}
+              <Link to="./welcome"> Go Back </Link>
+            </Button>
+          </div>
+          <div className={classes.root}>
+            <ExpansionPanel square expanded={expanded === "panel1"}>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={classes.heading}>
+                  Financial Institutions
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Banks reRenderHandler={reRenderHandler} />
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography className={classes.heading}>
+                  Don't see your insitution? Add your own here!
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <AddBanks reRenderHandler={reRenderHandler} />
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
