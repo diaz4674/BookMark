@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
     height: "100%",
     width: "100%"
   },
-
   image: {
     margin: "0 auto",
     width: "50.6%",
@@ -41,8 +40,7 @@ const useStyles = makeStyles(theme => ({
   welcomeCard: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    padding: "0"
+    alignItems: "center"
   },
   bankCard: {
     height: "auto"
@@ -59,10 +57,10 @@ const useStyles = makeStyles(theme => ({
   },
   heightClass: {
     paddingTop: "100px",
-    width: "80%"
-  },
-  sections: {
-    padding: "0"
+    width: "80%",
+    ["@media (max-width:780px)"]: {
+      height: "100%"
+    }
   }
 }));
 
@@ -76,7 +74,7 @@ const Welcome = props => {
           <CardContent className={classes.welcomeCard}>
             <h1 className={classes.title}>Welcome!</h1>
             <Categories />
-            <CardContent className={classes.sections}>
+            <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 Let's get started
               </Typography>
