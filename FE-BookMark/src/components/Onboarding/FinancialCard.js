@@ -11,19 +11,12 @@ import AddBanks from "./addBanks";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { Link } from "react-router-dom";
+import OnboardNav from "../Navbars/OnboardNav";
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     height: "100%"
-  },
-  categoryContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "#9471e9",
-    height: "auto",
-    width: "100%"
   },
   cardContainer: {
     margin: "25px auto",
@@ -54,7 +47,8 @@ const FinancialCard = props => {
   };
 
   return (
-    <div className={classes.categoryContainer}>
+    <div>
+      <OnboardNav />
       <Card className={classes.cardContainer}>
         <CardContent className={classes.bankCard}>
           <div>
