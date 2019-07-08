@@ -12,6 +12,9 @@ import TextField from "@material-ui/core/TextField";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { Link } from "react-router-dom";
+import {  withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { postLogin } from "../actions";
 import axios from 'axios'
 
 const useStyles = makeStyles(theme => ({
@@ -81,14 +84,20 @@ const Login = props => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
-  const loginHandler = async e => {
-    // e.preventDefault()
-    axios
-    .post('http://localhost:3300/login', values)
-    .then(res =>{
-      console.log(res.data.id)
-    })
-    // props.history.push("/dashboard");
+  const loginHandler = async (e) => {
+    localStorage.removeItem("token")
+
+    const loginCreds = {      
+      email: values.email,
+      password: values.password
+    }
+      await axios
+        .post("http://localhost:3300/login", loginCreds)
+        .then(res => {
+         localStorage.setItem("token", res.data.token)
+         props.history.push("/dashboard")
+        })
+        .catch(err => console.log(err));
   };
 
   return (
@@ -158,4 +167,15 @@ const Login = props => {
   );
 };
 
-export default Login;
+const mapStateToProps = state => ({
+  postLogin: state.postLogin,
+})
+
+export default withRouter(connect(
+  mapStateToProps,
+  {
+    postLogin
+  }
+)(Login));
+
+
