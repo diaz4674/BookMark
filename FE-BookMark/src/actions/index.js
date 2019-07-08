@@ -50,9 +50,11 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 
 export const postRegister = body => dispatch => {
+  localStorage.removeItem("token")
   axios
     .post("http://localhost:3300/register", body)
     .then(res => {
+
       // After sign up, sets token to Headers
       localStorage.setItem("token", res.data.token);
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
