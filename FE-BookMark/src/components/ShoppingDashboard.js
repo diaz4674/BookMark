@@ -64,16 +64,16 @@ const ShoppingDashboard = props => {
           {!shoppingStatus ? (
             <h1>no</h1>
           ) : (
-            state.map(stores => {
+            state.map((stores, i) => {
               return (
-                <>
+                <div key={i}>
                   <h1>
                     {" "}
                     <a href={stores.storeSite} target="_blank">
                       {stores.storeName}
                     </a>
                   </h1>
-                </>
+                </div>
               );
             })
           )}

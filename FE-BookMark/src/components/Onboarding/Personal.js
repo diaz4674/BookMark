@@ -36,7 +36,6 @@ const Personal = props => {
   const classes = useStyles();
   const [state, setState] = React.useState({});
   const [newSite, setNewSite] = useState([]);
-  const [reRender, setreRender] = useState(false);
   const [open, setOpen] = React.useState(false);
 
   function handleClickOpen() {

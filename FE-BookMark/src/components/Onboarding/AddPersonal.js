@@ -42,7 +42,12 @@ const AddPersonal = props => {
       console.log(personalSite, site);
       console.log("please don't leave empty");
     } else {
-      await props.addPersonalSite({ name: personalSite, site: site });
+      await props.addPersonalSite({
+        personalName: personalSite,
+        personalSite: site
+      });
+      setSite("");
+      setPersonalSite("");
       props.reRenderHandler();
     }
   };

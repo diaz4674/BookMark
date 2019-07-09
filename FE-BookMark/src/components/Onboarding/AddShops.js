@@ -42,6 +42,8 @@ const AddShops = props => {
       alert("please don't leave fields empty");
     } else {
       await props.addStore({ storeName: storeName, storeSite: site });
+      setStore("");
+      setSite("");
       props.reRenderHandler();
     }
   };

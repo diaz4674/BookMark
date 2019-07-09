@@ -55,7 +55,6 @@ const Banks = props => {
   const classes = useStyles();
   const [state, setState] = React.useState({});
   const [newBanks, setnewBanks] = useState([]);
-  const [reRender, setreRender] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [next, setNext] = React.useState(false);
 
@@ -92,29 +91,18 @@ const Banks = props => {
     }
   };
 
-  // const refreshPage = () => {
-  //   // setRenderBack = !reRender;
-  //   // setreRender(setRenderBack);
-
-  //   }
-  // };
-
   const destroyHandler = destroyBank => {
     props.deleteBank(destroyBank);
   };
-
-  // useEffect(() => {
-  //   console.log("hi");
-  // }, [destroyHandler]);
 
   return (
     <FormControl component="fieldset" className={classes.formContainer}>
       <FormLabel component="legend">Choose institutions to add</FormLabel>
       <div className={classes.container}>
-        {props.myBanks.map((banks, index) => {
+        {props.myBanks.map((banks, i) => {
           return (
             <>
-              <FormGroup key={index} className={classes.item}>
+              <FormGroup key={i} className={classes.item}>
                 <FormControlLabel
                   control={
                     <Switch
