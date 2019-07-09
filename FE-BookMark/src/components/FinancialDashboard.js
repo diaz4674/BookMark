@@ -68,7 +68,6 @@ const FinancialDashboard = props => {
               return (
                 <div key={i}>
                   <h1>
-                    {" "}
                     <a href={financials.FinancialSite} target="_blank">
                       {financials.FinancialName}
                     </a>

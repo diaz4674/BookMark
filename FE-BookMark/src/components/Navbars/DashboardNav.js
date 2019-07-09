@@ -1,36 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 
-const DashboardNav = props => {
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  title: {
+    color: "black",
+    flexGrow: 1
+  },
+  navBar: {
+    backgroundColor: "white"
+  }
+}));
+
+export default function ButtonAppBar() {
+  const classes = useStyles();
+
   return (
-    <nav className="nav-bar">
-      <div className="container">
-        <ul className="logo-nav-link">
-          {/* <li><img src = {Logo} width = "45em" alt = "Logo"/> </li> */}
-          <li className="nav-title">
-            <Link to="/">Friend Finder</Link>
-          </li>
-        </ul>
-        <ul className="nav-links">
-          <li>
-            <Link to="/friend-requests">Requests</Link>
-          </li>
-          <li>
-            <Link to="/friends">Friends</Link>
-          </li>
-          <li>
-            <Link to="/profiles">Profiles</Link>
-          </li>
-          <li>
-            <Link to="/signup">SignUp</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <div className={classes.root}>
+      <AppBar position="static" className={classes.navBar}>
+        <Toolbar>
+          <Typography variant="h6" className={classes.title} />
+          <Button color="primary">Logout</Button>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
-};
-
-export default DashboardNav;
+}
