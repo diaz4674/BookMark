@@ -85,10 +85,10 @@ const Shopping = props => {
     <FormControl component="fieldset" className={classes.formContainer}>
       <FormLabel component="legend">Choose institutions to add</FormLabel>
       <div className={classes.container}>
-        {props.shopping.map((shops, index) => {
+        {props.shopping.map((shops, i) => {
           return (
             <>
-              <FormGroup key={index} className={classes.item}>
+              <FormGroup key={i} className={classes.item}>
                 <FormControlLabel
                   control={
                     <Switch

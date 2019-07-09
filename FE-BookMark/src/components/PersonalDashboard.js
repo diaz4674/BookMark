@@ -64,16 +64,16 @@ const PersonalDashboard = props => {
           {!personalStatus ? (
             <h1>no</h1>
           ) : (
-            state.map(personal => {
+            state.map((personal, i) => {
               return (
-                <>
+                <div key={i}>
                   <h1>
                     {" "}
                     <a href={personal.personalSite} target="_blank">
                       {personal.personalName}
                     </a>
                   </h1>
-                </>
+                </div>
               );
             })
           )}

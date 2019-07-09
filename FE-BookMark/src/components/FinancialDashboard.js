@@ -64,16 +64,16 @@ const FinancialDashboard = props => {
           {!financialStatus ? (
             <h1>no</h1>
           ) : (
-            state.map(financials => {
+            state.map((financials, i) => {
               return (
-                <>
+                <div key={i}>
                   <h1>
                     {" "}
                     <a href={financials.FinancialSite} target="_blank">
                       {financials.FinancialName}
                     </a>
                   </h1>
-                </>
+                </div>
               );
             })
           )}
