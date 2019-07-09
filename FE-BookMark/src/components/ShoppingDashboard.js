@@ -44,7 +44,9 @@ const ShoppingDashboard = props => {
     const headers = { authorization: localStorage.getItem("token") };
 
     axios
-      .get(`http://localhost:3300/getUserShopping/${id}`, { headers })
+      .get(`https://be-bookmark.herokuapp.com/getUserShopping/${id}`, {
+        headers
+      })
       .then(res => {
         setState(res.data);
       })

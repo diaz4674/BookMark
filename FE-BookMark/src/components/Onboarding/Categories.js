@@ -1,18 +1,18 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import Button from "@material-ui/core/Button";
+import FinancialCard from "./FinancialCard";
+import ShoppingCard from "./ShoppingCard";
+import PersonalCard from "./PersonalCard";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
+import { Link } from "react-router-dom";
+import "../../styles.css";
 
-const useStyles = makeStyles({
-  Container: {
-    height: "100%",
-    padding: "0"
-  },
+const useStyles = makeStyles(theme => ({
   cardsContainer: {
     display: "flex",
     justifyContent: "space-around",
@@ -51,7 +51,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     margin: "10px"
   },
-  container: {
+  mediaContainer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -73,26 +73,19 @@ const useStyles = makeStyles({
   text: {
     color: "white",
     margin: "0 auto"
-  },
-  pos: {
-    marginBottom: 12,
-    color: "white",
-    ["@media (max-width:780px)"]: {
-      margin: "0"
-    }
   }
-});
+}));
 
-const SimpleCard = props => {
+const Categories = props => {
   const classes = useStyles();
+  const [page, setPage] = useState("");
 
   return (
-    <>
-      <div className={classes.Container}>
-        <h2>Select Category to Bookmark your favorite Sites</h2>
-        <div className={classes.cardsContainer}>
+    <div>
+      <div>
+        <CardContent className={classes.cardsContainer}>
           <Card className={classes.moneyCard}>
-            <CardContent className={classes.container}>
+            <CardContent className={classes.mediaContainer}>
               <CardMedia
                 className={classes.media}
                 image="https://cdn0.iconfinder.com/data/icons/shopping-icons-rounded/110/Money-Bag-512.png"
@@ -101,22 +94,10 @@ const SimpleCard = props => {
               <Typography variant="h5" component="h2" className={classes.text}>
                 Financial
               </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                adjective
-              </Typography>
             </CardContent>
-            <CardActions>
-              <Button
-                className={classes.button}
-                size="small"
-                onClick={props.loadFinancial}
-              >
-                Select
-              </Button>
-            </CardActions>
           </Card>
           <Card className={classes.shoppingCard}>
-            <CardContent className={classes.container}>
+            <CardContent className={classes.mediaContainer}>
               <CardMedia
                 className={classes.media}
                 image="https://cdn0.iconfinder.com/data/icons/commerce-and-retail/512/shopping_bag_purchase_product_ecommerce_buy_sales_sale_delivery_order_commerce_marketing_market_store_online_packing_packaging_flat_design_icon-512.png"
@@ -125,22 +106,10 @@ const SimpleCard = props => {
               <Typography variant="h5" component="h2" className={classes.text}>
                 Shopping
               </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                adjective
-              </Typography>
             </CardContent>
-            <CardActions>
-              <Button
-                className={classes.button}
-                onClick={props.loadShopping}
-                size="small"
-              >
-                Select
-              </Button>
-            </CardActions>
           </Card>
           <Card className={classes.personalCard}>
-            <CardContent className={classes.container}>
+            <CardContent className={classes.mediaContainer}>
               <CardMedia
                 className={classes.media}
                 image="https://image.flaticon.com/icons/png/512/528/528351.png"
@@ -149,24 +118,12 @@ const SimpleCard = props => {
               <Typography variant="h5" component="h2" className={classes.text}>
                 Personal
               </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                adjective
-              </Typography>
             </CardContent>
-            <CardActions>
-              <Button
-                className={classes.button}
-                onClick={props.loadPersonal}
-                size="small"
-              >
-                Select
-              </Button>
-            </CardActions>
           </Card>
-        </div>
+        </CardContent>
       </div>
-    </>
+    </div>
   );
 };
 
-export default withRouter(SimpleCard);
+export default Categories;

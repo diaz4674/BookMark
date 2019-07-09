@@ -32,29 +32,28 @@ export const deleteSite = deleteSite => dispatch => {
 };
 
 //LOGIN
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
-export const LOGIN_FAIL = "LOGIN_FAIL"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
 
 export const postLogin = body => dispatch => {
   axios
-    .post("http://localhost:3300/login", body)
+    .post("https://be-bookmark.herokuapp.com/login", body)
     .then(res => {
-      localStorage.setItem("token", res.data.token)
-      dispatch({type: LOGIN_SUCCESS, payload: res.data})
+      localStorage.setItem("token", res.data.token);
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: LOGIN_FAIL, payload: err }));
-}
+};
 
 //REGISTER
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 
 export const postRegister = body => dispatch => {
-  localStorage.removeItem("token")
+  localStorage.removeItem("token");
   axios
-    .post("http://localhost:3300/register", body)
+    .post("https://be-bookmark.herokuapp.com/register", body)
     .then(res => {
-
       // After sign up, sets token to Headers
       localStorage.setItem("token", res.data.token);
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
@@ -75,7 +74,7 @@ export const setFinancial = body => dispatch => {
   const headers = { authorization: localStorage.getItem("token") };
 
   axios
-    .post(` http://localhost:3300/addBanks/${id}`, body, {headers} )
+    .post(`https://be-bookmark.herokuapp.com/addBanks/${id}`, body, { headers })
     .then(res => {
       dispatch({ type: SET_FINANCIAL_SUCCESS, payload: res.data });
     })
@@ -95,7 +94,9 @@ export const setStores = body => dispatch => {
   const headers = { authorization: localStorage.getItem("token") };
 
   axios
-    .post(` http://localhost:3300/addStoreData/${id}`, body, { headers })
+    .post(`https://be-bookmark.herokuapp.com/addStoreData/${id}`, body, {
+      headers
+    })
     .then(res => {
       dispatch({ type: SET_STORES_SUCCESS, payload: res.data });
     })
@@ -115,7 +116,9 @@ export const setPersonal = body => dispatch => {
   const headers = { authorization: localStorage.getItem("token") };
 
   axios
-    .post(` http://localhost:3300/addPersonal/${id}`, body, { headers })
+    .post(` https://be-bookmark.herokuapp.com/addPersonal/${id}`, body, {
+      headers
+    })
     .then(res => {
       dispatch({ type: SET_PERSONAL_SUCCESS, payload: res.data });
     })
@@ -123,11 +126,10 @@ export const setPersonal = body => dispatch => {
 };
 
 //GETS user financial sites/names
-export const GET_FINANCIAL_SUCCESS = "GET_FINANCIAL_SUCCESS"
-export const GET_FINANCIAL_FAIL = "GET_FINANCIAL_FAIL"
+export const GET_FINANCIAL_SUCCESS = "GET_FINANCIAL_SUCCESS";
+export const GET_FINANCIAL_FAIL = "GET_FINANCIAL_FAIL";
 
 export const getmyFinancials = () => dispatch => {
-
   const token = localStorage.getItem("token");
   const deconstructedToken = token.split(".")[1];
   const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
@@ -136,9 +138,11 @@ export const getmyFinancials = () => dispatch => {
   const headers = { authorization: localStorage.getItem("token") };
 
   axios
-    .get(`http://localhost:3300/getUserFinancial/${id}`, {headers})
-    .then(res => {
-      dispatch({type: GET_FINANCIAL_SUCCESS, payload: res.data})
+    .get(`https://be-bookmark.herokuapp.com/getUserFinancial/${id}`, {
+      headers
     })
-    .catch(err => dispatch({type: GET_FINANCIAL_FAIL, payload: err }))
-}
+    .then(res => {
+      dispatch({ type: GET_FINANCIAL_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({ type: GET_FINANCIAL_FAIL, payload: err }));
+};

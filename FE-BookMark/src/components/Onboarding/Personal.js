@@ -8,13 +8,13 @@ import Switch from "@material-ui/core/Switch";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { deleteSite } from "../actions";
+import { deleteSite } from "../../actions";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import {setPersonal} from "../actions"
+import { setPersonal } from "../../actions";
 import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
@@ -69,10 +69,9 @@ const Personal = props => {
     props.reRenderHandler();
   };
 
-  const dashboardRedirect = async() => {
-    await props.setPersonal(newSite)
-    props.history.push('/dashboard')
-
+  const dashboardRedirect = async () => {
+    await props.setPersonal(newSite);
+    props.history.push("/dashboard");
   };
 
   return (
@@ -114,7 +113,7 @@ const Personal = props => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-          You will have a chance to add more once in your dashboard as well.
+            You will have a chance to add more once in your dashboard as well.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -136,10 +135,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter (
+export default withRouter(
   connect(
     mapStateToProps,
-    { deleteSite,
-      setPersonal }
+    { deleteSite, setPersonal }
   )(Personal)
 );
