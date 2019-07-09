@@ -17,21 +17,15 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import FinancialDashboard from './FinancialDashboard'
-import ShoppingDashboard from './ShoppingDashboard'
-import PersonalDashboard from './PersonalDashboard'
+import FinancialDashboard from "./FinancialDashboard";
+import PersonalDashboard from "./PersonalDashboard";
+import ShoppingDashboard from "./ShoppingDashboard";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
-  },
-  sidebarTitle: {
-    fontSize: 18,
-    color: "black"
-  },
-  nav: {
-    backgroundColor: "#9471e9"
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -63,9 +57,12 @@ const useStyles = makeStyles(theme => ({
   drawerHeader: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-around",
     padding: "0 8px",
-    ...theme.mixins.toolbar
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-end"
+  },
+  navItem: {
+    cursor: "pointer"
   },
   content: {
     flexGrow: 1,
@@ -89,6 +86,9 @@ export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [financialDash, setfinancialDash] = React.useState(false);
+  const [shoppingDash, setshoppingDash] = React.useState(true);
+  const [personalDash, setpersonalDash] = React.useState(false);
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -98,6 +98,37 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   }
 
+  let showThis;
+
+  if (financialDash === true) {
+    showThis = <FinancialDashboard />;
+  }
+
+  if (shoppingDash === true) {
+    showThis = <ShoppingDashboard />;
+  }
+
+  if (personalDash === true) {
+    showThis = <PersonalDashboard />;
+  }
+
+  const showFinancial = () => {
+    setfinancialDash(true);
+    setshoppingDash(false);
+    setpersonalDash(false);
+  };
+
+  const showShopping = () => {
+    setfinancialDash(false);
+    setshoppingDash(true);
+    setpersonalDash(false);
+  };
+
+  const showPersonal = () => {
+    setfinancialDash(false);
+    setshoppingDash(false);
+    setpersonalDash(true);
+  };
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -107,7 +138,7 @@ export default function PersistentDrawerLeft() {
           [classes.appBarShift]: open
         })}
       >
-        <Toolbar className={classes.nav}>
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="Open drawer"
@@ -132,9 +163,6 @@ export default function PersistentDrawerLeft() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <Typography className={classes.sidebarTitle} color="textSecondary">
-            Categories
-          </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
@@ -143,21 +171,19 @@ export default function PersistentDrawerLeft() {
             )}
           </IconButton>
         </div>
+        <Divider />
+        <List>
+          <ListItem onClick={showFinancial} className={classes.navItem}>
+            <ListItemText primary="Financial" />
+          </ListItem>
+          <ListItem onClick={showShopping} className={classes.navItem}>
+            <ListItemText primary="Shopping" />
+          </ListItem>
+          <ListItem onClick={showPersonal} className={classes.navItem}>
+            <ListItemText primary="Personal" />
+          </ListItem>
 
-        <Divider />
-        <List>
           {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -173,9 +199,8 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
-        <FinancialDashboard />
-        <ShoppingDashboard />
-        <PersonalDashboard />
+
+        {showThis}
       </main>
     </div>
   );

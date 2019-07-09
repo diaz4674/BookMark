@@ -9,7 +9,7 @@ import ShoppingCard from "./components/Onboarding/ShoppingCard";
 import PersonalCard from "./components/Onboarding/PersonalCard";
 import Welcome from "./components/Onboarding/welcome";
 import onboardNav from "./components/Navbars/OnboardNav";
-
+import FinancialDashboard from "./components/FinancialDashboard";
 function App() {
   return (
     <div className="App">
@@ -20,6 +20,7 @@ function App() {
           <Route path="/financialSelect" component={FinancialCard} />
           <Route path="/shoppingSelect" component={ShoppingCard} />
           <Route path="/personalSelect" component={PersonalCard} />
+          <Route path="/financialCard" component={FinancialDashboard} />
           <Route
             path="/categories"
             render={props => <Categories {...props} />}
