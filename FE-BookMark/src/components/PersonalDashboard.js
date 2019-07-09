@@ -44,7 +44,9 @@ const PersonalDashboard = props => {
     const headers = { authorization: localStorage.getItem("token") };
 
     axios
-      .get(`http://localhost:3300/getUserPersonal/${id}`, { headers })
+      .get(`https://be-bookmark.herokuapp.com/getUserPersonal/${id}`, {
+        headers
+      })
       .then(res => {
         setState(res.data);
       })

@@ -93,7 +93,7 @@ const Login = props => {
       password: values.password
     };
     await axios
-      .post("http://localhost:3300/login", loginCreds)
+      .post("https://be-bookmark.herokuapp.com/login", loginCreds)
       .then(res => {
         localStorage.setItem("token", res.data.token);
         props.history.push("/dashboard");
