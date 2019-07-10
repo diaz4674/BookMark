@@ -78,6 +78,14 @@ const useStyles = makeStyles(theme => ({
       fontWeight: "bold"
     }
   },
+  navTrue: {
+    cursor: "pointer",
+    display: "flex",
+    justifyContent: "center",
+    margin: "10px 0",
+    fontWeight: "bold",
+    transition: ".4s"
+  },
   navText: {
     fontFamily: "Roboto Slab, serif"
   },
@@ -151,6 +159,8 @@ export default function PersistentDrawerLeft() {
     localStorage.removeItem("token");
   };
 
+  let highlighted;
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -195,13 +205,22 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-          <ListItem onClick={showFinancial} className={classes.navItem}>
+          <ListItem
+            onClick={showFinancial}
+            className={financialDash ? classes.navTrue : classes.navItem}
+          >
             <p className={classes.navText}> Financial</p>
           </ListItem>
-          <ListItem onClick={showShopping} className={classes.navItem}>
+          <ListItem
+            onClick={showShopping}
+            className={shoppingDash ? classes.navTrue : classes.navItem}
+          >
             <p className={classes.navText}> Shopping</p>
           </ListItem>
-          <ListItem onClick={showPersonal} className={classes.navItem}>
+          <ListItem
+            onClick={showPersonal}
+            className={personalDash ? classes.navTrue : classes.navItem}
+          >
             <p className={classes.navText}> Personal</p>
           </ListItem>
           <Divider />
