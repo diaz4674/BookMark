@@ -20,6 +20,8 @@ import MailIcon from "@material-ui/icons/Mail";
 import FinancialDashboard from "./FinancialDashboard";
 import PersonalDashboard from "./PersonalDashboard";
 import ShoppingDashboard from "./ShoppingDashboard";
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -61,8 +63,23 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
     justifyContent: "flex-end"
   },
+  logoutButton: {
+    display: "flex",
+    justifyContent: "flex-end"
+  },
   navItem: {
-    cursor: "pointer"
+    cursor: "pointer",
+    display: "flex",
+    justifyContent: "center",
+    margin: "10px 0",
+    transition: ".4s",
+    "&:hover": {
+      transform: "scale(1.3,1.3)",
+      fontWeight: "bold"
+    }
+  },
+  navText: {
+    fontFamily: "Roboto Slab, serif"
   },
   content: {
     flexGrow: 1,
@@ -129,6 +146,11 @@ export default function PersistentDrawerLeft() {
     setshoppingDash(false);
     setpersonalDash(true);
   };
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -174,25 +196,32 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
           <ListItem onClick={showFinancial} className={classes.navItem}>
-            <ListItemText primary="Financial" />
+            <p className={classes.navText}> Financial</p>
           </ListItem>
           <ListItem onClick={showShopping} className={classes.navItem}>
-            <ListItemText primary="Shopping" />
+            <p className={classes.navText}> Shopping</p>
           </ListItem>
           <ListItem onClick={showPersonal} className={classes.navItem}>
-            <ListItemText primary="Personal" />
+            <p className={classes.navText}> Personal</p>
           </ListItem>
-
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          <Divider />
+          <ListItem onClick={logOut} className={classes.navItem}>
+            <Link to="/">
+              <p className={classes.navText}> Log Out</p>
+            </Link>
+          </ListItem>
+          <Divider />
+          {/* {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))}
+          ))} */}
         </List>
       </Drawer>
+
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open
