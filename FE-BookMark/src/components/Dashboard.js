@@ -74,9 +74,13 @@ const useStyles = makeStyles(theme => ({
     margin: "10px 0",
     transition: ".4s",
     "&:hover": {
-      transform: "scale(1.3,1.3)",
+      transform: "scale(1.2,1.2)",
       fontWeight: "bold"
     }
+  },
+  logout: {
+    color: "black",
+    textDecoration: "none"
   },
   navTrue: {
     cursor: "pointer",
@@ -225,8 +229,8 @@ export default function PersistentDrawerLeft() {
           </ListItem>
           <Divider />
           <ListItem onClick={logOut} className={classes.navItem}>
-            <Link to="/">
-              <p className={classes.navText}> Log Out</p>
+            <Link to="/" className={classes.logout}>
+              <p> Log Out</p>
             </Link>
           </ListItem>
           <Divider />
