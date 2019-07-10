@@ -58,25 +58,21 @@ const FinancialDashboard = props => {
   }, [state]);
 
   return (
-    <div className={classes.categoryContainer}>
-      <Card className={classes.cardContainer}>
-        <CardContent className={classes.bankCard}>
-          {!financialStatus ? (
-            <h1>no</h1>
-          ) : (
-            state.map((financials, i) => {
-              return (
-                <div key={i}>
-                  <h1>
-                    <a href={financials.FinancialSite} target="_blank">
-                      {financials.FinancialName}
-                    </a>
-                  </h1>
-                </div>
-              );
-            })
-          )}
-        </CardContent>
+    <div>
+      <Card>
+        {state.map((financials, i) => {
+          return (
+            <div key={i}>
+              <CardContent className={classes.bankCard}>
+                <h1>
+                  <a href={financials.FinancialSite} target="_blank">
+                    {financials.FinancialName}
+                  </a>
+                </h1>
+              </CardContent>
+            </div>
+          );
+        })}
       </Card>
     </div>
   );

@@ -60,24 +60,19 @@ const PersonalDashboard = props => {
   return (
     <div className={classes.categoryContainer}>
       <Card className={classes.cardContainer}>
-        <CardContent className={classes.personalCard}>
-          {!personalStatus ? (
-            <h1>no</h1>
-          ) : (
-            state.map((personal, i) => {
-              return (
-                <div key={i}>
-                  <h1>
-                    {" "}
-                    <a href={personal.personalSite} target="_blank">
-                      {personal.personalName}
-                    </a>
-                  </h1>
-                </div>
-              );
-            })
-          )}
-        </CardContent>
+        {state.map((personal, i) => {
+          return (
+            <div key={i}>
+              <CardContent>
+                <h1>
+                  <a href={personal.personalSite} target="_blank">
+                    {personal.personalName}
+                  </a>
+                </h1>
+              </CardContent>
+            </div>
+          );
+        })}
       </Card>
     </div>
   );

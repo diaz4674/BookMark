@@ -60,24 +60,19 @@ const ShoppingDashboard = props => {
   return (
     <div className={classes.categoryContainer}>
       <Card className={classes.cardContainer}>
-        <CardContent className={classes.bankCard}>
-          {!shoppingStatus ? (
-            <h1>no</h1>
-          ) : (
-            state.map((stores, i) => {
-              return (
-                <div key={i}>
-                  <h1>
-                    {" "}
-                    <a href={stores.storeSite} target="_blank">
-                      {stores.storeName}
-                    </a>
-                  </h1>
-                </div>
-              );
-            })
-          )}
-        </CardContent>
+        {state.map((stores, i) => {
+          return (
+            <div key={i}>
+              <CardContent className={classes.personalCard}>
+                <h1>
+                  <a href={stores.storeSite} target="_blank">
+                    {stores.storeName}
+                  </a>
+                </h1>
+              </CardContent>
+            </div>
+          );
+        })}
       </Card>
     </div>
   );
