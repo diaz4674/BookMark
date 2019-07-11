@@ -53,10 +53,7 @@ const FinancialCard = props => {
         <CardContent className={classes.bankCard}>
           <div>
             <h1>Financial Bookmarks</h1>
-            <Button>
-              {" "}
-              <Link to="./welcome"> Go Back </Link>
-            </Button>
+            <Button />
           </div>
           <div className={classes.root}>
             <ExpansionPanel square expanded={expanded === "panel1"}>

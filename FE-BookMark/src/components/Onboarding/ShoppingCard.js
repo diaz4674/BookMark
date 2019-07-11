@@ -60,10 +60,6 @@ const ShoppingCard = props => {
           <CardContent className={classes.shoppingCard}>
             <div>
               <h1>Shopping Bookmarks</h1>
-              <Button>
-                {" "}
-                <Link to="/categories"> Go Back </Link>
-              </Button>
             </div>
 
             <div className={classes.root}>
