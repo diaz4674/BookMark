@@ -21,13 +21,22 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "5px",
     width: "200px",
     flexWrap: "wrap",
-    textDecoration: "none"
+    boxShadow: " 2.5px 5px #888888",
+    textDecoration: "none",
+    transition: ".4s",
+    "&:hover": {
+      boxShadow: " 2.5px 3.5px #888888"
+    }
   },
   names: {
     color: "black",
-    borderLeft: "solid 10px green",
+    borderLeft: "solid 10px #ba78fe",
     padding: "10px 15px",
-    width: "90%"
+    width: "90%",
+    transition: ".4s",
+    "&:hover": {
+      borderLeft: " solid 10px #9a37ff"
+    }
   },
   bankCard: {
     height: "auto",

@@ -25,6 +25,32 @@ const useStyles = makeStyles(theme => ({
       marginTop: "20px"
     }
   },
+  links: {
+    display: "flex",
+    justifyContent: "center",
+    fontFamily: "Roboto Slab, serif",
+    border: "solid .5px black",
+    padding: "8px 5px",
+    borderRadius: "5px",
+    width: "200px",
+    flexWrap: "wrap",
+    boxShadow: " 2.5px 5px #888888",
+    textDecoration: "none",
+    transition: ".4s",
+    "&:hover": {
+      boxShadow: " 2.5px 3.5px #888888"
+    }
+  },
+  names: {
+    color: "black",
+    borderLeft: "solid 10px #ba78fe",
+    padding: "10px 15px",
+    width: "90%",
+    transition: ".4s",
+    "&:hover": {
+      borderLeft: " solid 10px #9a37ff"
+    }
+  },
   bankCard: {
     height: "auto"
   }
@@ -64,11 +90,13 @@ const ShoppingDashboard = props => {
           return (
             <div key={i}>
               <CardContent className={classes.personalCard}>
-                <h1>
-                  <a href={stores.storeSite} target="_blank">
-                    {stores.storeName}
-                  </a>
-                </h1>
+                <a
+                  href={stores.storeSite}
+                  target="_blank"
+                  className={classes.links}
+                >
+                  <span className={classes.names}>{stores.storeName}</span>
+                </a>
               </CardContent>
             </div>
           );
