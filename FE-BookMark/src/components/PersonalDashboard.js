@@ -25,8 +25,31 @@ const useStyles = makeStyles(theme => ({
       marginTop: "20px"
     }
   },
-  personalCard: {
-    height: "auto"
+  links: {
+    display: "flex",
+    justifyContent: "center",
+    fontFamily: "Roboto Slab, serif",
+    border: "solid .5px black",
+    padding: "8px 5px",
+    borderRadius: "5px",
+    width: "200px",
+    flexWrap: "wrap",
+    boxShadow: " 2.5px 5px #888888",
+    textDecoration: "none",
+    transition: ".4s",
+    "&:hover": {
+      boxShadow: " 2.5px 3.5px #888888"
+    }
+  },
+  names: {
+    color: "black",
+    borderLeft: "solid 10px #ba78fe",
+    padding: "10px 15px",
+    width: "90%",
+    transition: ".4s",
+    "&:hover": {
+      borderLeft: " solid 10px #9a37ff"
+    }
   }
 }));
 
@@ -64,11 +87,13 @@ const PersonalDashboard = props => {
           return (
             <div key={i}>
               <CardContent>
-                <h1>
-                  <a href={personal.personalSite} target="_blank">
-                    {personal.personalName}
-                  </a>
-                </h1>
+                <a
+                  href={personal.personalSite}
+                  target="_blank"
+                  className={classes.links}
+                >
+                  <span className={classes.names}>{personal.personalName}</span>
+                </a>
               </CardContent>
             </div>
           );
