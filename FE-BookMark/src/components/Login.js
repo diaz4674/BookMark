@@ -52,12 +52,34 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 12
   },
   signUp: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
+    textDecoration: "none",
+    margin: "0 0 25px 0"
   },
   pTag: {
     marginRight: "5px"
+  },
+  separator: {
+    width: "80%",
+    borderTop: "1px solid #cbd2d6",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    position: "relative",
+    margin: "25px 0"
+  },
+  orText: {
+    padding: "0 0.5em",
+    color: "#6c7378",
+    top: "-.7em",
+    position: "relative",
+    backgroundColor: "white"
+  },
+  loginButton: {
+    backgroundColor: "#ba78fe",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#9a37ff"
+    }
   }
 }));
 
@@ -151,14 +173,23 @@ const Login = props => {
             />
           </CardContent>
           <CardActions>
-            <Button size="small" onClick={e => loginHandler()}>
+            <Button
+              variant="contained"
+              size="medium"
+              className={classes.loginButton}
+              onClick={e => loginHandler()}
+            >
               Login
             </Button>
           </CardActions>
-          <div className={classes.signUp}>
-            <p className={classes.pTag}>Don't have an account? </p>
-            <Link to="/signup"> Sign Up</Link>
+          <div className={classes.separator}>
+            <span className={classes.orText}> or </span>
           </div>
+          <Link to="/signup" className={classes.signUp}>
+            <Button variant="contained" size="medium" color="inherent">
+              Sign Up
+            </Button>
+          </Link>
         </Card>
       </div>
     </div>
