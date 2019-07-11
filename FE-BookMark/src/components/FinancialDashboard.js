@@ -10,24 +10,24 @@ import CardMedia from "@material-ui/core/CardMedia";
 
 const useStyles = makeStyles(theme => ({
   container: {
-    margin: "50px 0"
+    margin: "50px 0 0 0"
   },
-  categoryContainer: {
+  links: {
     display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    height: "100%",
-    width: "100%"
+    justifyContent: "center",
+    fontFamily: "Roboto Slab, serif",
+    border: "solid .5px black",
+    padding: "8px 5px",
+    borderRadius: "5px",
+    width: "200px",
+    flexWrap: "wrap",
+    textDecoration: "none"
   },
-  cardContainer: {
-    margin: "25px auto",
-    width: "80%",
-
-    ["@media (max-width:780px)"]: {
-      height: "95%",
-      overflow: "visible",
-      marginTop: "20px"
-    }
+  names: {
+    color: "black",
+    borderLeft: "solid 10px green",
+    padding: "10px 15px",
+    width: "90%"
   },
   bankCard: {
     height: "auto",
@@ -35,18 +35,22 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     flexWrap: "wrap"
   },
-  links: {
-    textDecoration: "none",
-    color: "black"
+  title: {
+    display: "flex",
+    justifyContent: "center",
+    fontFamily: "Roboto Slab, serif",
+    fontWeight: "bold",
+    fontSize: "2em",
+    margin: "25px"
   },
   media: {
     margin: "0 auto",
-    height: 300,
-    width: "15em",
+    height: 252,
+    width: "18em",
     borderRadius: "0%",
     ["@media (max-width:780px)"]: {
-      height: 100,
-      width: "36%"
+      height: 141,
+      width: "10em"
     }
   }
 }));
@@ -82,6 +86,8 @@ const FinancialDashboard = props => {
     <div>
       <Card className={classes.container}>
         <div className={classes.top}>
+          <span className={classes.title}>Financial Bookmarks</span>
+
           <CardMedia
             className={classes.media}
             image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR98kclxO8iMkcaCN4pmKEtxC3FkgHm05DTDdaY95CjqtQeDGk6"
@@ -93,15 +99,15 @@ const FinancialDashboard = props => {
           return (
             <div key={i}>
               <CardContent className={classes.bankCard}>
-                <h1>
-                  <a
-                    href={financials.FinancialSite}
-                    target="_blank"
-                    className={classes.links}
-                  >
+                <a
+                  href={financials.FinancialSite}
+                  target="_blank"
+                  className={classes.links}
+                >
+                  <span className={classes.names}>
                     {financials.FinancialName}
-                  </a>
-                </h1>
+                  </span>
+                </a>
               </CardContent>
             </div>
           );
