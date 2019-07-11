@@ -17,10 +17,6 @@ import { postRegister } from "../../actions";
 import OnboardNav from "../Navbars/OnboardNav";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: "#9471e9",
-    height: "100%"
-  },
   margin: {
     margin: theme.spacing(1)
   },

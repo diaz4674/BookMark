@@ -19,10 +19,6 @@ import axios from "axios";
 import OnboardNav from "./Navbars/OnboardNav";
 
 const useStyles = makeStyles(theme => ({
-  test: {
-    backgroundColor: "#9471e9",
-    height: "100%"
-  },
   margin: {
     margin: theme.spacing(1)
   },

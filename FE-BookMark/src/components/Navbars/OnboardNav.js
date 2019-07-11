@@ -4,17 +4,24 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
   title: {
-    color: "black",
+    color: "white",
     flexGrow: 1
   },
   navBar: {
-    backgroundColor: "white"
+    backgroundColor: "#ba78fe"
+  },
+  links: {
+    textDecoration: "none"
+  },
+  buttons: {
+    color: "white"
   }
 }));
 
@@ -28,7 +35,16 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             BookMark
           </Typography>
-          <Button color="primary">Login</Button>
+          <Link to="/" className={classes.links}>
+            <Button color="primary" className={classes.buttons}>
+              Login
+            </Button>
+          </Link>
+          <Link to="/signup" className={classes.links}>
+            <Button color="inherent" className={classes.buttons}>
+              Sign Up
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
