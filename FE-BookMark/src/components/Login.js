@@ -117,7 +117,7 @@ const Login = props => {
         localStorage.setItem("token", res.data.token);
         props.history.push("/dashboard");
       })
-      .catch(err => console.log(err));
+      .catch(err => alert("Sorry, cannot find user, or wrong password/email"));
   };
 
   return (

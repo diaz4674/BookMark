@@ -123,8 +123,8 @@ export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [financialDash, setfinancialDash] = React.useState(false);
-  const [shoppingDash, setshoppingDash] = React.useState(true);
+  const [financialDash, setfinancialDash] = React.useState(true);
+  const [shoppingDash, setshoppingDash] = React.useState(false);
   const [personalDash, setpersonalDash] = React.useState(false);
 
   function handleDrawerOpen() {
