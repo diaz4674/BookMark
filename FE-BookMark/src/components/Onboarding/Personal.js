@@ -19,7 +19,8 @@ import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
-    width: "100%"
+    width: "100%",
+    display: "flex"
   },
   container: {
     display: "flex",
@@ -28,7 +29,12 @@ const useStyles = makeStyles(theme => ({
     width: "100%"
   },
   item: {
+    display: "flex",
+    justifyContent: "center",
     margin: "20px 25px"
+  },
+  buttonContainer: {
+    margin: "0 auto"
   }
 }));
 
@@ -63,11 +69,6 @@ const Personal = props => {
     }
   };
 
-  const destroyHandler = destroySite => {
-    props.deleteSite(destroySite);
-    props.reRenderHandler();
-  };
-
   const dashboardRedirect = async () => {
     await props.setPersonal(newSite);
     props.history.push("/dashboard");
@@ -75,7 +76,7 @@ const Personal = props => {
 
   return (
     <FormControl component="fieldset" className={classes.formContainer}>
-      <FormLabel component="legend">Choose institutions to add</FormLabel>
+      <FormLabel component="legend">Choose personal site to add</FormLabel>
       <div className={classes.container}>
         {props.personal.map((site, index) => {
           return (
@@ -91,14 +92,18 @@ const Personal = props => {
                   }
                   label={site.personalName}
                 />
-                <button onClick={() => destroyHandler(site)}>Kill</button>
               </FormGroup>
             </>
           );
         })}
       </div>
-      <FormHelperText>Be careful</FormHelperText>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={handleClickOpen}
+        className={classes.buttonContainer}
+      >
         Take me to my Dashbaord!
       </Button>
       <Dialog

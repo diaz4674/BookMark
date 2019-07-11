@@ -35,14 +35,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     margin: "20px 25px"
   },
-  icon: {
-    margin: theme.spacing(1),
-    fontSize: 32,
-    "&:hover": {
-      cursor: "pointer",
-      animation: "shake 0.1s"
-    }
-  },
   buttonContainer: {
     margin: "0 auto"
   }
@@ -56,7 +48,6 @@ const Banks = props => {
   const [state, setState] = React.useState({});
   const [newBanks, setnewBanks] = useState([]);
   const [open, setOpen] = React.useState(false);
-  const [next, setNext] = React.useState(false);
 
   function handleClickOpen() {
     setOpen(true);
@@ -91,10 +82,6 @@ const Banks = props => {
     }
   };
 
-  const destroyHandler = destroyBank => {
-    props.deleteBank(destroyBank);
-  };
-
   return (
     <FormControl component="fieldset" className={classes.formContainer}>
       <FormLabel component="legend">Choose institutions to add</FormLabel>
@@ -113,12 +100,7 @@ const Banks = props => {
                   }
                   label={banks.FinancialName}
                 />
-                <Grid item xs={8}>
-                  <DeleteOutlinedIcon
-                    className={classes.icon}
-                    onClick={() => destroyHandler(banks)}
-                  />
-                </Grid>
+                <Grid item xs={8} />
               </FormGroup>
             </>
           );

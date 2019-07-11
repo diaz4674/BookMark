@@ -76,14 +76,9 @@ const Shopping = props => {
     }
   };
 
-  const destroyHandler = destroyShop => {
-    props.deleteStore(destroyShop);
-    props.reRenderHandler();
-  };
-
   return (
     <FormControl component="fieldset" className={classes.formContainer}>
-      <FormLabel component="legend">Choose institutions to add</FormLabel>
+      <FormLabel component="legend">Choose Store to add</FormLabel>
       <div className={classes.container}>
         {props.shopping.map((shops, i) => {
           return (
@@ -99,7 +94,6 @@ const Shopping = props => {
                   }
                   label={shops.storeName}
                 />
-                <button onClick={() => destroyHandler(shops)}>Kill</button>
               </FormGroup>
             </>
           );
