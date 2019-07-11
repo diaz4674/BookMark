@@ -46,7 +46,8 @@ const useStyles = makeStyles(theme => ({
   container: {
     width: "100%",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginTop: "20px"
   },
   pos: {
     marginBottom: 12
