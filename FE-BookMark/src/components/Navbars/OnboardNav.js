@@ -11,14 +11,17 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   title: {
-    color: "black",
+    color: "white",
     flexGrow: 1
   },
   navBar: {
-    backgroundColor: "white"
+    backgroundColor: "#ba78fe"
+  },
+  links: {
+    textDecoration: "none"
   },
   buttons: {
-    textDecoration: "none"
+    color: "white"
   }
 }));
 
@@ -32,11 +35,15 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             BookMark
           </Typography>
-          <Link to="/" className={classes.buttons}>
-            <Button color="primary">Login</Button>
+          <Link to="/" className={classes.links}>
+            <Button color="primary" className={classes.buttons}>
+              Login
+            </Button>
           </Link>
-          <Link to="/signup" className={classes.buttons}>
-            <Button color="primary">Sign Up</Button>
+          <Link to="/signup" className={classes.links}>
+            <Button color="inherent" className={classes.buttons}>
+              Sign Up
+            </Button>
           </Link>
         </Toolbar>
       </AppBar>
