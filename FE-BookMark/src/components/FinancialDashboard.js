@@ -6,8 +6,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { getmyFinancials } from "../actions";
 import axios from "axios";
+import CardMedia from "@material-ui/core/CardMedia";
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    margin: "50px 0"
+  },
   categoryContainer: {
     display: "flex",
     flexDirection: "column",
@@ -26,7 +30,24 @@ const useStyles = makeStyles(theme => ({
     }
   },
   bankCard: {
-    height: "auto"
+    height: "auto",
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap"
+  },
+  links: {
+    textDecoration: "none",
+    color: "black"
+  },
+  media: {
+    margin: "0 auto",
+    height: 300,
+    width: "15em",
+    borderRadius: "0%",
+    ["@media (max-width:780px)"]: {
+      height: 100,
+      width: "36%"
+    }
   }
 }));
 
@@ -59,13 +80,25 @@ const FinancialDashboard = props => {
 
   return (
     <div>
-      <Card>
+      <Card className={classes.container}>
+        <div className={classes.top}>
+          <CardMedia
+            className={classes.media}
+            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR98kclxO8iMkcaCN4pmKEtxC3FkgHm05DTDdaY95CjqtQeDGk6"
+            title="Money"
+          />
+        </div>
+
         {state.map((financials, i) => {
           return (
             <div key={i}>
               <CardContent className={classes.bankCard}>
                 <h1>
-                  <a href={financials.FinancialSite} target="_blank">
+                  <a
+                    href={financials.FinancialSite}
+                    target="_blank"
+                    className={classes.links}
+                  >
                     {financials.FinancialName}
                   </a>
                 </h1>

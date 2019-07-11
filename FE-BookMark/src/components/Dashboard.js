@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex"
   },
   appBar: {
+    backgroundColor: "#af63db",
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -43,7 +44,11 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen
     })
   },
+  titleNav: {
+    color: "white"
+  },
   menuButton: {
+    backgroundColor: "white",
     marginRight: theme.spacing(2)
   },
   hide: {
@@ -54,6 +59,7 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0
   },
   drawerPaper: {
+    backgroundColor: "#4f3f58",
     width: drawerWidth
   },
   drawerHeader: {
@@ -79,10 +85,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   logout: {
-    color: "black",
+    color: "white",
     textDecoration: "none"
   },
   navTrue: {
+    backgroundColor: "#7e7285",
     cursor: "pointer",
     display: "flex",
     justifyContent: "center",
@@ -91,6 +98,7 @@ const useStyles = makeStyles(theme => ({
     transition: ".4s"
   },
   navText: {
+    color: "white",
     fontFamily: "Roboto Slab, serif"
   },
   content: {
@@ -163,12 +171,11 @@ export default function PersistentDrawerLeft() {
     localStorage.removeItem("token");
   };
 
-  let highlighted;
-
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        color="initial"
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open
@@ -176,7 +183,7 @@ export default function PersistentDrawerLeft() {
       >
         <Toolbar>
           <IconButton
-            color="inherit"
+            color="white"
             aria-label="Open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -184,7 +191,7 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap className={classes.titleNav}>
             BookMark
           </Typography>
         </Toolbar>
