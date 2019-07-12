@@ -132,15 +132,15 @@ export default function PersistentDrawerLeft() {
 
   let showThis;
 
-  if (financialDash === true) {
+  if (financialDash) {
     showThis = <FinancialDashboard />;
   }
 
-  if (shoppingDash === true) {
+  if (shoppingDash) {
     showThis = <ShoppingDashboard />;
   }
 
-  if (personalDash === true) {
+  if (personalDash) {
     showThis = <PersonalDashboard />;
   }
 

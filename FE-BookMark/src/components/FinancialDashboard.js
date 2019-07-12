@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { getmyFinancials } from "../actions";
 import axios from "axios";
 import CardMedia from "@material-ui/core/CardMedia";
+import Loading from "./Loading";
 
 const useStyles = makeStyles(theme => ({
   containerLoading: {
@@ -16,6 +17,11 @@ const useStyles = makeStyles(theme => ({
     margin: "50px 0 0 0",
     transition: "opacity .9s ease-in",
     opacity: "1"
+  },
+  loading: {
+    marginTop: "200px",
+    display: "flex",
+    justifyContent: "center"
   },
   links: {
     display: "flex",
@@ -74,8 +80,10 @@ const FinancialDashboard = props => {
   const classes = useStyles();
   const [state, setState] = useState([]);
   const [financialStatus, setFinancials] = useState(false);
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
+    setLoad(true);
     const token = localStorage.getItem("token");
     const deconstructedToken = token.split(".")[1];
     const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
@@ -89,6 +97,7 @@ const FinancialDashboard = props => {
       })
       .then(res => {
         setState(res.data);
+        setLoad(false);
       })
       .catch(err => console.log(err));
   }, []);
@@ -99,39 +108,47 @@ const FinancialDashboard = props => {
 
   return (
     <div>
-      <Card
-        className={
-          !financialStatus ? classes.containerLoading : classes.containerLoaded
-        }
-      >
-        <div className={classes.top}>
-          <span className={classes.title}>Financial Bookmarks</span>
-
-          <CardMedia
-            className={classes.media}
-            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR98kclxO8iMkcaCN4pmKEtxC3FkgHm05DTDdaY95CjqtQeDGk6"
-            title="Money"
-          />
+      {load ? (
+        <div className={classes.loading}>
+          <Loading />
         </div>
+      ) : (
+        <Card
+          className={
+            !financialStatus
+              ? classes.containerLoading
+              : classes.containerLoaded
+          }
+        >
+          <div className={classes.top}>
+            <span className={classes.title}>Financial Bookmarks</span>
 
-        {state.map((financials, i) => {
-          return (
-            <div key={i}>
-              <CardContent className={classes.bankCard}>
-                <a
-                  href={financials.FinancialSite}
-                  target="_blank"
-                  className={classes.links}
-                >
-                  <span className={classes.names}>
-                    {financials.FinancialName}
-                  </span>
-                </a>
-              </CardContent>
-            </div>
-          );
-        })}
-      </Card>
+            <CardMedia
+              className={classes.media}
+              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR98kclxO8iMkcaCN4pmKEtxC3FkgHm05DTDdaY95CjqtQeDGk6"
+              title="Money"
+            />
+          </div>
+
+          {state.map((financials, i) => {
+            return (
+              <div key={i}>
+                <CardContent className={classes.bankCard}>
+                  <a
+                    href={financials.FinancialSite}
+                    target="_blank"
+                    className={classes.links}
+                  >
+                    <span className={classes.names}>
+                      {financials.FinancialName}
+                    </span>
+                  </a>
+                </CardContent>
+              </div>
+            );
+          })}
+        </Card>
+      )}
     </div>
   );
 };
