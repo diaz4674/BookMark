@@ -3,18 +3,20 @@ import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles(theme => ({
-  progress: {
-    margin: theme.spacing(2),
-    transform: "scale(2, 2)"
-  }
+=
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
 }));
 
 export default function CircularIndeterminate() {
   const classes = useStyles();
 
   return (
-    <div>
-      <CircularProgress className={classes.progress} />
+    <div className={classes.container}>
+      <h1>Loading ...</h1>
+      <img src="https://image.shutterstock.com/image-vector/little-panda-super-hero-flies-260nw-650591155.jpg" />
     </div>
   );
 }
