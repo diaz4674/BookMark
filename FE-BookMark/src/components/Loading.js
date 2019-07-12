@@ -8,7 +8,8 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
-}));
+  }
+}))
 
 export default function CircularIndeterminate() {
   const classes = useStyles();
