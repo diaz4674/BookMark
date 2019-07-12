@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
   containerLoaded: {
     margin: "50px 0 0 0",
-    transition: "opacity .9s ease-in",
+    transition: "opacity 1s ease-in",
     opacity: "1"
   },
   loading: {
@@ -97,19 +97,19 @@ const FinancialDashboard = props => {
       })
       .then(res => {
         setState(res.data);
-        setLoad(false);
       })
       .catch(err => console.log(err));
   }, []);
 
   useEffect(() => {
+    setLoad(false);
     setFinancials(true);
   }, [state]);
 
   return (
     <div>
       {load ? (
-        <div className={classes.loading}>
+        <div>
           <Loading />
         </div>
       ) : (
