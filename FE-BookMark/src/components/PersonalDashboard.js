@@ -6,24 +6,17 @@ import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { getmyFinancials } from "../actions";
 import axios from "axios";
+import Loading from "./Loading";
 
 const useStyles = makeStyles(theme => ({
-  categoryContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    height: "100%",
-    width: "100%"
+  containerLoading: {
+    margin: "50px 0 0 0",
+    opacity: 0
   },
-  cardContainer: {
-    margin: "25px auto",
-    width: "80%",
-
-    ["@media (max-width:780px)"]: {
-      height: "95%",
-      overflow: "visible",
-      marginTop: "20px"
-    }
+  containerLoaded: {
+    margin: "50px 0 0 0",
+    transition: "opacity .9s ease-in",
+    opacity: "1"
   },
   links: {
     display: "flex",
@@ -38,18 +31,25 @@ const useStyles = makeStyles(theme => ({
     textDecoration: "none",
     transition: ".4s",
     "&:hover": {
-      boxShadow: " 2.5px 3.5px #888888"
+      transform: "scale(1.1, 1.1)",
+      boxShadow: " 5px 8px #888888"
     }
   },
   names: {
     color: "black",
-    borderLeft: "solid 10px #ba78fe",
+    borderLeft: "solid 10px #58e2c8",
     padding: "10px 15px",
     width: "90%",
     transition: ".4s",
     "&:hover": {
-      borderLeft: " solid 10px #9a37ff"
+      borderLeft: " solid 10px #02b492"
     }
+  },
+  personalCard: {
+    height: "auto",
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap"
   }
 }));
 
@@ -81,24 +81,34 @@ const PersonalDashboard = props => {
   }, [state]);
 
   return (
-    <div className={classes.categoryContainer}>
-      <Card className={classes.cardContainer}>
-        {state.map((personal, i) => {
-          return (
-            <div key={i}>
-              <CardContent>
-                <a
-                  href={personal.personalSite}
-                  target="_blank"
-                  className={classes.links}
-                >
-                  <span className={classes.names}>{personal.personalName}</span>
-                </a>
-              </CardContent>
-            </div>
-          );
-        })}
-      </Card>
+    <div>
+      {!personalStatus ? (
+        <Loading />
+      ) : (
+        <Card
+          className={
+            !personalStatus ? classes.containerLoading : classes.containerLoaded
+          }
+        >
+          {state.map((personal, i) => {
+            return (
+              <div key={i}>
+                <CardContent className={classes.personalCard}>
+                  <a
+                    href={personal.personalSite}
+                    target="_blank"
+                    className={classes.links}
+                  >
+                    <span className={classes.names}>
+                      {personal.personalName}
+                    </span>
+                  </a>
+                </CardContent>
+              </div>
+            );
+          })}
+        </Card>
+      )}
     </div>
   );
 };

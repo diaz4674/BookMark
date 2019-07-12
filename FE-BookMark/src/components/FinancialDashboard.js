@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { getmyFinancials } from "../actions";
@@ -9,8 +8,14 @@ import axios from "axios";
 import CardMedia from "@material-ui/core/CardMedia";
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    margin: "50px 0 0 0"
+  containerLoading: {
+    margin: "50px 0 0 0",
+    opacity: 0
+  },
+  containerLoaded: {
+    margin: "50px 0 0 0",
+    transition: "opacity .9s ease-in",
+    opacity: "1"
   },
   links: {
     display: "flex",
@@ -25,17 +30,18 @@ const useStyles = makeStyles(theme => ({
     textDecoration: "none",
     transition: ".4s",
     "&:hover": {
-      boxShadow: " 2.5px 3.5px #888888"
+      transform: "scale(1.1, 1.1)",
+      boxShadow: " 5px 8px #888888"
     }
   },
   names: {
     color: "black",
-    borderLeft: "solid 10px #ba78fe",
+    borderLeft: "solid 10px #58e2c8",
     padding: "10px 15px",
     width: "90%",
     transition: ".4s",
     "&:hover": {
-      borderLeft: " solid 10px #9a37ff"
+      borderLeft: " solid 10px #02b492"
     }
   },
   bankCard: {
@@ -93,7 +99,11 @@ const FinancialDashboard = props => {
 
   return (
     <div>
-      <Card className={classes.container}>
+      <Card
+        className={
+          !financialStatus ? classes.containerLoading : classes.containerLoaded
+        }
+      >
         <div className={classes.top}>
           <span className={classes.title}>Financial Bookmarks</span>
 
