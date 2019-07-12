@@ -1,16 +1,15 @@
-
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
+  }
 }));
 
-export default function CircularIndeterminate() {
+const Loading = props => {
   const classes = useStyles();
 
   return (
@@ -19,4 +18,6 @@ export default function CircularIndeterminate() {
       <img src="https://image.shutterstock.com/image-vector/little-panda-super-hero-flies-260nw-650591155.jpg" />
     </div>
   );
-}
+};
+
+export default Loading;
