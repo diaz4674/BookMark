@@ -1,21 +1,20 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles(theme => ({
-  back: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "red"
+  progress: {
+    margin: theme.spacing(2),
+    transform: "scale(2, 2)"
   }
 }));
 
-const Loading = props => {
+export default function CircularIndeterminate() {
   const classes = useStyles();
+
   return (
-    <div className={classes.back}>
-      <span className={classes.title}>HELLO</span>
+    <div>
+      <CircularProgress className={classes.progress} />
     </div>
   );
-};
-
-export default Loading;
+}

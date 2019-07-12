@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { getmyFinancials } from "../actions";
 import axios from "axios";
-import Loading from "./Loading";
 
 const useStyles = makeStyles(theme => ({
   containerLoading: {
@@ -82,33 +80,27 @@ const PersonalDashboard = props => {
 
   return (
     <div>
-      {!personalStatus ? (
-        <Loading />
-      ) : (
-        <Card
-          className={
-            !personalStatus ? classes.containerLoading : classes.containerLoaded
-          }
-        >
-          {state.map((personal, i) => {
-            return (
-              <div key={i}>
-                <CardContent className={classes.personalCard}>
-                  <a
-                    href={personal.personalSite}
-                    target="_blank"
-                    className={classes.links}
-                  >
-                    <span className={classes.names}>
-                      {personal.personalName}
-                    </span>
-                  </a>
-                </CardContent>
-              </div>
-            );
-          })}
-        </Card>
-      )}
+      <Card
+        className={
+          !personalStatus ? classes.containerLoading : classes.containerLoaded
+        }
+      >
+        {state.map((personal, i) => {
+          return (
+            <div key={i}>
+              <CardContent className={classes.personalCard}>
+                <a
+                  href={personal.personalSite}
+                  target="_blank"
+                  className={classes.links}
+                >
+                  <span className={classes.names}>{personal.personalName}</span>
+                </a>
+              </CardContent>
+            </div>
+          );
+        })}
+      </Card>
     </div>
   );
 };
