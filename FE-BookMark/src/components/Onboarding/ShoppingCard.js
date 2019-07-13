@@ -52,9 +52,13 @@ const ShoppingCard = props => {
     setRender(!render);
   };
 
+  let nav
+
+  !props.navbarOff? nav = <OnboardNav /> : nav = null
+
   return (
     <>
-      <OnboardNav />
+       {nav}
       <div className={classes.categoryContainer}>
         <Card className={classes.cardContainer}>
           <CardContent className={classes.shoppingCard}>
@@ -74,7 +78,7 @@ const ShoppingCard = props => {
                   </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                  <Shopping reRenderHandler={reRenderHandler} />
+                  <Shopping reRenderHandler={reRenderHandler} turnOffShopping = {props.turnOffShopping} redirect = {props.redirect} />
                 </ExpansionPanelDetails>
               </ExpansionPanel>
               <ExpansionPanel>

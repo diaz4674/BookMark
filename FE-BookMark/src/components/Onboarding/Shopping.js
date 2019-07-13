@@ -53,8 +53,17 @@ const Shopping = props => {
   }
 
   const redirect = async () => {
+    if(props.redirect){
+
+      await props.setStores(newShop);
+      props.turnOffShopping()
+    } else {
+      await props.setStores(newShop);
+      props.history.push("./personalSelect");
+    }
+
     await props.setStores(newShop);
-    props.history.push("./personalSelect");
+
   };
 
   const handleChange = name => e => {

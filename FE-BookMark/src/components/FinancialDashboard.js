@@ -81,6 +81,8 @@ const FinancialDashboard = props => {
   const [state, setState] = useState([]);
   const [financialStatus, setFinancials] = useState(false);
   const [load, setLoad] = useState(false);
+  const[navbar, setnav] = useState(true)
+  const [next, setNext] = useState(true)
 
   useEffect(() => {
     setLoad(true);

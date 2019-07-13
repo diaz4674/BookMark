@@ -54,10 +54,16 @@ const Banks = props => {
   }
 
   const redirect = async () => {
-    //Sending selected data to actions to post to add banks endpoint
-    await props.setFinancial(newBanks);
-    //redirects to the shopping card selection
-    props.history.push("./shoppingSelect");
+
+    if(props.redirect){
+
+      await props.setFinancial(newBanks);
+      props.turnOffFinance()
+    } else {
+      await props.setFinancial(newBanks);
+      props.history.push("./shoppingSelect");
+    }
+ 
   };
 
   function handleClose() {
@@ -125,15 +131,15 @@ const Banks = props => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            You will have a chance to add more once in your dashboard as well.
+            You can add more later.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Not Yet
+            No
           </Button>
           <Button onClick={redirect} color="primary" autoFocus>
-            Yes, take me to the shopping category
+            Next
           </Button>
         </DialogActions>
       </Dialog>

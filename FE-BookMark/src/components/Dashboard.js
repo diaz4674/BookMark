@@ -16,6 +16,7 @@ import ListItem from "@material-ui/core/ListItem";
 import FinancialDashboard from "./FinancialDashboard";
 import PersonalDashboard from "./PersonalDashboard";
 import ShoppingDashboard from "./ShoppingDashboard";
+import AddMore from "./addMoreCategories";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -121,6 +122,8 @@ export default function PersistentDrawerLeft() {
   const [financialDash, setfinancialDash] = React.useState(true);
   const [shoppingDash, setshoppingDash] = React.useState(false);
   const [personalDash, setpersonalDash] = React.useState(false);
+  const [addMoreDash, setaddMoreDash] = React.useState(false);
+
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -143,23 +146,37 @@ export default function PersistentDrawerLeft() {
   if (personalDash) {
     showThis = <PersonalDashboard />;
   }
+  
+  if(addMoreDash) {
+    showThis = <AddMore />
+  }
 
   const showFinancial = () => {
     setfinancialDash(true);
     setshoppingDash(false);
     setpersonalDash(false);
+    setaddMoreDash(false)
   };
 
   const showShopping = () => {
     setfinancialDash(false);
     setshoppingDash(true);
     setpersonalDash(false);
+    setaddMoreDash(false)
   };
 
   const showPersonal = () => {
     setfinancialDash(false);
     setshoppingDash(false);
     setpersonalDash(true);
+    setaddMoreDash(false)
+  };
+
+  const showAddMore = () => {
+    setfinancialDash(false);
+    setshoppingDash(false);
+    setpersonalDash(false);
+    setaddMoreDash(true)
   };
 
   const logOut = () => {
@@ -229,6 +246,13 @@ export default function PersistentDrawerLeft() {
           >
             <p className={classes.navText}> Personal</p>
           </ListItem>
+          <Divider />
+          <ListItem
+            onClick={showAddMore}
+            className={addMoreDash ? classes.navTrue : classes.navItem}
+          >
+            <p className={classes.navText}> Add more sites </p>
+          </ListItem> 
           <Divider />
           <ListItem onClick={logOut} className={classes.navItem}>
             <Link to="/" className={classes.logout}>

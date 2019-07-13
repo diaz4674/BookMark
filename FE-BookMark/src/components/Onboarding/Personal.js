@@ -70,8 +70,16 @@ const Personal = props => {
   };
 
   const dashboardRedirect = async () => {
-    await props.setPersonal(newSite);
-    props.history.push("/dashboard");
+    if(props.redirect){
+
+      await props.setPersonal(newSite);
+      props.turnOffPersonal()
+    } else {
+      await props.setPersonal(newSite);
+      props.history.push("/dashboard");
+    }
+
+
   };
 
   return (
