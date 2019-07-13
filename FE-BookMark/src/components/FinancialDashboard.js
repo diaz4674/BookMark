@@ -54,7 +54,8 @@ const useStyles = makeStyles(theme => ({
     height: "auto",
     display: "flex",
     justifyContent: "center",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    width: "100%",
   },
   title: {
     display: "flex",
@@ -73,6 +74,9 @@ const useStyles = makeStyles(theme => ({
       height: 141,
       width: "10em"
     }
+  },
+  optionsContainer: {
+    margin: "20px"
   }
 }));
 
@@ -131,11 +135,11 @@ const FinancialDashboard = props => {
               title="Money"
             />
           </div>
-
+          <CardContent className={classes.bankCard}>
           {state.map((financials, i) => {
             return (
               <div key={i}>
-                <CardContent className={classes.bankCard}>
+                <div className = {classes.optionsContainer}> 
                   <a
                     href={financials.FinancialSite}
                     target="_blank"
@@ -145,10 +149,11 @@ const FinancialDashboard = props => {
                       {financials.FinancialName}
                     </span>
                   </a>
-                </CardContent>
+                  </div>
               </div>
             );
           })}
+          </CardContent>
         </Card>
       )}
     </div>
