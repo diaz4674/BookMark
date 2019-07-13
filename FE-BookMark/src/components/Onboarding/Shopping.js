@@ -53,6 +53,7 @@ const Shopping = props => {
   }
 
   const redirect = async () => {
+    
     if(props.redirect){
 
       await props.setStores(newShop);
