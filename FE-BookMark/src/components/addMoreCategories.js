@@ -2,12 +2,15 @@ import React from 'react';
 import FinanceCard from "./Onboarding/FinancialCard"
 import ShoppingCard from './Onboarding/ShoppingCard'
 import PersonalCard from './Onboarding/PersonalCard'
+import AddedCats from './AddedCats'
 
 const AddMore = props => {
     const [navOff, setnav] = React.useState(true)
     const [showFinance, setShowFinance] = React.useState(true)
     const [showShopping, setShowShopping] = React.useState(false)
     const [showPersonal, setPersonal] = React.useState(false)
+    const [showSuccess, setshowSuccess] = React.useState(false)
+
     const [redirect, setRedirect] = React.useState(true)
     
     const turnOffFinance = () => {
@@ -20,9 +23,10 @@ const AddMore = props => {
         setPersonal(true)
     }
     const turnOffPersonal = () => {
-        setShowFinance(true)
+        setShowFinance(false)
         setShowShopping(false)
         setPersonal(false)
+        setshowSuccess(true)
     }
 
     let showComponent
@@ -36,6 +40,9 @@ const AddMore = props => {
     }
     if(showPersonal){
         showComponent = <PersonalCard navbarOff = {navOff} turnOffPersonal= {turnOffPersonal} redirect = {redirect}/>
+    }
+    if(showSuccess) {
+        showComponent = <AddedCats /> 
     }
 
     return(
