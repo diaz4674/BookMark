@@ -4,7 +4,6 @@ import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import { connect } from "react-redux";
-import { getmyFinancials } from "../actions";
 import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
@@ -108,7 +107,7 @@ const PersonalDashboard = props => {
         }
       >
           <div className={classes.top}>
-            <span className={classes.title}>Financial Bookmarks</span>
+            <span className={classes.title}>Personal Bookmarks</span>
 
             <CardMedia
               className={classes.media}
@@ -139,12 +138,10 @@ const PersonalDashboard = props => {
 };
 
 const mapStateToProps = state => {
-  return {
-    test: state.test
-  };
+
 };
 
 export default connect(
   mapStateToProps,
-  { getmyFinancials }
+
 )(PersonalDashboard);

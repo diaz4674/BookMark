@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     margin: "20px 25px"
   },
   buttonContainer: {
-    margin: "0 auto"
+    margin: "20px auto 0"
   }
 }));
 
@@ -112,7 +112,7 @@ const Personal = props => {
         onClick={handleClickOpen}
         className={classes.buttonContainer}
       >
-        Take me to my Dashbaord!
+          {props.redirect?  "All Set!":"Take me to my Dashboard!"  }
       </Button>
       <Dialog
         open={open}
@@ -125,7 +125,7 @@ const Personal = props => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            You will have a chance to add more once in your dashboard as well.
+          {props.redirect?  "":"You will have a chance to add more once in your dashboard as well."  }
           </DialogContentText>
         </DialogContent>
         <DialogActions>

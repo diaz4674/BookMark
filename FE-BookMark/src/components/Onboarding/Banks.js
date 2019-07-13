@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     margin: "20px 25px"
   },
   buttonContainer: {
-    margin: "0 auto"
+    margin: "20px auto 0"
   }
 }));
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -112,13 +112,16 @@ const Banks = props => {
           );
         })}
       </div>
+
+      <FormHelperText>If you don't want to add any, continue to the Shopping Category</FormHelperText>
+
       <Button
         variant="outlined"
         color="primary"
         onClick={handleClickOpen}
         className={classes.buttonContainer}
       >
-        Save Selections
+        Save & Go to Shopping
       </Button>
       <Dialog
         open={open}

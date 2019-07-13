@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     margin: "20px 25px"
   },
   buttonContainer: {
-    margin: "0 auto"
+    margin: "20px auto 0"
   }
 }));
 
@@ -107,13 +107,16 @@ const Shopping = props => {
           );
         })}
       </div>
+
+      <FormHelperText>If you don't want to add any, continue to the Personal Category</FormHelperText>
+
       <Button
         variant="outlined"
         color="primary"
         onClick={handleClickOpen}
         className={classes.buttonContainer}
       >
-        Save Selections
+                Save & Go to Personal
       </Button>
       <Dialog
         open={open}
@@ -126,15 +129,15 @@ const Shopping = props => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            You will have a chance to add more once in your dashboard as well.
+          You can add more later.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Not Yet
+          No
           </Button>
           <Button onClick={redirect} color="primary" autoFocus>
-            Yes, take me to the personal category
+          Yes
           </Button>
         </DialogActions>
       </Dialog>
