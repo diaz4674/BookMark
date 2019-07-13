@@ -60,7 +60,6 @@ const PersonalCard = props => {
           <CardContent>
             <div>
               <h1>Personal Bookmarks</h1>
-              <Button onClick={props.goBack}>Go Back</Button>
             </div>
 
             <div className={classes.root}>
