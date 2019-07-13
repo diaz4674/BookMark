@@ -48,9 +48,13 @@ const PersonalCard = props => {
     setRender(!render);
   };
 
+  let nav
+
+  !props.navbarOff? nav = <OnboardNav /> : nav = null
+
   return (
     <>
-      <OnboardNav />
+    {nav}
       <div className={classes.categoryContainer}>
         <Card className={classes.cardContainer}>
           <CardContent>
@@ -71,7 +75,7 @@ const PersonalCard = props => {
                   </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                  <Personal reRenderHandler={reRenderHandler} />
+                  <Personal reRenderHandler={reRenderHandler} turnOffPersonal = {props.turnOffPersonal} redirect = {props.redirect} />
                 </ExpansionPanelDetails>
               </ExpansionPanel>
               <ExpansionPanel>

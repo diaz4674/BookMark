@@ -45,9 +45,15 @@ const FinancialCard = props => {
     setRender(!render);
   };
 
+  let nav
+
+  !props.navbarOff? nav = <OnboardNav /> : nav = null
+
   return (
     <div>
-      <OnboardNav />
+
+    {nav}
+      
       <Card className={classes.cardContainer}>
         <CardContent className={classes.bankCard}>
           <div>
@@ -66,7 +72,7 @@ const FinancialCard = props => {
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Banks reRenderHandler={reRenderHandler} />
+                <Banks reRenderHandler={reRenderHandler} turnOffFinance = {props.turnOffFinance} redirect = {props.redirect}/>
               </ExpansionPanelDetails>
             </ExpansionPanel>
             <ExpansionPanel>
