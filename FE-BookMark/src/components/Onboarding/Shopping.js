@@ -63,8 +63,6 @@ const Shopping = props => {
       props.history.push("./personalSelect");
     }
 
-    await props.setStores(newShop);
-
   };
 
   const handleChange = name => e => {
