@@ -54,12 +54,12 @@ const useStyles = makeStyles(theme => ({
   },
   names: {
     color: "black",
-    borderLeft: "solid 10px #58e2c8",
+    borderLeft: "solid 10px #fff80d",
     padding: "10px 15px",
     width: "90%",
     transition: ".4s",
     "&:hover": {
-      borderLeft: " solid 10px #02b492"
+      borderLeft: " solid 10px #c6c22e"
     }
   },
   personalCard: {
@@ -67,6 +67,9 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap"
+  },
+  optionsContainer: {
+    margin: "20px"
   }
 }));
 
@@ -113,10 +116,11 @@ const PersonalDashboard = props => {
               title="Money"
             />
           </div>
+        <CardContent className={classes.personalCard}>
         {state.map((personal, i) => {
           return (
             <div key={i}>
-              <CardContent className={classes.personalCard}>
+              <div className = {classes.optionsContainer}> 
                 <a
                   href={personal.personalSite}
                   target="_blank"
@@ -124,10 +128,11 @@ const PersonalDashboard = props => {
                 >
                   <span className={classes.names}>{personal.personalName}</span>
                 </a>
-              </CardContent>
+              </div>
             </div>
           );
         })}
+        </CardContent>
       </Card>
     </div>
   );
