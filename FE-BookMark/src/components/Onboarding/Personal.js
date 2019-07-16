@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import Switch from "@material-ui/core/Switch";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,6 +17,7 @@ import { setPersonal } from "../../actions";
 import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
+  //Component CSS
   formContainer: {
     width: "100%",
     display: "flex"
@@ -40,28 +40,37 @@ const useStyles = makeStyles(theme => ({
 
 const Personal = props => {
   const classes = useStyles();
+
+  //Component States
   const [state, setState] = React.useState({});
   const [newSite, setNewSite] = useState([]);
   const [open, setOpen] = React.useState(false);
 
   function handleClickOpen() {
+    //Sets the open state to true which then open pop up dialogue box
     setOpen(true);
   }
 
   function handleClose() {
+    //Sets the open state to false which then closes the pop up dialogue box
     setOpen(false);
   }
   const handleChange = name => e => {
     setState({ ...state, [name]: e.target.checked });
+    //if the user selects a swatch to be true, it starts the process of pushing the selected data to the state
     if (e.target.checked === true) {
       if (newSite.indexOf(name) > -1) {
+        //checks to see if the name is already in the new site state array, and returns null if it is.
         return null;
       } else {
+        //If name is not in new site state array, it adds the selected data to the new site state
         setNewSite([...newSite, name]);
       }
     } else {
+      //if the swatch is turned to false, it removes the selected data from the new site state
       for (var i = newSite.length - 1; i >= 0; i--) {
         if (newSite[i] === name) {
+          //looks to see if the selected data matches the new sites state to remove it from the state.
           newSite.splice(i, 1);
           // break;       //<-- Uncomment  if only the first term has to be removed
         }
@@ -70,16 +79,21 @@ const Personal = props => {
   };
 
   const dashboardRedirect = async () => {
-    if(props.redirect){
+    //Looks to see if redirect prop is passed to this component because this component is used in two different locations, the Dashboard and the Onboarding process.
+    //The redirect prop is passed if the user is in the Dashboard, to display/not display certain data
 
+    //if in Dashboard component to add more sites, redirect is true.
+    if (props.redirect) {
+      //sends the state data selected to the actions axios  post call
       await props.setPersonal(newSite);
-      props.turnOffPersonal()
+      //Calls function from the Added Cats component to not display this component, and display the next component
+      props.turnOffPersonal();
     } else {
+      //sends the new banks state data to the actions axios post call
       await props.setPersonal(newSite);
+      //sends the user to the dashboard component
       props.history.push("/dashboard");
     }
-
-
   };
 
   return (
@@ -87,6 +101,7 @@ const Personal = props => {
       <FormLabel component="legend">Choose personal site to add</FormLabel>
       <div className={classes.container}>
         {props.personal.map((site, index) => {
+          //personal is a reducer store array that displays the website name and contains the site's URL.
           return (
             <>
               <FormGroup key={index} className={classes.item}>
@@ -112,7 +127,7 @@ const Personal = props => {
         onClick={handleClickOpen}
         className={classes.buttonContainer}
       >
-          {props.redirect?  "All Set!":"Take me to my Dashboard!"  }
+        {props.redirect ? "All Set!" : "Take me to my Dashboard!"}
       </Button>
       <Dialog
         open={open}
@@ -125,7 +140,9 @@ const Personal = props => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-          {props.redirect?  "":"You will have a chance to add more once in your dashboard as well."  }
+            {props.redirect
+              ? ""
+              : "You will have a chance to add more once in your dashboard as well."}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -150,6 +167,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { deleteSite, setPersonal }
+    { setPersonal }
   )(Personal)
 );
