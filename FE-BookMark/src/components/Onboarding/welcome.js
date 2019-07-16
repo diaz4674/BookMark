@@ -10,6 +10,7 @@ import Categories from "./Categories";
 import OnboardNav from "../Navbars/OnboardNav";
 
 const useStyles = makeStyles(theme => ({
+  //Component CSS
   welcomeContainer: {
     display: "flex",
     flexDirection: "column",

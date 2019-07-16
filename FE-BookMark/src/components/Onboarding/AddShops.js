@@ -7,6 +7,7 @@ import { addStore } from "../../actions";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
+  // component CSS
   container: {
     display: "flex",
     flexWrap: "wrap",
@@ -25,9 +26,11 @@ const useStyles = makeStyles(theme => ({
 const AddShops = props => {
   const classes = useStyles();
 
+  //Component States
   const [site, setSite] = useState("");
   const [storeName, setStore] = useState("");
 
+  //Sets the user input fields to the state
   const handleAddStore = e => {
     setStore(e.target.value);
   };
@@ -37,13 +40,20 @@ const AddShops = props => {
 
   const Submit = async e => {
     e.preventDefault();
+
     if (!storeName || !site) {
-      console.log(storeName, site);
+      //if input fields are empty, displays message
       alert("please don't leave fields empty");
     } else {
-      await props.addStore({ storeName: storeName, storeSite: site });
+      //Sends inputted data to the action axios call
+      await props.addStore({
+        storeName: storeName,
+        storeSite: site
+      });
+      //Resets input fields to be blank
       setStore("");
       setSite("");
+      //Calls function in the Personal Card Component to re-render and populate component with the new data
       props.reRenderHandler();
     }
   };
@@ -80,11 +90,7 @@ const AddShops = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    shopping: state.shopping
-  };
-};
+const mapStateToProps = state => {};
 
 export default connect(
   mapStateToProps,

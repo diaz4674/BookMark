@@ -1,3 +1,5 @@
+//Navbar that displays during the Onboarding process
+
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -7,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
+  // component CSS
   root: {
     flexGrow: 1
   },
@@ -36,11 +39,13 @@ export default function ButtonAppBar() {
             BookMark
           </Typography>
           <Link to="/" className={classes.links}>
+            {/* Sends the user to the login screen */}
             <Button color="primary" className={classes.buttons}>
               Login
             </Button>
           </Link>
           <Link to="/signup" className={classes.links}>
+            {/* Sends the user to the register page */}
             <Button color="inherent" className={classes.buttons}>
               Sign Up
             </Button>
