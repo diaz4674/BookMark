@@ -7,6 +7,7 @@ import { addBanks } from "../../actions";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
+  // component CSS
   container: {
     display: "flex",
     flexWrap: "wrap",
@@ -28,10 +29,11 @@ const useStyles = makeStyles(theme => ({
 const AddBanks = props => {
   const classes = useStyles();
 
+  //Component States
   const [site, setSite] = useState("");
-
   const [institutionName, setBanks] = useState("");
 
+  //Sets the user input fields to the state
   const handleAddBank = e => {
     setBanks(e.target.value);
   };
@@ -41,18 +43,21 @@ const AddBanks = props => {
 
   const Submit = async e => {
     e.preventDefault();
+
     if (!institutionName || !site) {
-      console.log(institutionName, site);
+      //if input fields are empty, displays message
       alert("please don't leave empty");
     } else {
+      //Sends inputted data to the action axios call
       await props.addBanks({
         FinancialName: institutionName,
         FinancialSite: site
       });
+      //Resets input fields to be blank
       setBanks("");
       setSite("");
+      //Calls function in the Personal Card Component to re-render and populate component with the new data
       props.reRenderHandler();
-      console.log(props.myBanks);
     }
   };
 
@@ -90,11 +95,7 @@ const AddBanks = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    myBanks: state.myBanks
-  };
-};
+const mapStateToProps = state => {};
 
 export default connect(
   mapStateToProps,

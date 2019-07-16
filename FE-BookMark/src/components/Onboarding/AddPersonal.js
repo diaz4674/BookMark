@@ -7,6 +7,7 @@ import { addPersonalSite } from "../../actions";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
+  // component CSS
   container: {
     display: "flex",
     flexWrap: "wrap",
@@ -25,10 +26,11 @@ const useStyles = makeStyles(theme => ({
 const AddPersonal = props => {
   const classes = useStyles();
 
+  //Component States
   const [site, setSite] = useState("");
-
   const [personalSite, setPersonalSite] = useState("");
 
+  //Sets the user input fields to the state
   const handleAddPersonalSite = e => {
     setPersonalSite(e.target.value);
   };
@@ -38,16 +40,20 @@ const AddPersonal = props => {
 
   const Submit = async e => {
     e.preventDefault();
+
     if (!personalSite || !site) {
-      console.log(personalSite, site);
-      console.log("please don't leave empty");
+      //if input fields are empty, displays message
+      alert("Please don't leave empty");
     } else {
+      //Sends inputted data to the action axios call
       await props.addPersonalSite({
         personalName: personalSite,
         personalSite: site
       });
+      //Resets input fields to be blank
       setSite("");
       setPersonalSite("");
+      //Calls function in the Personal Card Component to re-render and populate component with the new data
       props.reRenderHandler();
     }
   };
@@ -84,9 +90,7 @@ const AddPersonal = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {};
-};
+const mapStateToProps = state => {};
 
 export default connect(
   mapStateToProps,

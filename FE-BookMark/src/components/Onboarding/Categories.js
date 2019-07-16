@@ -78,7 +78,6 @@ const useStyles = makeStyles(theme => ({
 
 const Categories = props => {
   const classes = useStyles();
-  const [page, setPage] = useState("");
 
   return (
     <div>
