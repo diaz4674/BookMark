@@ -13,6 +13,7 @@ import CardContent from "@material-ui/core/CardContent";
 import OnboardNav from "../Navbars/OnboardNav";
 
 const useStyles = makeStyles(theme => ({
+  //Component CSS
   root: {
     width: "100%",
     height: "100%"
@@ -20,7 +21,6 @@ const useStyles = makeStyles(theme => ({
   cardContainer: {
     margin: "25px auto",
     width: "80%",
-
     ["@media (max-width:780px)"]: {
       height: "auto",
       overflow: "visible",
@@ -38,22 +38,27 @@ const useStyles = makeStyles(theme => ({
 
 const FinancialCard = props => {
   const classes = useStyles();
+
+  //Component State
   const [expanded, setExpanded] = React.useState("panel1");
   const [render, setRender] = useState(false);
 
   const reRenderHandler = e => {
+    //toggles the render state.
+    //The render state is passed as a prop to the Banks, and AddBanks Component to refresh the components.
     setRender(!render);
   };
 
-  let nav
-
-  !props.navbarOff? nav = <OnboardNav /> : nav = null
+  let nav;
+  // Looks to see if navbarOff prop is passed to this component, if it isn't passed, it shows the Onboard Navbar in component
+  !props.navbarOff ? (nav = <OnboardNav />) : (nav = null);
+  // Reason for this is because this component is in the Onboarding component and inside the Dashboard component
 
   return (
     <div>
+      {/* displays navbar if navbarOff prop is passed */}
+      {nav}
 
-    {nav}
-      
       <Card className={classes.cardContainer}>
         <CardContent className={classes.bankCard}>
           <div>
@@ -72,7 +77,12 @@ const FinancialCard = props => {
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Banks reRenderHandler={reRenderHandler} turnOffFinance = {props.turnOffFinance} redirect = {props.redirect}/>
+                {/* Displays Banks component */}
+                <Banks
+                  reRenderHandler={reRenderHandler}
+                  turnOffFinance={props.turnOffFinance}
+                  redirect={props.redirect}
+                />
               </ExpansionPanelDetails>
             </ExpansionPanel>
             <ExpansionPanel>
@@ -86,6 +96,7 @@ const FinancialCard = props => {
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
+                {/* Displays AddBanks Component */}
                 <AddBanks reRenderHandler={reRenderHandler} />
               </ExpansionPanelDetails>
             </ExpansionPanel>

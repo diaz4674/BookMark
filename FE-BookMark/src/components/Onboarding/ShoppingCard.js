@@ -6,14 +6,13 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Shopping from "./Shopping";
-import Button from "@material-ui/core/Button";
 import AddShops from "./AddShops";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import { Link } from "react-router-dom";
 import OnboardNav from "../Navbars/OnboardNav";
 
 const useStyles = makeStyles(theme => ({
+  //Component CSS
   root: {
     width: "100%"
   },
@@ -45,20 +44,26 @@ const useStyles = makeStyles(theme => ({
 
 const ShoppingCard = props => {
   const classes = useStyles();
+
+  //Component State
   const [expanded, setExpanded] = React.useState("panel1");
   const [render, setRender] = useState(false);
 
   const reRenderHandler = e => {
+    //toggles the render state.
+    //The render state is passed as a prop to the Banks, and AddBanks Component to refresh the components.
     setRender(!render);
   };
 
-  let nav
-
-  !props.navbarOff? nav = <OnboardNav /> : nav = null
+  let nav;
+  // Looks to see if navbarOff prop is passed to this component, if it isn't passed, it shows the Onboard Navbar in component
+  !props.navbarOff ? (nav = <OnboardNav />) : (nav = null);
+  // Reason for this is because this component is in the Onboarding component and inside the Dashboard component
 
   return (
     <>
-       {nav}
+      {/* displays navbar if navbarOff prop is passed */}
+      {nav}
       <div className={classes.categoryContainer}>
         <Card className={classes.cardContainer}>
           <CardContent className={classes.shoppingCard}>
@@ -78,7 +83,12 @@ const ShoppingCard = props => {
                   </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                  <Shopping reRenderHandler={reRenderHandler} turnOffShopping = {props.turnOffShopping} redirect = {props.redirect} />
+                  {/* Displays Shopping component */}
+                  <Shopping
+                    reRenderHandler={reRenderHandler}
+                    turnOffShopping={props.turnOffShopping}
+                    redirect={props.redirect}
+                  />
                 </ExpansionPanelDetails>
               </ExpansionPanel>
               <ExpansionPanel>
@@ -92,6 +102,7 @@ const ShoppingCard = props => {
                   </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
+                  {/* Displays AddShops Component */}
                   <AddShops reRenderHandler={reRenderHandler} />
                 </ExpansionPanelDetails>
               </ExpansionPanel>

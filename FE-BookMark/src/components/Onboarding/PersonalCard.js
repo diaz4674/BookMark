@@ -6,13 +6,13 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Personal from "./Personal";
-import Button from "@material-ui/core/Button";
 import AddPersonal from "./AddPersonal";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import OnboardNav from "../Navbars/OnboardNav";
 
 const useStyles = makeStyles(theme => ({
+  //Component CSS
   root: {
     width: "100%"
   },
@@ -41,20 +41,26 @@ const useStyles = makeStyles(theme => ({
 
 const PersonalCard = props => {
   const classes = useStyles();
+
+  //Component State
   const [expanded, setExpanded] = React.useState("panel1");
   const [render, setRender] = useState(false);
 
   const reRenderHandler = e => {
+    //toggles the render state.
+    //The render state is passed as a prop to the Personal, and AddPersonal Component to refresh the components.
     setRender(!render);
   };
 
-  let nav
+  let nav;
 
-  !props.navbarOff? nav = <OnboardNav /> : nav = null
+  // Looks to see if navbarOff prop is passed to this component, if it isn't passed, it shows the Onboard Navbar in component
+  !props.navbarOff ? (nav = <OnboardNav />) : (nav = null);
+  // Reason for this is because this component is in the Onboarding component and inside the Dashboard component
 
   return (
     <>
-    {nav}
+      {nav}
       <div className={classes.categoryContainer}>
         <Card className={classes.cardContainer}>
           <CardContent>
@@ -74,7 +80,12 @@ const PersonalCard = props => {
                   </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                  <Personal reRenderHandler={reRenderHandler} turnOffPersonal = {props.turnOffPersonal} redirect = {props.redirect} />
+                  {/* Displays Personal component */}
+                  <Personal
+                    reRenderHandler={reRenderHandler}
+                    turnOffPersonal={props.turnOffPersonal}
+                    redirect={props.redirect}
+                  />
                 </ExpansionPanelDetails>
               </ExpansionPanel>
               <ExpansionPanel>
@@ -88,6 +99,7 @@ const PersonalCard = props => {
                   </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
+                  {/* Displays AddPersonal component */}
                   <AddPersonal reRenderHandler={reRenderHandler} />
                 </ExpansionPanelDetails>
               </ExpansionPanel>
