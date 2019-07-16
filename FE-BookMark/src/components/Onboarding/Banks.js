@@ -51,6 +51,11 @@ const Banks = props => {
     setOpen(true);
   }
 
+  function handleClose() {
+    //Sets the open state to false which then closes the pop up dialogue box
+    setOpen(false);
+  }
+
   const redirect = async () => {
     //Looks to see if redirect prop is passed to this component because this component is used in two different locations, the Dashboard and the Onboarding process.
     //The redirect prop is passed if the user is in the Dashboard, to display/not display certain data
@@ -68,11 +73,6 @@ const Banks = props => {
       props.history.push("./shoppingSelect");
     }
   };
-
-  function handleClose() {
-    //Sets the open state to false which then closes the pop up dialogue box
-    setOpen(false);
-  }
 
   const handleChange = name => e => {
     setState({ ...state, [name]: e.target.checked });

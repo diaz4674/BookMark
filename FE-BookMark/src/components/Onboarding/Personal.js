@@ -89,7 +89,7 @@ const Personal = props => {
       //Calls function from the Added Cats component to not display this component, and display the next component
       props.turnOffPersonal();
     } else {
-      //sends the new banks state data to the actions axios post call
+      //sends the new site state data to the actions axios post call
       await props.setPersonal(newSite);
       //sends the user to the dashboard component
       props.history.push("/dashboard");
