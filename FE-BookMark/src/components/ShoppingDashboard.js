@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { getmyFinancials } from "../actions";
@@ -68,7 +67,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap"
-  }, 
+  },
   optionsContainer: {
     margin: "20px"
   }
@@ -108,32 +107,31 @@ const ShoppingDashboard = props => {
           !shoppingStatus ? classes.containerLoading : classes.containerLoaded
         }
       >
+        <div className={classes.top}>
+          <span className={classes.title}>Shopping Bookmarks</span>
 
-          <div className={classes.top}>
-            <span className={classes.title}>Shopping Bookmarks</span>
-
-            <CardMedia
-              className={classes.media}
-              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0hCU-mzBUAALrwP2-aaWfNoT-8rZ066658AwXWrF88QXdagcHqA"
-              title="handbag"
-            />
-          </div>
+          <CardMedia
+            className={classes.media}
+            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0hCU-mzBUAALrwP2-aaWfNoT-8rZ066658AwXWrF88QXdagcHqA"
+            title="handbag"
+          />
+        </div>
         <CardContent className={classes.shoppingCard}>
-        {state.map((stores, i) => {
-          return (
-            <div key={i}>
-              <div className = {classes.optionsContainer}>
-                <a
-                  href={stores.storeSite}
-                  target="_blank"
-                  className={classes.links}
-                >
-                  <span className={classes.names}>{stores.storeName}</span>
-                </a>
+          {state.map((stores, i) => {
+            return (
+              <div key={i}>
+                <div className={classes.optionsContainer}>
+                  <a
+                    href={stores.storeSite}
+                    target="_blank"
+                    className={classes.links}
+                  >
+                    <span className={classes.names}>{stores.storeName}</span>
+                  </a>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
         </CardContent>
       </Card>
     </div>

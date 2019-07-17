@@ -12,6 +12,125 @@ body {
   height: 100%;
 }
 
+.landingImg {
+  width: 100%;
+  opacity: 0.6;
+}
+
+.landingContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: black;
+  max-width: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.textContainer {
+  width: 100%;
+  margin: 0 auto;
+  color: white;
+}
+
+div.landingText {
+  top: 25%;
+  left: 70%;
+  border-radius: 10px;
+  position: absolute;
+  width: 100%;
+  margin: -107px;
+  width: 450px;
+}
+
+.buttons-landing {
+  display: flex;
+  justify-content: center;
+}
+.landing-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.this {
+  text-decoration: none;
+  color: black;
+  font-family: cheap-pine, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+  border: 4px solid black;
+  padding: 20px 40px;
+  position: relative;
+  overflow: hidden;
+  margin: 25px;
+  transition: 0.6s;
+  background-color: #d3d3d3;
+}
+
+.this:hover {
+  cursor: pointer;
+}
+.cover:before {
+  content: "YEAH!";
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #c52026;
+  color: white;
+  height: 100%;
+  width: 100%;
+  transform-origin: bottom right;
+  transform: translateY(-100%);
+  transition: all 0.6s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cover:hover:before {
+  transform: rotate(0deg);
+}
+
+.slide:hover {
+  color: white;
+  transition: all 0.6s;
+  background-color: #c52026;
+}
+
+.logo-title {
+  font-family: cheap-pine, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.signupButton {
+  margin: 0 5px;
+  background-color: rgb(57, 193, 235);
+  color: white;
+  width: 100px;
+}
+
+.Logo-landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.innertext {
+  width: 100%;
+  margin: 100px 30px;
+  border-radius: 10px;
+  padding: 25px;
+}
+.landing-logo {
+  width: 10em;
+}
+
 @media (max-width: 400px) {
   html,
   .App,
