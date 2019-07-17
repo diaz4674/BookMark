@@ -38,7 +38,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             BookMark
           </Typography>
-          <Link to="/" className={classes.links}>
+          <Link to="/login" className={classes.links}>
             {/* Sends the user to the login screen */}
             <Button color="primary" className={classes.buttons}>
               Login

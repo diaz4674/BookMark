@@ -124,7 +124,6 @@ export default function PersistentDrawerLeft() {
   const [personalDash, setpersonalDash] = React.useState(false);
   const [addMoreDash, setaddMoreDash] = React.useState(false);
 
-
   function handleDrawerOpen() {
     setOpen(true);
   }
@@ -146,37 +145,37 @@ export default function PersistentDrawerLeft() {
   if (personalDash) {
     showThis = <PersonalDashboard />;
   }
-  
-  if(addMoreDash) {
-    showThis = <AddMore />
+
+  if (addMoreDash) {
+    showThis = <AddMore />;
   }
 
   const showFinancial = () => {
     setfinancialDash(true);
     setshoppingDash(false);
     setpersonalDash(false);
-    setaddMoreDash(false)
+    setaddMoreDash(false);
   };
 
   const showShopping = () => {
     setfinancialDash(false);
     setshoppingDash(true);
     setpersonalDash(false);
-    setaddMoreDash(false)
+    setaddMoreDash(false);
   };
 
   const showPersonal = () => {
     setfinancialDash(false);
     setshoppingDash(false);
     setpersonalDash(true);
-    setaddMoreDash(false)
+    setaddMoreDash(false);
   };
 
   const showAddMore = () => {
     setfinancialDash(false);
     setshoppingDash(false);
     setpersonalDash(false);
-    setaddMoreDash(true)
+    setaddMoreDash(true);
   };
 
   const logOut = () => {
@@ -252,10 +251,10 @@ export default function PersistentDrawerLeft() {
             className={addMoreDash ? classes.navTrue : classes.navItem}
           >
             <p className={classes.navText}> Add more sites </p>
-          </ListItem> 
+          </ListItem>
           <Divider />
           <ListItem onClick={logOut} className={classes.navItem}>
-            <Link to="/" className={classes.logout}>
+            <Link to="/login" className={classes.logout}>
               <p> Log Out</p>
             </Link>
           </ListItem>
