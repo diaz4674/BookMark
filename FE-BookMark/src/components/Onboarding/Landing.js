@@ -4,8 +4,8 @@ import "../../styles.css";
 import { Link } from "react-router-dom";
 
 const Landing = props => {
-  const [videoURL, setVideo] = React.useState(
-    "https://www.videvo.net/videvo_files/images/preview_160812_019_Facebook2_4K.jpg"
+  const [imageURL, setVideo] = React.useState(
+    "https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
   );
 
   return (
@@ -13,11 +13,8 @@ const Landing = props => {
       <OnboardNav />
       <div>
         <div className="landingContainer">
-          <video id="background-video" loop autoPlay>
-            <source src={videoURL} type="video/mp4" />
-            <source src={videoURL} type="video/ogg" />
-            Your browser does not support the video tag.
-          </video>
+          <img src={imageURL} alt="computer" className="landingImg" />
+
           <div className="landingText">
             <div className="textContainer">
               <div className="innertext">

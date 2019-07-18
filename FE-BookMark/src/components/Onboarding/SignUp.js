@@ -27,7 +27,6 @@ const useStyles = makeStyles(theme => ({
     paddingTop: "200px",
     display: "flex",
     flexWrap: "wrap",
-    display: "flex",
     justifyContent: "center"
   },
   card: {

@@ -25,6 +25,10 @@ const useStyles = makeStyles(theme => ({
   },
   buttons: {
     color: "white"
+  },
+  logo: {
+    textDecoration: "none",
+    color: "white"
   }
 }));
 
@@ -36,7 +40,9 @@ export default function ButtonAppBar() {
       <AppBar position="static" className={classes.navBar}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            BookMark
+            <Link to="/" className={classes.logo}>
+              BookMark
+            </Link>
           </Typography>
           <Link to="/login" className={classes.links}>
             {/* Sends the user to the login screen */}
