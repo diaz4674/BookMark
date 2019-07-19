@@ -2,35 +2,56 @@ import React from "react";
 import OnboardNav from "../Navbars/OnboardNav";
 import "../../styles.css";
 import { Link } from "react-router-dom";
+import bookmark from '../../images/BookMark.jpg'
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(theme => ({
+  backgroundImg: {
+    width: "100%",
+    height: "100vh",
+  },
+  landingContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    overflow: "hidden",
+  },
+  landingText: {
+    top: "30%",
+    left: "15%",
+    borderRadius: "10px",
+    position: "absolute",
+    height: "450px",
+    padding: "25px",
+    margin: "-107px",
+    width: "450px",
+    fontFamily: "Roboto Slab, serif",
+    fontWeight: "bold",
+    backgroundColor: "white",
+    border: "1px solid black"
+  }
+}))
 
 const Landing = props => {
-  const [imageURL, setVideo] = React.useState(
-    "https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-  );
+  const classes = useStyles();
+  const [image, setVideo] = React.useState();
 
   return (
     <>
       <OnboardNav />
       <div>
-        <div className="landingContainer">
-          <img src={imageURL} alt="computer" className="landingImg" />
+        <div className= {classes.landingContainer}>
+          <img src={bookmark} alt="computer" className={classes.backgroundImg} />
 
-          <div className="landingText">
-            <div className="textContainer">
-              <div className="innertext">
-                <div className="Logo-landing">
-                  <h1 className="logo-title"> BookMark</h1>
-                </div>
-                <div className="landing-text">
-                  <h1> A place for all your favorite content</h1>
-
+          <div className= {classes.landingText}>
+            <div >
+              <div >
+                  <h1> A place for all your favorite sites</h1>
                   <div>
                     <p>
-                      Match with people that get your vibe, and meet awesome
-                      people.
+                      Store your sites, so you can save on google searches.
                     </p>
                   </div>
-                </div>
                 <div className="buttons-landing">
                   <Link className="cover this" to="/login">
                     Login
