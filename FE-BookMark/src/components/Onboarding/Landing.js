@@ -2,7 +2,7 @@ import React from "react";
 import OnboardNav from "../Navbars/OnboardNav";
 import "../../styles.css";
 import { Link } from "react-router-dom";
-import bookmark from '../../images/BookMark.jpg'
+import bookmark from '../../images/bookmark.jpg'
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
