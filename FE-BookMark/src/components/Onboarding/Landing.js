@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap"
+
     // ["@media (max-width:1305px)"]: {
     //   top: "10%",
     //   left: "5%"
@@ -42,11 +43,19 @@ const useStyles = makeStyles(theme => ({
       alignItems: "center"
     }
   },
+  sectionTextContainer: {
+    padding: "25px",
+    flexWrap: "wrap",
+    width: "50%"
+  },
+  sectionTitle: {
+    fontSize: "40px"
+  },
   sectionText: {
-    padding: "15px"
+    fontSize: "30px"
   },
   personalImg: {
-    height: "25em"
+    height: "28em"
   }
 }));
 
@@ -65,7 +74,8 @@ const Landing = props => {
           />
 
           <div className={classes.landingText}>
-            <h1> A place for all your favorite sites</h1>
+            <h1>BookMark </h1>
+            <h2> A place for all your favorite sites</h2>
             {/* <div>
                 <p>
                   Store your sites, so you can save time from google searches.
@@ -73,16 +83,16 @@ const Landing = props => {
               </div> */}
             <div className="buttons-landing">
               <Link className="cover this" to="/login">
-                Login
+                Visit your Dashboard!
               </Link>
             </div>
           </div>
         </div>
         <div className={classes.secondSection}>
           <div className={classes.sectionExample}>
-            <div className={classes.sectionText}>
-              <h3>Bookmark</h3>
-              <p>
+            <div className={classes.sectionTextContainer}>
+              <h3 className={classes.sectionTitle}>Bookmark</h3>
+              <p className={classes.sectionText}>
                 Save time from constant google searches, and have all your
                 favorite sites in one place.
               </p>
