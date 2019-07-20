@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { getmyFinancials } from "../actions";
 import axios from "axios";
 import CardMedia from "@material-ui/core/CardMedia";
-import Loading from "./Loading";
+import cashIcon from '../images/cashIcon.png'
 
 const useStyles = makeStyles(theme => ({
   containerLoading: {
@@ -84,7 +84,7 @@ const FinancialDashboard = props => {
   const [state, setState] = useState([]);
   const [financialStatus, setFinancials] = useState(false);
   const [load, setLoad] = useState(false);
-  
+
   useEffect(() => {
     setLoad(true);
     const token = localStorage.getItem("token");
@@ -111,11 +111,7 @@ const FinancialDashboard = props => {
 
   return (
     <div>
-      {load ? (
-        <div>
-          <Loading />
-        </div>
-      ) : (
+      {
         <Card
           className={
             !financialStatus
@@ -128,7 +124,7 @@ const FinancialDashboard = props => {
 
             <CardMedia
               className={classes.media}
-              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR98kclxO8iMkcaCN4pmKEtxC3FkgHm05DTDdaY95CjqtQeDGk6"
+              image= {cashIcon}
               title="Money"
             />
           </div>
@@ -152,7 +148,7 @@ const FinancialDashboard = props => {
           })}
           </CardContent>
         </Card>
-      )}
+      }
     </div>
   );
 };

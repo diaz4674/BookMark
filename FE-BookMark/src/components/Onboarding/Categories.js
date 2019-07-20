@@ -6,6 +6,10 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
+import moneyLogo from '../../images/moneyLogo.png'
+import shoppingLogo from '../../images/shoppingLogo.png'
+import crownLogo from '../../images/crownLogo.png'
+
 import "../../styles.css";
 
 const useStyles = makeStyles(theme => ({
@@ -84,7 +88,7 @@ const Categories = props => {
             <CardContent className={classes.mediaContainer}>
               <CardMedia
                 className={classes.media}
-                image="https://cdn0.iconfinder.com/data/icons/shopping-icons-rounded/110/Money-Bag-512.png"
+                image={moneyLogo}
                 title="Money"
               />
               <Typography variant="h5" component="h2" className={classes.text}>
@@ -96,7 +100,7 @@ const Categories = props => {
             <CardContent className={classes.mediaContainer}>
               <CardMedia
                 className={classes.media}
-                image="https://cdn0.iconfinder.com/data/icons/commerce-and-retail/512/shopping_bag_purchase_product_ecommerce_buy_sales_sale_delivery_order_commerce_marketing_market_store_online_packing_packaging_flat_design_icon-512.png"
+                image= {shoppingLogo}
                 title="shopping"
               />
               <Typography variant="h5" component="h2" className={classes.text}>
@@ -108,7 +112,7 @@ const Categories = props => {
             <CardContent className={classes.mediaContainer}>
               <CardMedia
                 className={classes.media}
-                image="https://image.flaticon.com/icons/png/512/528/528351.png"
+                image= {crownLogo}
                 title="shopping"
               />
               <Typography variant="h5" component="h2" className={classes.text}>
