@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { getmyFinancials } from "../actions";
 import CardMedia from "@material-ui/core/CardMedia";
+import shoppingDash from '../images/shoppingDash.png'
 import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
@@ -112,7 +113,7 @@ const ShoppingDashboard = props => {
 
           <CardMedia
             className={classes.media}
-            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0hCU-mzBUAALrwP2-aaWfNoT-8rZ066658AwXWrF88QXdagcHqA"
+            image={shoppingDash}
             title="handbag"
           />
         </div>
@@ -139,9 +140,6 @@ const ShoppingDashboard = props => {
 };
 
 const mapStateToProps = state => {
-  return {
-    test: state.test
-  };
 };
 
 export default connect(
