@@ -82,7 +82,21 @@ const useStyles = makeStyles(theme => ({
     }
   },
   welcome: {
-    color: "white"
+    color: "white",
+    fontSize: "20px",
+    margin: "0"
+  },
+  usernameContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginRight: "16px"
+  },
+  close: {
+    backgroundColor: "white",
+    "&:hover": {
+      backgroundColor: "#ba78fe"
+    }
   },
   logout: {
     color: "white",
@@ -242,13 +256,17 @@ export default function PersistentDrawerLeft() {
       >
             
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+        <div className={classes.usernameContainer}> 
+          <p className = {classes.welcome}> Welcome </p>
+          <p className = {classes.welcome}> {username}  </p>
+        </div>
+          <IconButton onClick={handleDrawerClose} className= {classes.close}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
             ) : (
               <ChevronRightIcon />
             )}
-            <p className = {classes.welcome}> Welcome {username} </p>
+            
           </IconButton>
         </div>
         <Divider />
