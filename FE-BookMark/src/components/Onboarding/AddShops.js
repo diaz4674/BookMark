@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
   },
   dense: {
     marginTop: 16
+  },
+  buttonContainer: {
+    margin: "0 auto"
   }
 }));
 
@@ -85,7 +88,9 @@ const AddShops = props => {
         value={site}
         onChange={e => handleAddSite(e)}
       />
-      <Button type="submit">Add Store</Button>
+      <Button type="submit"  className={classes.buttonContainer}>
+        Add Store
+      </Button>
     </form>
   );
 };
