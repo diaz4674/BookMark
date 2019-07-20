@@ -5,7 +5,7 @@ import PersonalCard from './Onboarding/PersonalCard'
 import AddedCats from './AddedCats'
 
 const AddMore = props => {
-    const [navOff, setnav] = React.useState(true)
+    const [navOff] = React.useState(true)
     const [showFinance, setShowFinance] = React.useState(true)
     const [showShopping, setShowShopping] = React.useState(false)
     const [showPersonal, setPersonal] = React.useState(false)
