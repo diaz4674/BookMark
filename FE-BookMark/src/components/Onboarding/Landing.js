@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import bookmark from "../../images/bookmark.jpg";
 import { makeStyles } from "@material-ui/core/styles";
 import personalCard from "../../images/personal.PNG";
-
+import moneyCard from "../../images/money.PNG";
 const useStyles = makeStyles(theme => ({
   backgroundImg: {
     width: "100%"
@@ -24,11 +24,6 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap"
-
-    // ["@media (max-width:1305px)"]: {
-    //   top: "10%",
-    //   left: "5%"
-    // }
   },
   secondSection: {
     backgroundColor: "#faf9f7"
@@ -54,8 +49,12 @@ const useStyles = makeStyles(theme => ({
   sectionText: {
     fontSize: "30px"
   },
-  personalImg: {
+  cardImgs: {
     height: "28em"
+  },
+  thirdSection: {
+    padding: "25px 0",
+    backgroundColor: "#F4FAFF"
   }
 }));
 
@@ -76,11 +75,6 @@ const Landing = props => {
           <div className={classes.landingText}>
             <h1>BookMark </h1>
             <h2> A place for all your favorite sites</h2>
-            {/* <div>
-                <p>
-                  Store your sites, so you can save time from google searches.
-                </p>
-              </div> */}
             <div className="buttons-landing">
               <Link className="cover this" to="/login">
                 Visit your Dashboard!
@@ -91,13 +85,26 @@ const Landing = props => {
         <div className={classes.secondSection}>
           <div className={classes.sectionExample}>
             <div className={classes.sectionTextContainer}>
-              <h3 className={classes.sectionTitle}>Bookmark</h3>
+              <h3 className={classes.sectionTitle}>Save Time</h3>
               <p className={classes.sectionText}>
-                Save time from constant google searches, and have all your
-                favorite sites in one place.
+                Avoid constant google searches, and have all your favorite sites
+                in one place.
               </p>
             </div>
-            <img src={personalCard} className={classes.personalImg} />
+            <img src={personalCard} className={classes.cardImgs} />
+          </div>
+        </div>
+
+        <div className={classes.thirdSection}>
+          <div className={classes.sectionExample}>
+            <img src={moneyCard} className={classes.cardImgs} />
+            <div className={classes.sectionTextContainer}>
+              <h3 className={classes.sectionTitle}>Organize Better</h3>
+              <p className={classes.sectionText}>
+                Our user friendly site makes it easy for people to organize and
+                access their sites at a fast pace.
+              </p>
+            </div>
           </div>
         </div>
       </div>
