@@ -5,10 +5,14 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import highFive from '../images/highFive.png'
 
 const useStyles = makeStyles({
   card: {
     minWidth: 275,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
   bullet: {
     display: 'inline-block',
@@ -18,6 +22,15 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  img: {
+    width: "25rem",
+    margin: "25px auto",
+    display: 'flex'
+  },
+  center: {
+    display: "flex",
+    justifyContent: "center"
+  }
 });
 
 export default function SimpleCard() {
@@ -27,12 +40,13 @@ export default function SimpleCard() {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Typography variant="h5" component="h2">
+        <h2 className = {classes.center}>
           Successfully Added Sites to your Dashboards!
-        </Typography>
-        <Typography variant="body2" component="p">
-          You can view them when you browse your categories.
-        </Typography>
+        </h2>
+        <img src = {highFive} className ={classes.img}/>
+        <h4 className = {classes.center}>
+          You can now view them when you browse your categories.
+        </h4>
       </CardContent>
     </Card>
   );
