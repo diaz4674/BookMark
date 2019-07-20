@@ -6,6 +6,7 @@ import bookmark from "../../images/bookmark.jpg";
 import { makeStyles } from "@material-ui/core/styles";
 import personalCard from "../../images/personal.PNG";
 import moneyCard from "../../images/money.PNG";
+
 const useStyles = makeStyles(theme => ({
   backgroundImg: {
     width: "100%"
@@ -64,6 +65,7 @@ const Landing = props => {
 
   return (
     <>
+    <OnboardNav/>
       <div>
         <div className={classes.landingContainer}>
           <img
