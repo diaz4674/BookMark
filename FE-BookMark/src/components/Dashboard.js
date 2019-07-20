@@ -18,6 +18,7 @@ import PersonalDashboard from "./PersonalDashboard";
 import ShoppingDashboard from "./ShoppingDashboard";
 import AddMore from "./addMoreCategories";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 
 const drawerWidth = 240;
 
@@ -80,6 +81,9 @@ const useStyles = makeStyles(theme => ({
       fontWeight: "bold"
     }
   },
+  welcome: {
+    color: "white"
+  },
   logout: {
     color: "white",
     textDecoration: "none"
@@ -123,7 +127,27 @@ export default function PersistentDrawerLeft() {
   const [shoppingDash, setshoppingDash] = React.useState(false);
   const [personalDash, setpersonalDash] = React.useState(false);
   const [addMoreDash, setaddMoreDash] = React.useState(false);
+  const [username, setUsername] = React.useState('')
 
+  React.useEffect(() => {
+    const token = localStorage.getItem("token");
+    const deconstructedToken = token.split(".")[1];
+    const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
+    let id = deconstructedUserID.id;
+
+    const headers = { authorization: localStorage.getItem("token") };
+
+    axios
+      .get(`https://be-bookmark.herokuapp.com/userInfo/${id}`, {
+        headers
+      })
+      .then(res => {
+        setUsername(res.data.username );
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  
   function handleDrawerOpen() {
     setOpen(true);
   }
@@ -216,6 +240,7 @@ export default function PersistentDrawerLeft() {
           paper: classes.drawerPaper
         }}
       >
+            
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
@@ -223,6 +248,7 @@ export default function PersistentDrawerLeft() {
             ) : (
               <ChevronRightIcon />
             )}
+            <p className = {classes.welcome}> Welcome {username} </p>
           </IconButton>
         </div>
         <Divider />
