@@ -1,8 +1,10 @@
 module.exports = {
+  register: [],
   test: [],
   myBanks: [
-    { FinancialName: "Wells Fargo", 
-      FinancialSite: "https://www.wellsfargo.com/" 
+    {
+      FinancialName: "Wells Fargo",
+      FinancialSite: "https://www.wellsfargo.com/"
     },
     {
       FinancialName: "Bank of America",
