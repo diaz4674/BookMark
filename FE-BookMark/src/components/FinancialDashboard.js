@@ -3,10 +3,9 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { getmyFinancials } from "../actions";
 import axios from "axios";
 import CardMedia from "@material-ui/core/CardMedia";
-import cashIcon from '../images/cashIcon.png'
+import cashIcon from "../images/cashIcon.png";
 
 const useStyles = makeStyles(theme => ({
   containerLoading: {
@@ -54,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     height: "auto",
     display: "flex",
     justifyContent: "center",
-    flexWrap: "wrap",
+    flexWrap: "wrap"
   },
   title: {
     display: "flex",
@@ -124,28 +123,28 @@ const FinancialDashboard = props => {
 
             <CardMedia
               className={classes.media}
-              image= {cashIcon}
+              image={cashIcon}
               title="Money"
             />
           </div>
           <CardContent className={classes.bankCard}>
-          {state.map((financials, i) => {
-            return (
-              <div key={i}>
-                <div className = {classes.optionsContainer}> 
-                  <a
-                    href={financials.FinancialSite}
-                    target="_blank"
-                    className={classes.links}
-                  >
-                    <span className={classes.names}>
-                      {financials.FinancialName}
-                    </span>
-                  </a>
+            {state.map((financials, i) => {
+              return (
+                <div key={i}>
+                  <div className={classes.optionsContainer}>
+                    <a
+                      href={financials.FinancialSite}
+                      target="_blank"
+                      className={classes.links}
+                    >
+                      <span className={classes.names}>
+                        {financials.FinancialName}
+                      </span>
+                    </a>
                   </div>
-              </div>
-            );
-          })}
+                </div>
+              );
+            })}
           </CardContent>
         </Card>
       }
@@ -159,7 +158,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { getmyFinancials }
-)(FinancialDashboard);
+export default connect(mapStateToProps)(FinancialDashboard);
