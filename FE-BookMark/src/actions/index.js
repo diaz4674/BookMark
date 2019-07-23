@@ -39,11 +39,13 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 
 export const postRegister = body => dispatch => {
+  //Removes token from local storage
   localStorage.removeItem("token");
   axios
+    //Sends post request to backend to Create a new user
     .post("https://be-bookmark.herokuapp.com/register", body)
     .then(res => {
-      // After sign up, sets token to Headers
+      // After sign up, sets token to local storage for authorization
       localStorage.setItem("token", res.data.token);
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
     })
@@ -55,14 +57,17 @@ export const SET_FINANCIAL_SUCCESS = "SET_FINANCIAL_SUCCESS";
 export const SET_FINANCIAL_FAIL = "SET_FINANCIAL_FAIL";
 
 export const setFinancial = body => dispatch => {
+  //deconstructs token from local storage to get the current user ID
   const token = localStorage.getItem("token");
   const deconstructedToken = token.split(".")[1];
   const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
   let id = deconstructedUserID.id;
 
+  //sets token to headers variable
   const headers = { authorization: localStorage.getItem("token") };
 
   axios
+    //Sends post request with the headers to authenticate user, and sends the user id along with the body to post the user financial data to the backend
     .post(`https://be-bookmark.herokuapp.com/addBanks/${id}`, body, { headers })
     .then(res => {
       dispatch({ type: SET_FINANCIAL_SUCCESS, payload: res.data });
@@ -75,14 +80,17 @@ export const SET_STORES_SUCCESS = "SET_STORES_SUCCESS";
 export const SET_STORES_FAIL = "SET_STORES_FAIL";
 
 export const setStores = body => dispatch => {
+  //deconstructs token from local storage to get the current user ID
   const token = localStorage.getItem("token");
   const deconstructedToken = token.split(".")[1];
   const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
   let id = deconstructedUserID.id;
 
+  //sets token to headers variable
   const headers = { authorization: localStorage.getItem("token") };
 
   axios
+    //Sends post request with the headers to authenticate user, and sends the user id along with the body to post the user store data to the backend
     .post(`https://be-bookmark.herokuapp.com/addStoreData/${id}`, body, {
       headers
     })
@@ -97,14 +105,17 @@ export const SET_PERSONAL_SUCCESS = "SET_PERSONAL_SUCCESS";
 export const SET_PERSONAL_FAIL = "SET_PERSONAL_FAIL";
 
 export const setPersonal = body => dispatch => {
+  //deconstructs token from local storage to get the current user ID
   const token = localStorage.getItem("token");
   const deconstructedToken = token.split(".")[1];
   const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
   let id = deconstructedUserID.id;
 
+  //sets token to headers variable
   const headers = { authorization: localStorage.getItem("token") };
 
   axios
+    //Sends post request with the headers to authenticate user, and sends the user id along with the body to post the user personal sites data to the backend
     .post(` https://be-bookmark.herokuapp.com/addPersonal/${id}`, body, {
       headers
     })
