@@ -5,11 +5,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { getmyFinancials } from "../actions";
 import CardMedia from "@material-ui/core/CardMedia";
-import shoppingDash from '../images/shoppingDash.png'
+import shoppingDash from "../images/shoppingDash.png";
 import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   containerLoading: {
+    // Component CSS
     margin: "50px 0 0 0",
     opacity: 0
   },
@@ -76,28 +77,35 @@ const useStyles = makeStyles(theme => ({
 
 const ShoppingDashboard = props => {
   const classes = useStyles();
+
+  //Component States
   const [state, setState] = useState([]);
   const [shoppingStatus, setShopping] = useState(false);
 
   useEffect(() => {
+    //Deconstructs the token to get the user id
     const token = localStorage.getItem("token");
     const deconstructedToken = token.split(".")[1];
     const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
     let id = deconstructedUserID.id;
 
+    //sets the token to the headers
     const headers = { authorization: localStorage.getItem("token") };
 
     axios
+      //sends GET request with the headers to authenticate and retrieve the user's Store Sites data
       .get(`https://be-bookmark.herokuapp.com/getUserShopping/${id}`, {
         headers
       })
       .then(res => {
+        //sets the user's store data to the state
         setState(res.data);
       })
       .catch(err => console.log(err));
   }, []);
 
   useEffect(() => {
+    //when the state changes, it sets personalStatus to true, which then toggles the className of the component to have a fade effect when rendering
     setShopping(true);
   }, [state]);
 
@@ -105,6 +113,7 @@ const ShoppingDashboard = props => {
     <div>
       <Card
         className={
+          //checks to see if true, and if true, renders compnent with a fade effect
           !shoppingStatus ? classes.containerLoading : classes.containerLoaded
         }
       >
@@ -139,8 +148,7 @@ const ShoppingDashboard = props => {
   );
 };
 
-const mapStateToProps = state => {
-};
+const mapStateToProps = state => {};
 
 export default connect(
   mapStateToProps,

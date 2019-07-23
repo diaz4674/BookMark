@@ -17,6 +17,7 @@ import { postRegister } from "../../actions";
 import OnboardNav from "../Navbars/OnboardNav";
 
 const useStyles = makeStyles(theme => ({
+  //Component CSS
   margin: {
     margin: theme.spacing(1)
   },
@@ -69,6 +70,7 @@ const SignUp = props => {
   const classes = useStyles();
 
   const [values, setValues] = React.useState({
+    // Component State
     email: "",
     username: "",
     amount: "",
@@ -79,21 +81,24 @@ const SignUp = props => {
   });
 
   const handleChange = prop => e => {
+    // Sets the selected state and updates it's value
     setValues({ ...values, [prop]: e.target.value });
   };
 
   const handleClickShowPassword = () => {
+    // updates the password state value
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
   const loginHandler = async e => {
     e.preventDefault();
+    //on Sumbit, sends state data to the actions component to send to the backend
     await props.postRegister({
       username: values.username,
       email: values.email,
       password: values.password
     });
-
+    //then sends to user to the welcome component
     props.history.push("/welcome");
   };
 
@@ -180,9 +185,7 @@ const SignUp = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  postRegister: state.postRegister
-});
+const mapStateToProps = state => ({});
 
 export default withRouter(
   connect(

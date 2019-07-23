@@ -8,6 +8,7 @@ import personalCard from "../../images/personal.PNG";
 import moneyCard from "../../images/money.PNG";
 
 const useStyles = makeStyles(theme => ({
+  // Component CSS
   backgroundImg: {
     width: "100%"
   },
@@ -65,7 +66,7 @@ const Landing = props => {
 
   return (
     <>
-    <OnboardNav/>
+      <OnboardNav />
       <div>
         <div className={classes.landingContainer}>
           <img
@@ -77,6 +78,7 @@ const Landing = props => {
           <div className={classes.landingText}>
             <h1>BookMark </h1>
             <h2> A place for all your favorite sites</h2>
+            {/* This CSS is linked to the Styles.CSS file to incorporate the animation button */}
             <div className="buttons-landing">
               <Link className="cover this" to="/login">
                 Visit your Dashboard!

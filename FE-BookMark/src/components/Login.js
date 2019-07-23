@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -19,6 +19,7 @@ import axios from "axios";
 import OnboardNav from "./Navbars/OnboardNav";
 
 const useStyles = makeStyles(theme => ({
+  //Component CSS
   margin: {
     margin: theme.spacing(1)
   },
@@ -88,6 +89,7 @@ const Login = props => {
   const classes = useStyles();
 
   const [values, setValues] = React.useState({
+    //Component States
     email: "",
     amount: "",
     password: "",
@@ -97,14 +99,17 @@ const Login = props => {
   });
 
   const handleChange = prop => e => {
+    //funciton changes the selected state to the value user inputs
     setValues({ ...values, [prop]: e.target.value });
   };
 
   const handleClickShowPassword = () => {
+    //toggles the ability to view the password/hide password
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
   const loginHandler = async e => {
+    //removes token from the local storage
     localStorage.removeItem("token");
 
     const loginCreds = {
@@ -112,9 +117,12 @@ const Login = props => {
       password: values.password
     };
     await axios
+      //sends a post request to the login endpoint to authenticate user
       .post("https://be-bookmark.herokuapp.com/login", loginCreds)
       .then(res => {
+        //set's the token to the local storage
         localStorage.setItem("token", res.data.token);
+        //then pushes user to their dashboard
         props.history.push("/dashboard");
       })
       .catch(err => alert("Sorry, cannot find user, or wrong password/email"));
@@ -197,9 +205,7 @@ const Login = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  postLogin: state.postLogin
-});
+const mapStateToProps = state => ({});
 
 export default withRouter(
   connect(

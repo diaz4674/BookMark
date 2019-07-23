@@ -18,11 +18,12 @@ import PersonalDashboard from "./PersonalDashboard";
 import ShoppingDashboard from "./ShoppingDashboard";
 import AddMore from "./addMoreCategories";
 import { Link } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
+  //Component CSS
   root: {
     display: "flex"
   },
@@ -136,42 +137,50 @@ const useStyles = makeStyles(theme => ({
 export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
+
+  //Compnent States
   const [open, setOpen] = React.useState(false);
   const [financialDash, setfinancialDash] = React.useState(true);
   const [shoppingDash, setshoppingDash] = React.useState(false);
   const [personalDash, setpersonalDash] = React.useState(false);
   const [addMoreDash, setaddMoreDash] = React.useState(false);
-  const [username, setUsername] = React.useState('')
+  const [username, setUsername] = React.useState("");
 
   React.useEffect(() => {
+    //When Component Mounts, deconstructs token to get the user ID
     const token = localStorage.getItem("token");
     const deconstructedToken = token.split(".")[1];
     const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
     let id = deconstructedUserID.id;
 
+    //sets token to headers for authentication
     const headers = { authorization: localStorage.getItem("token") };
 
     axios
+      //sends GET request to backend to retrieve user information by user id,
       .get(`https://be-bookmark.herokuapp.com/userInfo/${id}`, {
         headers
       })
       .then(res => {
-        setUsername(res.data.username );
+        //sets username state to the user information username
+        setUsername(res.data.username);
       })
       .catch(err => console.log(err));
   }, []);
 
-  
   function handleDrawerOpen() {
+    //opens the side navigation bar
     setOpen(true);
   }
 
   function handleDrawerClose() {
+    //closes the side navigation bar
     setOpen(false);
   }
 
   let showThis;
-
+  //showThis is a variable that mounts the selected component if the state is true for the statmements below.
+  //showThis is rendered and shows the selected component to the user when toggled.
   if (financialDash) {
     showThis = <FinancialDashboard />;
   }
@@ -189,6 +198,8 @@ export default function PersistentDrawerLeft() {
   }
 
   const showFinancial = () => {
+    // When the  Function is selected, it sets all states false, and the Financial state to true,
+    // so it makes the showThis variable mount the Financial Dashbaord Component.
     setfinancialDash(true);
     setshoppingDash(false);
     setpersonalDash(false);
@@ -196,6 +207,8 @@ export default function PersistentDrawerLeft() {
   };
 
   const showShopping = () => {
+    // When the  Function is selected, it sets all states false, and the shopping state to true,
+    // so it makes the showThis variable mount the Shopping Dashbaord Component.
     setfinancialDash(false);
     setshoppingDash(true);
     setpersonalDash(false);
@@ -203,6 +216,8 @@ export default function PersistentDrawerLeft() {
   };
 
   const showPersonal = () => {
+    // When the  Function is selected, it sets all states false, and the Personal state to true,
+    // so it makes the showThis variable mount the Personal Site Dashbaord Component.
     setfinancialDash(false);
     setshoppingDash(false);
     setpersonalDash(true);
@@ -210,6 +225,8 @@ export default function PersistentDrawerLeft() {
   };
 
   const showAddMore = () => {
+    // When the  Function is selected, it sets all states false, and the addMoreDash state to true,
+    // so it makes the showThis variable mount the AddMore Dashbaord Component.
     setfinancialDash(false);
     setshoppingDash(false);
     setpersonalDash(false);
@@ -217,6 +234,7 @@ export default function PersistentDrawerLeft() {
   };
 
   const logOut = () => {
+    //when user logs out, it clears the token from the local storage
     localStorage.removeItem("token");
   };
 
@@ -224,6 +242,7 @@ export default function PersistentDrawerLeft() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        // AppBar is the top navbar
         color="initial"
         position="fixed"
         className={clsx(classes.appBar, {
@@ -231,6 +250,7 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <Toolbar>
+          {/* Icon button that opens the side nav */}
           <IconButton
             color="white"
             aria-label="Open drawer"
@@ -246,6 +266,7 @@ export default function PersistentDrawerLeft() {
         </Toolbar>
       </AppBar>
       <Drawer
+        // Drawer is the side bar navigation
         className={classes.drawer}
         variant="persistent"
         anchor="left"
@@ -254,23 +275,24 @@ export default function PersistentDrawerLeft() {
           paper: classes.drawerPaper
         }}
       >
-            
         <div className={classes.drawerHeader}>
-        <div className={classes.usernameContainer}> 
-          <p className = {classes.welcome}> Welcome </p>
-          <p className = {classes.welcome}> {username}  </p>
-        </div>
-          <IconButton onClick={handleDrawerClose} className= {classes.close}>
+          <div className={classes.usernameContainer}>
+            <p className={classes.welcome}> Welcome </p>
+            {/* username is rendering the user's username from the component mount GET request */}
+            <p className={classes.welcome}> {username} </p>
+          </div>
+          <IconButton onClick={handleDrawerClose} className={classes.close}>
+            {/* IconButton closes the side navigation bar */}
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
             ) : (
               <ChevronRightIcon />
             )}
-            
           </IconButton>
         </div>
         <Divider />
         <List>
+          {/* //List of ListItems that toggles the rendered components that the user views */}
           <ListItem
             onClick={showFinancial}
             className={financialDash ? classes.navTrue : classes.navItem}
@@ -312,7 +334,7 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
-
+        {/* The showThis variable renders the component that is mounted to this variable */}
         {showThis}
       </main>
     </div>

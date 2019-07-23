@@ -8,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import cashIcon from "../images/cashIcon.png";
 
 const useStyles = makeStyles(theme => ({
+  // Component CSS
   containerLoading: {
     margin: "50px 0 0 0",
     opacity: 0
@@ -80,31 +81,35 @@ const useStyles = makeStyles(theme => ({
 
 const FinancialDashboard = props => {
   const classes = useStyles();
+
+  //Component States
   const [state, setState] = useState([]);
   const [financialStatus, setFinancials] = useState(false);
-  const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    setLoad(true);
+    //Deconstructs the token to get the user id
     const token = localStorage.getItem("token");
     const deconstructedToken = token.split(".")[1];
     const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
     let id = deconstructedUserID.id;
 
+    //sets the token to the headers
     const headers = { authorization: localStorage.getItem("token") };
 
     axios
+      //sends GET request with the headers to authenticate and retrieve the user's financial data
       .get(`https://be-bookmark.herokuapp.com/getUserFinancial/${id}`, {
         headers
       })
       .then(res => {
+        //sets the user's financial data to the state
         setState(res.data);
       })
       .catch(err => console.log(err));
   }, []);
 
   useEffect(() => {
-    setLoad(false);
+    // when the setFinancials are true, it adds CSS to the component to render with a fade in effect.
     setFinancials(true);
   }, [state]);
 
@@ -114,7 +119,8 @@ const FinancialDashboard = props => {
         <Card
           className={
             !financialStatus
-              ? classes.containerLoading
+              ? //checks to see if financialStatus is true, and renders a fade in effect if true
+                classes.containerLoading
               : classes.containerLoaded
           }
         >
@@ -152,10 +158,4 @@ const FinancialDashboard = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    test: state.test
-  };
-};
-
-export default connect(mapStateToProps)(FinancialDashboard);
+export default FinancialDashboard;
