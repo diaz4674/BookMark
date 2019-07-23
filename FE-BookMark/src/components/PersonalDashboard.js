@@ -4,10 +4,11 @@ import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import { connect } from "react-redux";
-import pokeCrown from '../images/pokeCrown.png'
+import pokeCrown from "../images/pokeCrown.png";
 import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
+  // Component CSS
   containerLoading: {
     margin: "50px 0 0 0",
     opacity: 0
@@ -75,28 +76,35 @@ const useStyles = makeStyles(theme => ({
 
 const PersonalDashboard = props => {
   const classes = useStyles();
+
+  //Component States
   const [state, setState] = useState([]);
   const [personalStatus, setPersonal] = useState(false);
 
   useEffect(() => {
+    //Deconstructs the token to get the user id
     const token = localStorage.getItem("token");
     const deconstructedToken = token.split(".")[1];
     const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
     let id = deconstructedUserID.id;
 
+    //sets the token to the headers
     const headers = { authorization: localStorage.getItem("token") };
 
     axios
+      //sends GET request with the headers to authenticate and retrieve the user's Personal Sites data
       .get(`https://be-bookmark.herokuapp.com/getUserPersonal/${id}`, {
         headers
       })
       .then(res => {
+        //sets the user's personal data to the state
         setState(res.data);
       })
       .catch(err => console.log(err));
   }, []);
 
   useEffect(() => {
+    //when the state changes, it sets personalStatus to true, which then toggles the className of the component to have a fade effect when rendering
     setPersonal(true);
   }, [state]);
 
@@ -104,45 +112,43 @@ const PersonalDashboard = props => {
     <div>
       <Card
         className={
+          //checks to see if true, and if true, renders compnent with a fade effect
           !personalStatus ? classes.containerLoading : classes.containerLoaded
         }
       >
-          <div className={classes.top}>
-            <span className={classes.title}>Personal Bookmarks</span>
+        <div className={classes.top}>
+          <span className={classes.title}>Personal Bookmarks</span>
 
-            <CardMedia
-              className={classes.media}
-              image= {pokeCrown}
-              title="Crown"
-            />
-          </div>
+          <CardMedia
+            className={classes.media}
+            image={pokeCrown}
+            title="Crown"
+          />
+        </div>
         <CardContent className={classes.personalCard}>
-        {state.map((personal, i) => {
-          return (
-            <div key={i}>
-              <div className = {classes.optionsContainer}> 
-                <a
-                  href={personal.personalSite}
-                  target="_blank"
-                  className={classes.links}
-                >
-                  <span className={classes.names}>{personal.personalName}</span>
-                </a>
+          {state.map((personal, i) => {
+            return (
+              <div key={i}>
+                <div className={classes.optionsContainer}>
+                  <a
+                    href={personal.personalSite}
+                    target="_blank"
+                    className={classes.links}
+                  >
+                    <span className={classes.names}>
+                      {personal.personalName}
+                    </span>
+                  </a>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
         </CardContent>
       </Card>
     </div>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = state => {};
 
-};
-
-export default connect(
-  mapStateToProps,
-
-)(PersonalDashboard);
+export default connect(mapStateToProps)(PersonalDashboard);

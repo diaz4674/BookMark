@@ -1,7 +1,7 @@
 module.exports = {
-  register: [],
   test: [],
   myBanks: [
+    //set of data from popular companies that users can add to their dashboard
     {
       FinancialName: "Wells Fargo",
       FinancialSite: "https://www.wellsfargo.com/"
@@ -28,6 +28,7 @@ module.exports = {
     }
   ],
   shopping: [
+    //set of data from popular companies that users can add to their dashboard
     {
       storeName: "Amazon",
       storeSite: "https://www.amazon.com/"
@@ -38,6 +39,7 @@ module.exports = {
     }
   ],
   personal: [
+    //set of data from popular companies that users can add to their dashboard
     {
       personalName: "Reddit",
       personalSite: "https://www.reddit.com/"
