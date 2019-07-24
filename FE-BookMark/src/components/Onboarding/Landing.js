@@ -2,7 +2,7 @@ import React from "react";
 import OnboardNav from "../Navbars/OnboardNav";
 import "../../styles.css";
 import { Link } from "react-router-dom";
-import bookmark from "../../images/bookmark.jpg";
+import bookmark from "../../images/BookMark.jpg";
 import { makeStyles } from "@material-ui/core/styles";
 import personalCard from "../../images/personal.PNG";
 import moneyCard from "../../images/money.PNG";
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   sectionExample: {
     display: "flex",
     justifyContent: "space-around",
-    margin: "25px",
+    padding: "15px",
     ["@media (max-width:770px)"]: {
       display: "flex",
       flexDirection: "column",
