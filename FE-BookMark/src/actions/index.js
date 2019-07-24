@@ -124,3 +124,25 @@ export const setPersonal = body => dispatch => {
     })
     .catch(err => dispatch({ type: SET_PERSONAL_FAIL, payload: err }));
 };
+
+//GETS user financial sites/names
+export const GET_FINANCIAL_SUCCESS = "GET_FINANCIAL_SUCCESS";
+export const GET_FINANCIAL_FAIL = "GET_FINANCIAL_FAIL";
+
+export const getmyFinancials = () => dispatch => {
+  const token = localStorage.getItem("token");
+  const deconstructedToken = token.split(".")[1];
+  const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
+  let id = deconstructedUserID.id;
+
+  const headers = { authorization: localStorage.getItem("token") };
+
+  axios
+    .get(`https://be-bookmark.herokuapp.com/getUserFinancial/${id}`, {
+      headers
+    })
+    .then(res => {
+      dispatch({ type: GET_FINANCIAL_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({ type: GET_FINANCIAL_FAIL, payload: err }));
+};
