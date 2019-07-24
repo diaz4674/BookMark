@@ -3,10 +3,10 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { getmyFinancials } from "../actions";
 import CardMedia from "@material-ui/core/CardMedia";
 import shoppingDash from "../images/shoppingDash.png";
 import axios from "axios";
+
 
 const useStyles = makeStyles(theme => ({
   containerLoading: {
