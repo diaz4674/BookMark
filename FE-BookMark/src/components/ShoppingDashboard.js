@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import CardMedia from "@material-ui/core/CardMedia";
 import shoppingDash from "../images/shoppingDash.png";
 import axios from "axios";
-
+import { getTokenId } from "./common/UserId";
 
 const useStyles = makeStyles(theme => ({
   containerLoading: {
@@ -84,10 +84,7 @@ const ShoppingDashboard = props => {
 
   useEffect(() => {
     //Deconstructs the token to get the user id
-    const token = localStorage.getItem("token");
-    const deconstructedToken = token.split(".")[1];
-    const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
-    let id = deconstructedUserID.id;
+    let id = getTokenId();
 
     //sets the token to the headers
     const headers = { authorization: localStorage.getItem("token") };
@@ -152,5 +149,5 @@ const mapStateToProps = state => {};
 
 export default connect(
   mapStateToProps,
-  {  }
+  {}
 )(ShoppingDashboard);

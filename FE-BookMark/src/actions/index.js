@@ -19,6 +19,7 @@ import {
   GET_FINANCIAL_SUCCESS,
   GET_FINANCIAL_FAIL
 } from "./types";
+import { getTokenId } from "../components/common/UserId";
 
 //Sends the financial information inputted from the onboarding section to the array of financial data that displays as options for users to select.
 export const addBanks = bank => dispatch => {
@@ -72,10 +73,7 @@ export const postRegister = body => dispatch => {
 
 //Sends Institution card options to database
 export const setFinancial = body => dispatch => {
-  const token = localStorage.getItem("token");
-  const deconstructedToken = token.split(".")[1];
-  const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
-  let id = deconstructedUserID.id;
+  let id = getTokenId();
   const headers = { authorization: localStorage.getItem("token") };
   axios
     .post(`https://be-bookmark.herokuapp.com/addBanks/${id}`, body, { headers })
@@ -87,10 +85,7 @@ export const setFinancial = body => dispatch => {
 
 //Sends Shopping card options to database
 export const setStores = body => dispatch => {
-  const token = localStorage.getItem("token");
-  const deconstructedToken = token.split(".")[1];
-  const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
-  let id = deconstructedUserID.id;
+  let id = getTokenId();
   const headers = { authorization: localStorage.getItem("token") };
   axios
     .post(`https://be-bookmark.herokuapp.com/addStoreData/${id}`, body, {
@@ -104,10 +99,7 @@ export const setStores = body => dispatch => {
 
 //Sends Personal card options to database
 export const setPersonal = body => dispatch => {
-  const token = localStorage.getItem("token");
-  const deconstructedToken = token.split(".")[1];
-  const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
-  let id = deconstructedUserID.id;
+  let id = getTokenId();
   const headers = { authorization: localStorage.getItem("token") };
   axios
     .post(` https://be-bookmark.herokuapp.com/addPersonal/${id}`, body, {
@@ -121,13 +113,9 @@ export const setPersonal = body => dispatch => {
 
 //GETS user financial sites/names
 export const getmyFinancials = () => dispatch => {
-  const token = localStorage.getItem("token");
-  const deconstructedToken = token.split(".")[1];
-  const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
-  let id = deconstructedUserID.id;
+  let id = getTokenId();
 
   const headers = { authorization: localStorage.getItem("token") };
-
   axios
     .get(`https://be-bookmark.herokuapp.com/getUserFinancial/${id}`, {
       headers
