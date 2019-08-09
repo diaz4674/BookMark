@@ -19,6 +19,7 @@ import ShoppingDashboard from "./ShoppingDashboard";
 import AddMore from "./addMoreCategories";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { getTokenId } from "./common/UserId";
 
 const drawerWidth = 240;
 
@@ -148,11 +149,7 @@ export default function PersistentDrawerLeft() {
 
   React.useEffect(() => {
     //When Component Mounts, deconstructs token to get the user ID
-    const token = localStorage.getItem("token");
-    const deconstructedToken = token.split(".")[1];
-    const deconstructedUserID = JSON.parse(window.atob(deconstructedToken));
-    let id = deconstructedUserID.id;
-
+    let id = getTokenId();
     //sets token to headers for authentication
     const headers = { authorization: localStorage.getItem("token") };
 
