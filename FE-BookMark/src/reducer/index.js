@@ -3,7 +3,7 @@ import {
   ADD_BANKS_SUCCESS,
   ADD_STORE_SUCCESS,
   ADD_PERSONAL_SITE_SUCCESS
-} from "../actions";
+} from "../actions/types";
 
 const initialstate = preFilledData;
 
