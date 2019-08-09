@@ -40,7 +40,11 @@ export default function SimpleCard() {
         <h2 className={classes.center}>
           Successfully Added Sites to your Dashboards!
         </h2>
-        <img src={highFive} className={classes.img} />
+        <img
+          src={highFive}
+          className={classes.img}
+          alt="Two people high fiving"
+        />
         <h4 className={classes.center}>
           You can now view them when you browse your categories.
         </h4>
