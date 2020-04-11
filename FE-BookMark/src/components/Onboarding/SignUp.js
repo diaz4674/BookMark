@@ -14,7 +14,6 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { postRegister } from "../../actions";
 import OnboardNav from "../Navbars/OnboardNav";
 import axios from "axios";
 
@@ -112,7 +111,6 @@ const SignUp = props => {
     .then(res => {
       // After sign up, sets token to Headers
       localStorage.setItem("token", res.data.token);
-      props.postRegister(res.data)
       props.history.push("/welcome");
     })
     .catch(err => {
@@ -223,13 +221,4 @@ const SignUp = props => {
   );
 };
 
-const mapStateToProps = state => ({});
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    {
-      postRegister
-    }
-  )(SignUp)
-);
+export default SignUp

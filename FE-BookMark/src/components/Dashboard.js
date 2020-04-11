@@ -20,6 +20,8 @@ import AddMore from "./addMoreCategories";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { getTokenId } from "./common/UserId";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 const drawerWidth = 240;
 
@@ -135,7 +137,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function PersistentDrawerLeft() {
+ const PersistentDrawerLeft = (props) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -337,3 +339,5 @@ export default function PersistentDrawerLeft() {
     </div>
   );
 }
+
+export default PersistentDrawerLeft;

@@ -2,7 +2,7 @@ import preFilledData from "../preFilled/preFilledData";
 import {
   ADD_BANKS_SUCCESS,
   ADD_STORE_SUCCESS,
-  ADD_PERSONAL_SITE_SUCCESS
+  ADD_PERSONAL_SITE_SUCCESS,
 } from "../actions/types";
 
 const initialstate = preFilledData;
@@ -29,5 +29,5 @@ export const reducer = (state = initialstate, action) => {
       };
     default:
       return state;
-  }
+  };
 };

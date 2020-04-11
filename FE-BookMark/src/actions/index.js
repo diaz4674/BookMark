@@ -8,8 +8,6 @@ import {
   DELETE_SITE_SUCCESS,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
   SET_FINANCIAL_SUCCESS,
   SET_FINANCIAL_FAIL,
   SET_STORES_SUCCESS,
@@ -56,11 +54,6 @@ export const postLogin = body => dispatch => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: LOGIN_FAIL, payload: err }));
-};
-
-//REGISTER
-export const postRegister = body => dispatch => {
-  dispatch({ type: REGISTER_SUCCESS, payload: body });
 };
 
 //Sends Institution card options to database
