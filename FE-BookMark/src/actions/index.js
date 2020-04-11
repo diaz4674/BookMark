@@ -60,15 +60,7 @@ export const postLogin = body => dispatch => {
 
 //REGISTER
 export const postRegister = body => dispatch => {
-  localStorage.removeItem("token");
-  axios
-    .post("https://be-bookmark.herokuapp.com/register", body)
-    .then(res => {
-      // After sign up, sets token to Headers
-      localStorage.setItem("token", res.data.token);
-      dispatch({ type: REGISTER_SUCCESS, payload: res.data });
-    })
-    .catch(err => dispatch({ type: REGISTER_FAIL, payload: err }));
+  dispatch({ type: REGISTER_SUCCESS, payload: body });
 };
 
 //Sends Institution card options to database

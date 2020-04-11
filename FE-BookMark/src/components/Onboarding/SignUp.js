@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import clsx from "clsx";
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
@@ -15,6 +16,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { postRegister } from "../../actions";
 import OnboardNav from "../Navbars/OnboardNav";
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   //Component CSS
@@ -92,22 +94,31 @@ const SignUp = props => {
   };
 
   const loginHandler = async e => {
-    e.preventDefault();
     // Checks to see if user filled in appropriate fields
     if (values.username | values.email | values.password === ""){
       alert("Looks like you missed a field")
     } else {
     // Toggles loading icon
     setValues({...values, loading: !values.loading})
-    //on Sumbit, sends state data to the actions component to send to the backend
-    await props.postRegister({
+
+    const creds = {
       username: values.username,
       email: values.email,
       password: values.password
-    });
+    } 
 
-    //then sends to user to the welcome component
-    props.history.push("/welcome");
+    axios
+    .post("https://be-bookmark.herokuapp.com/register", creds)
+    .then(res => {
+      // After sign up, sets token to Headers
+      localStorage.setItem("token", res.data.token);
+      props.postRegister(res.data)
+      props.history.push("/welcome");
+    })
+    .catch(err => {
+      alert('Sorry try again')
+      setValues({...values, loading: false})
+    })
     }
   };
 
@@ -184,9 +195,26 @@ const SignUp = props => {
               />
             </CardContent>
             <CardActions>
-              <Button size="small" type="submit">
-                Next
-              </Button>
+            {values.loading ? 
+              // Loading circle when user clicks 'Login'
+                      <CircularProgress
+                      variant="indeterminate"
+                      disableShrink
+                      className={classes.loadingIcon}
+                      size={24}
+                      thickness={4}
+                      {...props}
+                    />
+                    : 
+            <Button
+              variant="contained"
+              size="medium"
+              className={classes.loginButton}
+              onClick={e => loginHandler()}
+            >
+              Next 
+            </Button>
+            }
             </CardActions>
           </Card>
         </form>
