@@ -77,7 +77,8 @@ const SignUp = props => {
     password: "",
     weight: "",
     weightRange: "",
-    showPassword: false
+    showPassword: false,
+    loading: false
   });
 
   const handleChange = prop => e => {
@@ -96,6 +97,8 @@ const SignUp = props => {
     if (values.username | values.email | values.password === ""){
       alert("Looks like you missed a field")
     } else {
+    // Toggles loading icon
+    setValues({...values, loading: !values.loading})
     //on Sumbit, sends state data to the actions component to send to the backend
     await props.postRegister({
       username: values.username,

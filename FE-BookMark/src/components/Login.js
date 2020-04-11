@@ -80,14 +80,15 @@ const useStyles = makeStyles(theme => ({
   loginButton: {
     backgroundColor: "#ba78fe",
     color: "white",
+    padding: "6px 16px",
     "&:hover": {
       backgroundColor: "#9a37ff"
     }
   },
-  bottom: {
+  loadingIcon: {
+    position: "relative",
     color: '#6798e5',
     animationDuration: '550ms',
-    position: 'absolute',
     left: 0,
   },
   text: {
@@ -126,11 +127,14 @@ const Login = props => {
     if (values.username | values.email | values.password === ""){
       alert("Looks like you missed a field")
     } else {
+    // Toggles loading icon
     setValues({...values, loading: !values.loading})
+
     const loginCreds = {
       email: values.email,
       password: values.password
     };
+    
     await axios
       //sends a post request to the login endpoint to authenticate user
       .post("https://be-bookmark.herokuapp.com/login", loginCreds)
@@ -141,8 +145,8 @@ const Login = props => {
         props.history.push("/dashboard");
       })
       .catch(err => {
-        setValues({...values, loading: !values.loading})
         alert("Sorry, cannot find user, or wrong password/email")
+        setValues({...values, loading: false})
       });
     }
   };
@@ -190,7 +194,7 @@ const Login = props => {
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
-                      edge="end"
+                      // edge="end"
                       aria-label="Toggle password visibility"
                       onClick={handleClickShowPassword}
                     >
@@ -202,27 +206,26 @@ const Login = props => {
             />
           </CardContent>
           <CardActions>
+          {values.loading ? 
+              // Loading circle when user clicks 'Login'
+                      <CircularProgress
+                      variant="indeterminate"
+                      disableShrink
+                      className={classes.loadingIcon}
+                      size={24}
+                      thickness={4}
+                      {...props}
+                    />
+                    : 
             <Button
               variant="contained"
               size="medium"
               className={classes.loginButton}
               onClick={e => loginHandler()}
             >
-              {values.loading ? 
-              // Loading circle when user clicks 'Login'
-                      <CircularProgress
-                      variant="indeterminate"
-                      disableShrink
-                      className={classes.bottom}
-                      size={24}
-                      thickness={4}
-                      {...props}
-                    />
-                    : 
-                    <p className = {classes.text}> Login </p> 
-              }
-              
+              Login 
             </Button>
+            }
           </CardActions>
           <div className={classes.separator}>
             <span className={classes.orText}> or </span>
