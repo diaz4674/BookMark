@@ -1,9 +1,8 @@
 # BookMark
 An organizational app for users to store and save their favorite sites.
 
-[Deployed website](https://quizzical-blackwell-d608a3.netlify.com/)
-
-[Backend Repo](https://github.com/diaz4674/BE-BookMark)
+- [Deployed website](https://quizzical-blackwell-d608a3.netlify.com/)
+- [Backend Repo](https://github.com/diaz4674/BE-BookMark)
 
 ### Table of Contents
 - [Installation](#installation)
