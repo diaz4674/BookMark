@@ -92,14 +92,20 @@ const SignUp = props => {
 
   const loginHandler = async e => {
     e.preventDefault();
+    // Checks to see if user filled in appropriate fields
+    if (values.username | values.email | values.password === ""){
+      alert("Looks like you missed a field")
+    } else {
     //on Sumbit, sends state data to the actions component to send to the backend
     await props.postRegister({
       username: values.username,
       email: values.email,
       password: values.password
     });
+
     //then sends to user to the welcome component
     props.history.push("/welcome");
+    }
   };
 
   return (
@@ -139,6 +145,7 @@ const SignUp = props => {
                 )}
                 margin="dense"
                 variant="filled"
+                type = "email"
                 value={values.email}
                 onChange={handleChange("email")}
               />

@@ -17,6 +17,7 @@ import { connect } from "react-redux";
 import { postLogin } from "../actions";
 import axios from "axios";
 import OnboardNav from "./Navbars/OnboardNav";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
   //Component CSS
@@ -82,6 +83,15 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       backgroundColor: "#9a37ff"
     }
+  },
+  bottom: {
+    color: '#6798e5',
+    animationDuration: '550ms',
+    position: 'absolute',
+    left: 0,
+  },
+  text: {
+    margin: 0
   }
 }));
 
@@ -95,7 +105,8 @@ const Login = props => {
     password: "",
     weight: "",
     weightRange: "",
-    showPassword: false
+    showPassword: false,
+    loading: false
   });
 
   const handleChange = prop => e => {
@@ -112,6 +123,10 @@ const Login = props => {
     //removes token from the local storage
     localStorage.removeItem("token");
 
+    if (values.username | values.email | values.password === ""){
+      alert("Looks like you missed a field")
+    } else {
+    setValues({...values, loading: !values.loading})
     const loginCreds = {
       email: values.email,
       password: values.password
@@ -125,9 +140,13 @@ const Login = props => {
         //then pushes user to their dashboard
         props.history.push("/dashboard");
       })
-      .catch(err => alert("Sorry, cannot find user, or wrong password/email"));
+      .catch(err => {
+        setValues({...values, loading: !values.loading})
+        alert("Sorry, cannot find user, or wrong password/email")
+      });
+    }
   };
-
+  
   return (
     <div className={classes.test}>
       <OnboardNav />
@@ -151,6 +170,7 @@ const Login = props => {
               )}
               margin="dense"
               variant="filled"
+              type = "email"
               value={values.email}
               onChange={handleChange("email")}
             />
@@ -188,7 +208,20 @@ const Login = props => {
               className={classes.loginButton}
               onClick={e => loginHandler()}
             >
-              Login
+              {values.loading ? 
+              // Loading circle when user clicks 'Login'
+                      <CircularProgress
+                      variant="indeterminate"
+                      disableShrink
+                      className={classes.bottom}
+                      size={24}
+                      thickness={4}
+                      {...props}
+                    />
+                    : 
+                    <p className = {classes.text}> Login </p> 
+              }
+              
             </Button>
           </CardActions>
           <div className={classes.separator}>
