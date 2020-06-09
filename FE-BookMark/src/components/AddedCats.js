@@ -46,7 +46,7 @@ export default function SimpleCard() {
           alt="Two people high fiving"
         />
         <h4 className={classes.center}>
-          Yous can now view them when you browse your categories.
+          You can now view them when you browse your categories.
         </h4>
       </CardContent>
     </Card>
