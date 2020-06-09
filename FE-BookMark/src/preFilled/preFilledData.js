@@ -1,5 +1,5 @@
 module.exports = {
-  test: [],
+  loggingIn: false,
   myBanks: [
     //set of data from popular companies that users can add to their dashboard
     {

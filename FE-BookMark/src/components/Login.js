@@ -128,6 +128,12 @@ const Login = props => {
       .catch(err => alert("Sorry, cannot find user, or wrong password/email"));
   };
 
+  const handleKeyPress = e => {
+    if (e.keyCode == 13) {
+      loginHandler();
+    }
+  };
+
   return (
     <div className={classes.test}>
       <OnboardNav />
@@ -166,6 +172,7 @@ const Login = props => {
               label="Password"
               value={values.password}
               onChange={handleChange("password")}
+              onKeyDown={e => handleKeyPress(e)}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">

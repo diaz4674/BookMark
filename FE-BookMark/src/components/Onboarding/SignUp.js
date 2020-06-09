@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -13,6 +13,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import axios from "axios";
 import { postRegister } from "../../actions";
 import OnboardNav from "../Navbars/OnboardNav";
 
@@ -80,6 +81,10 @@ const SignUp = props => {
     showPassword: false
   });
 
+  // useEffect(() => {
+
+  // });
+
   const handleChange = prop => e => {
     // Sets the selected state and updates it's value
     setValues({ ...values, [prop]: e.target.value });
@@ -91,15 +96,29 @@ const SignUp = props => {
   };
 
   const loginHandler = async e => {
-    e.preventDefault();
-    //on Sumbit, sends state data to the actions component to send to the backend
-    await props.postRegister({
-      username: values.username,
-      email: values.email,
-      password: values.password
-    });
-    //then sends to user to the welcome component
-    props.history.push("/welcome");
+    // DRY
+    let { username, email, password } = values;
+
+    if (username === "" || email === "" || password === "") {
+      e.preventDefault();
+      alert("Sorry you can't leave the fields blank");
+    } else {
+      e.preventDefault();
+      localStorage.removeItem("token");
+      let body = {
+        username: username,
+        email: email,
+        password: password
+      };
+      axios
+        .post("https://be-bookmark.herokuapp.com/register", body)
+        .then(res => {
+          // After sign up, sets token to Headers
+          localStorage.setItem("token", res.data.token);
+          props.history.push("/welcome");
+        })
+        .catch(err => alert("Sorry it seems this user already exists"));
+    }
   };
 
   return (
@@ -132,6 +151,7 @@ const SignUp = props => {
               <TextField
                 id="filled-dense"
                 label="Enter Email"
+                type="email"
                 className={clsx(
                   classes.margin,
                   classes.textField,
@@ -185,7 +205,7 @@ const SignUp = props => {
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({ state });
 
 export default withRouter(
   connect(
